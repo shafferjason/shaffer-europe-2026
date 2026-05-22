@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Logistics · Shaffers Abroad</title>
+<meta name="robots" content="noindex,nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Special+Elite&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="paper">
+
+  <a href="index.html" class="backLink">← back to the trip</a>
+
+  <div id="gate" class="lockGate">
+    <h2>Logistics</h2>
+    <p>Reservation numbers and contacts. For Jason &amp; Rachel only.</p>
+    <input type="password" id="pw" placeholder="Password" autocomplete="off" />
+    <button id="unlockBtn">Unlock</button>
+    <div class="lockError" id="lockErr"></div>
+  </div>
+
+  <div id="panel" class="privatePanel">
+    <h1 style="font-family:'Cormorant Garamond',serif;font-size:42px;margin:0 0 4px;">Logistics</h1>
+    <p style="font-style:italic;color:var(--ink-soft);margin:0 0 28px;">Everything in one place. Tap a phone or address to act on it.</p>
+
+    <section class="privateSection" id="cruiseBox"></section>
+    <section class="privateSection" id="flightsBox"></section>
+    <section class="privateSection" id="hotelsBox"></section>
+    <section class="privateSection" id="toursBox"></section>
+    <section class="privateSection" id="contactsBox"></section>
+    <section class="privateSection" id="notesBox"></section>
+  </div>
+
+  <footer class="footer">
+    <p class="handwritten">made with love · May 2026</p>
+  </footer>
+</div>
+
+<script src="data.js"></script>
+<script>
+(function(){
+  // ------------------------------------------------------------------
+  // SIMPLE SOFT-LOCK for v1. Replace the password by changing the
+  // value below, then commit + push. The pageshell hides logistics
+  // until the value matches.
+  //
+  // Heads up: this is a soft lock, not real encryption. Anyone who
+  // viewed the source could read the data. Tell Jason when you want
+  // to upgrade to encrypted-at-rest.
+  // ------------------------------------------------------------------
+  const PASSWORD = 'rachel2026';
+
+  const gate = document.getElementById('gate');
+  const panel = document.getElementById('panel');
+  const pw = document.getElementById('pw');
+  const btn = document.getElementById('unlockBtn');
+  const err = document.getElementById('lockErr');
+
+  function unlock() {
+    if (pw.value === PASSWORD) {
+      sessionStorage.setItem('sa-unlocked', '1');
+      gate.style.display = 'none';
+      panel.classList.add('unlocked');
+      render();
+    } else {
+      err.textContent = 'try again';
+      pw.value = '';
+      pw.focus();
+    }
+  }
+  btn.addEventListener('click', unlock);
+  pw.addEventListener('keydown', e => { if (e.key === 'Enter') unlock(); });
+  if (sessionStorage.getItem('sa-unlocked') === '1') {
+    gate.style.display = 'none';
+    panel.classList.add('unlocked');
+    document.addEventListener('DOMContentLoaded', render);
+  } else {
+    setTimeout(() => pw.focus(), 100);
+  }
+
+  function tapPhone(num) {
+    const clean = num.replace(/[^\d+]/g, '');
+    return `<a class="pValue tap" href="tel:${clean}">${num}</a>`;
+  }
+
+  function render() {
+    const P = (window.TRIP && window.TRIP.private) || {};
+
+    // Cruise
+    if (P.cruise) {
+      const c = P.cruise;
+      document.getElementById('cruiseBox').innerHTML = `
+        <h3>🛳 MSC Opera · 8 nights</h3>
+        <div class="privateRow"><div class="pLabel">Ship</div><div class="pValue">${c.ship}</div></div>
+        <div class="privateRow"><div class="pLabel">Booking</div><div class="pValue">${c.booking}</div></div>
+        <div class="privateRow"><div class="pLabel">Check-in</div><div class="pValue">${c.checkIn}</div></div>
+        <div class="privateRow"><div class="pLabel">Board</div><div class="pValue">${c.boardDate}</div></div>
+        <div class="privateRow"><div class="pLabel">Disembark</div><div class="pValue">${c.disembarkDate}</div></div>
+        <div class="privateRow"><div class="pLabel">Stateroom</div><div class="pValue">${c.stateroom || '—'}</div></div>
+        <div class="privateRow"><div class="pLabel">Dining</div><div class="pValue">${c.diningTime || '—'}</div></div>
+      `;
+    }
+
+    // Flights
+    if (P.flights && P.flights.length) {
+      document.getElementById('flightsBox').innerHTML =
+        `<h3>✈️ Flights</h3>` +
+        P.flights.map(f => `
+          <div class="privateRow"><div class="pLabel">${f.date}</div>
+            <div class="pValue">${f.route} · ${f.airline}<br><span style="font-size:14px;color:var(--ink-soft);">Confirmation: ${f.confirmation}</span></div>
+          </div>
+        `).join('');
+    }
+
+    // Hotels
+    if (P.hotels && P.hotels.length) {
+      document.getElementById('hotelsBox').innerHTML =
+        `<h3>🏨 Hotels</h3>` +
+        P.hotels.map(h => `
+          <div class="privateRow"><div class="pLabel">${h.date}</div>
+            <div class="pValue"><strong>${h.name}</strong><br>
+              ${h.city}<br>
+              <span style="font-size:14px;color:var(--ink-soft);">Confirmation: ${h.confirmation}</span>
+            </div>
+          </div>
+        `).join('');
+    }
+
+    // Tours
+    if (P.tours && P.tours.length) {
+      document.getElementById('toursBox').innerHTML =
+        `<h3>🎟 Tours &amp; excursions</h3>` +
+        P.tours.map(t => `
+          <div class="privateRow"><div class="pLabel">${t.date}</div>
+            <div class="pValue"><strong>${t.name}</strong><br>
+              ${t.operator || ''}<br>
+              <span style="font-size:14px;color:var(--ink-soft);">Confirmation: ${t.confirmation}</span>
+            </div>
+          </div>
+        `).join('');
+    }
+
+    // Contacts
+    if (P.contacts && P.contacts.length) {
+      document.getElementById('contactsBox').innerHTML =
+        `<h3>☎ Key contacts</h3>` +
+        P.contacts.map(c => `
+          <div class="privateRow"><div class="pLabel">${c.who}</div>
+            <div>${tapPhone(c.phone)}</div>
+          </div>
+        `).join('');
+    }
+
+    // Notes
+    if (P.notes) {
+      document.getElementById('notesBox').innerHTML =
+        `<h3>📝 Notes</h3>
+         <p style="font-size:17px;line-height:1.6;color:var(--ink);">${P.notes}</p>`;
+    }
+  }
+})();
+</script>
+</body>
+</html>

@@ -110,8 +110,18 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
-      smallFind: { number: "", label: "", text: "", photo: "" },
-      postcardTo: { to: "", text: "", signoff: "" },
+      // Example — replace once you're actually in Lisbon. Show what the layout looks like.
+      smallFind: {
+        number: "01",
+        label: "Hand-painted azulejo, Alfama wall",
+        text: "Most of the tiles are faded blue and ordered. This one was off — a single fishing boat and a bird, the corner cracked, the date 1894 in faded script. Probably nobody notices it. We did.",
+        photo: ""
+      },
+      postcardTo: {
+        to: "Jai",
+        text: "Your mother declared the pastéis de nata better than any donut and then ate three. There's a tram outside the bakery that goes up the hill so steep the coffee tilts in the cup. We thought of you on the river — you'd have liked the light off the water at four o'clock.\n\nWe'll be home soon.",
+        signoff: "— Dad"
+      },
     },
     {
       id: "day-6",

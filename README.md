@@ -50,6 +50,39 @@ It will show up as a player on both the day page and in the Postcards Home secti
 
 In `data.js`, set the day's `journal` field. Double line breaks become paragraphs.
 
+### The Small Find (recommended — one per day)
+
+One paragraph on the single weirdest, smallest, most specific object you noticed today. Photographed like a museum specimen card. Quiet, observational — fits the introvert energy of the site.
+
+In `data.js` on any day, fill `smallFind`:
+
+```javascript
+smallFind: {
+  number: "04",
+  label: "Blue azulejo tile, Alfama",
+  text: "Found a single hand-painted tile loose in a courtyard wall — a fishing boat, a bird, the date 1894 in faded script. Whoever made it is long gone. The tile is still there.",
+  photo: "images/day-5-tile.jpg"
+},
+```
+
+Leave any field blank to hide it. Empty `text` hides the whole block.
+
+### Postcard to a person (recommended — one per day)
+
+A short typed note written TO one person by name — Jai, Noah, Rachel's mom, a friend. Three sentences is plenty. Feels like a letter, not a blog post.
+
+In `data.js` on any day, fill `postcardTo`:
+
+```javascript
+postcardTo: {
+  to: "Jai",
+  text: "We had pastéis de nata for breakfast and your mother declared them better than any donut. There's a yellow tram outside the bakery that goes up the hill so steep it makes the cup tilt. I thought of you on the river walk — you'd have liked the light.\n\nWe'll be home soon.",
+  signoff: "— Dad"
+},
+```
+
+Two newlines (`\n\n`) make a paragraph break.
+
 ## The private (logistics) side
 
 Open `private.html`. Near the top there's a line:

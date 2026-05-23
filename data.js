@@ -30,6 +30,8 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      smallFind: { number: "", label: "", text: "", photo: "" },
+      postcardTo: { to: "", text: "", signoff: "" },
     },
     {
       id: "day-1",
@@ -44,6 +46,8 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      smallFind: { number: "", label: "", text: "", photo: "" },
+      postcardTo: { to: "", text: "", signoff: "" },
     },
     {
       id: "day-2",
@@ -58,6 +62,8 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      smallFind: { number: "", label: "", text: "", photo: "" },
+      postcardTo: { to: "", text: "", signoff: "" },
     },
     {
       id: "day-3",
@@ -72,6 +78,8 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      smallFind: { number: "", label: "", text: "", photo: "" },
+      postcardTo: { to: "", text: "", signoff: "" },
     },
     {
       id: "day-4",
@@ -86,6 +94,8 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      smallFind: { number: "", label: "", text: "", photo: "" },
+      postcardTo: { to: "", text: "", signoff: "" },
     },
     {
       id: "day-5",
@@ -100,6 +110,8 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      smallFind: { number: "", label: "", text: "", photo: "" },
+      postcardTo: { to: "", text: "", signoff: "" },
     },
     {
       id: "day-6",
@@ -114,6 +126,8 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      smallFind: { number: "", label: "", text: "", photo: "" },
+      postcardTo: { to: "", text: "", signoff: "" },
     },
     {
       id: "day-7",
@@ -128,6 +142,8 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      smallFind: { number: "", label: "", text: "", photo: "" },
+      postcardTo: { to: "", text: "", signoff: "" },
     },
     {
       id: "day-8",
@@ -142,6 +158,8 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      smallFind: { number: "", label: "", text: "", photo: "" },
+      postcardTo: { to: "", text: "", signoff: "" },
     },
     {
       id: "day-9",
@@ -156,6 +174,8 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      smallFind: { number: "", label: "", text: "", photo: "" },
+      postcardTo: { to: "", text: "", signoff: "" },
     },
     {
       id: "day-10",
@@ -170,6 +190,8 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      smallFind: { number: "", label: "", text: "", photo: "" },
+      postcardTo: { to: "", text: "", signoff: "" },
     },
     {
       id: "day-11",
@@ -184,6 +206,8 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      smallFind: { number: "", label: "", text: "", photo: "" },
+      postcardTo: { to: "", text: "", signoff: "" },
     },
     {
       id: "day-12",
@@ -198,6 +222,8 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      smallFind: { number: "", label: "", text: "", photo: "" },
+      postcardTo: { to: "", text: "", signoff: "" },
     },
     {
       id: "day-13",
@@ -212,6 +238,8 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      smallFind: { number: "", label: "", text: "", photo: "" },
+      postcardTo: { to: "", text: "", signoff: "" },
     },
   ],
 

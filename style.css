@@ -94,7 +94,7 @@ body {
   font-family: 'Caveat', cursive;
   font-size: 0.34em;
   font-weight: 400;
-  color: var(--accent);
+  color: var(--ink-soft);
   margin-bottom: -10px;
 }
 .title .tagline-script {
@@ -121,15 +121,14 @@ body {
 .stamp {
   display: inline-block;
   font-family: 'Special Elite', monospace;
-  font-size: 12px;
-  letter-spacing: 4px;
-  padding: 8px 16px;
-  border: 2.5px solid var(--accent);
-  color: var(--accent);
-  border-radius: 4px;
-  transform: rotate(-3.5deg);
-  opacity: 0.85;
-  background: rgba(252, 245, 220, 0.4);
+  font-size: 10px;
+  letter-spacing: 3px;
+  padding: 5px 12px;
+  border: 1px solid var(--ink-soft);
+  color: var(--ink-soft);
+  border-radius: 2px;
+  opacity: 0.7;
+  background: transparent;
 }
 
 /* ===== Countdown / day-counter card ===== */
@@ -169,10 +168,10 @@ body {
 }
 .countdownNumber {
   font-family: 'Cormorant Garamond', serif;
-  font-size: 86px;
-  font-weight: 600;
+  font-size: 64px;
+  font-weight: 500;
   line-height: 1;
-  color: var(--accent);
+  color: var(--ink);
   margin: 6px 0 2px;
 }
 .countdownUnit {
@@ -253,9 +252,9 @@ body {
 }
 .introLetter h2.handwritten {
   font-family: 'Caveat', cursive;
-  font-weight: 700;
-  font-size: 32px;
-  color: var(--accent);
+  font-weight: 600;
+  font-size: 28px;
+  color: var(--ink-soft);
   margin: 0 0 10px;
 }
 .introLetter p {
@@ -285,10 +284,11 @@ body {
 .sectionTitle::after {
   content: '';
   display: block;
-  height: 4px; width: 64px;
-  margin-top: 4px;
-  background: var(--accent);
-  border-radius: 2px;
+  height: 2px; width: 48px;
+  margin-top: 6px;
+  background: var(--ink-soft);
+  border-radius: 1px;
+  opacity: 0.6;
 }
 .sectionLede {
   color: var(--ink-soft);
@@ -318,17 +318,18 @@ body {
   box-shadow: 0 2px 3px rgba(0,0,0,0.1);
 }
 .whereNow .pulse {
-  width: 14px; height: 14px;
-  background: var(--accent);
+  width: 8px; height: 8px;
+  background: var(--ink-soft);
   border-radius: 50%;
-  box-shadow: 0 0 0 0 rgba(138, 43, 43, 0.4);
-  animation: pulse 2s infinite;
+  box-shadow: 0 0 0 0 rgba(91, 79, 58, 0.25);
+  animation: pulse 5s infinite;
   flex-shrink: 0;
+  opacity: 0.7;
 }
 @keyframes pulse {
-  0% { box-shadow: 0 0 0 0 rgba(138, 43, 43, 0.45); }
-  70% { box-shadow: 0 0 0 12px rgba(138, 43, 43, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(138, 43, 43, 0); }
+  0% { box-shadow: 0 0 0 0 rgba(91, 79, 58, 0.25); }
+  70% { box-shadow: 0 0 0 8px rgba(91, 79, 58, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(91, 79, 58, 0); }
 }
 .whereNow .wlabel {
   font-family: 'Special Elite', monospace;
@@ -430,7 +431,7 @@ body {
 .dayKicker {
   font-family: 'Caveat', cursive;
   font-size: 22px;
-  color: var(--accent);
+  color: var(--ink-soft);
   margin-bottom: 4px;
 }
 .dayCaption {
@@ -629,8 +630,8 @@ body {
 }
 .dayHero .day-city {
   font-family: 'Caveat', cursive;
-  font-size: 30px;
-  color: var(--accent);
+  font-size: 28px;
+  color: var(--ink-soft);
   margin-top: 4px;
 }
 
@@ -683,6 +684,115 @@ body {
   margin-bottom: 6px;
 }
 .audioCard audio { width: 100%; }
+
+/* ===== Small Find (specimen card) ===== */
+
+.smallFind {
+  background: #fbf6e6;
+  border: 1px solid #d8c89e;
+  padding: 22px 22px 20px;
+  margin: 32px auto;
+  max-width: 460px;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+  position: relative;
+}
+.smallFind::before {
+  content: '';
+  position: absolute;
+  top: -10px; left: 50%;
+  transform: translateX(-50%);
+  width: 60px; height: 16px;
+  background: var(--tape-gold);
+  opacity: 0.7;
+}
+.smallFindNumber {
+  font-family: 'Special Elite', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+}
+.smallFindKicker {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  color: var(--ink-soft);
+  margin: 4px 0 12px;
+}
+.smallFindPhoto {
+  max-width: 280px;
+  width: 100%;
+  margin: 12px auto;
+  display: block;
+  filter: sepia(0.06) saturate(0.92);
+  border: 1px solid var(--cream-deep);
+}
+.smallFindLabel {
+  font-family: 'Special Elite', monospace;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink);
+  margin-top: 10px;
+}
+.smallFindText {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  margin-top: 8px;
+}
+
+/* ===== Postcard To (typed letter) ===== */
+
+.postcardTo {
+  background: #fef9ea;
+  border: 1px solid #d8c89e;
+  padding: 22px 26px;
+  margin: 32px 0;
+  position: relative;
+  box-shadow: var(--shadow-soft);
+}
+.postcardTo::before {
+  /* faint postcard horizontal line down the middle */
+  content: '';
+  position: absolute;
+  top: 12px; bottom: 12px;
+  left: 50%;
+  width: 1px;
+  background: rgba(120, 90, 50, 0.12);
+  display: none;
+}
+.postcardKicker {
+  font-family: 'Special Elite', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.postcardRecipient {
+  font-family: 'Caveat', cursive;
+  font-size: 28px;
+  color: var(--ink);
+  margin-top: 2px;
+  margin-bottom: 14px;
+}
+.postcardText {
+  font-family: 'Special Elite', monospace;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--ink);
+  letter-spacing: 0.2px;
+  white-space: pre-line;
+}
+.postcardSignoff {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  color: var(--ink-soft);
+  text-align: right;
+  margin-top: 12px;
+}
 
 /* ===== Tiny utilities ===== */
 .handwritten { font-family: 'Caveat', cursive; }

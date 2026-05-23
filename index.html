@@ -14,9 +14,23 @@
 <div class="paper">
 
   <header class="masthead">
-    <figure class="heroPoster">
-      <img src="images/hero-poster.png" alt="Shaffers Abroad — A Mediterranean Voyage" />
-    </figure>
+    <div class="flipCard" id="flipCard" aria-label="Hold to reveal logistics">
+      <div class="flipInner" id="flipInner">
+        <figure class="flipFace flipFront heroPoster">
+          <img src="images/hero-poster.png" alt="Shaffers Abroad — A Mediterranean Voyage" />
+        </figure>
+        <div class="flipFace flipBack">
+          <div class="flipBackInner">
+            <div class="flipBackKicker">Logistics &amp; reservations</div>
+            <p class="flipBackHint">for Jason &amp; Rachel</p>
+            <input type="password" id="flipPw" placeholder="Password" autocomplete="off" inputmode="numeric" />
+            <button id="flipUnlock">Unlock</button>
+            <div class="flipBackErr" id="flipErr">&nbsp;</div>
+            <button class="flipBackCancel" id="flipCancel">close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <p class="subtitle">A 13-day trip — Morocco, an 8-night Mediterranean cruise, and a long weekend in France.</p>
     <div class="stampWrap"><span class="stamp">May 23 – June 5 · 2026</span></div>
   </header>
@@ -71,16 +85,6 @@
     <div class="daysGrid" id="daysGrid"></div>
   </section>
 
-  <section class="logisticsLink">
-    <a href="private.html" class="lockLink">
-      <span class="lockIcon" aria-hidden="true">🔒</span>
-      <span class="lockText">
-        <strong>Logistics &amp; reservations</strong>
-        <span class="lockSub">(Jason &amp; Rachel · password required)</span>
-      </span>
-    </a>
-  </section>
-
   <footer class="footer">
     <p class="handwritten">made with love · May 2026</p>
   </footer>
@@ -89,5 +93,74 @@
 
 <script src="data.js"></script>
 <script src="app.js"></script>
+<script>
+// ===== Hidden long-press gateway on the hero poster =====
+(function () {
+  const PASSWORD = '2026';
+  const HOLD_MS = 600;
+  const card = document.getElementById('flipCard');
+  const inner = document.getElementById('flipInner');
+  const pw = document.getElementById('flipPw');
+  const btn = document.getElementById('flipUnlock');
+  const cancel = document.getElementById('flipCancel');
+  const err = document.getElementById('flipErr');
+  if (!card || !inner) return;
+
+  let holdTimer = null;
+  let flipped = false;
+  let autoUnflipTimer = null;
+
+  function flip() {
+    if (flipped) return;
+    flipped = true;
+    inner.classList.add('flipped');
+    setTimeout(() => pw && pw.focus(), 350);
+    // auto-close after 30s idle
+    clearTimeout(autoUnflipTimer);
+    autoUnflipTimer = setTimeout(unflip, 30000);
+  }
+  function unflip() {
+    flipped = false;
+    inner.classList.remove('flipped');
+    if (pw) pw.value = '';
+    if (err) err.innerHTML = '&nbsp;';
+    clearTimeout(autoUnflipTimer);
+  }
+  function startHold(e) {
+    if (flipped) return;
+    clearTimeout(holdTimer);
+    holdTimer = setTimeout(flip, HOLD_MS);
+  }
+  function cancelHold() {
+    clearTimeout(holdTimer);
+  }
+  function tryUnlock() {
+    if (!pw) return;
+    if (pw.value === PASSWORD) {
+      sessionStorage.setItem('sa-unlocked', '1');
+      window.location.href = 'private.html';
+    } else {
+      err.textContent = 'try again';
+      pw.value = '';
+      pw.focus();
+    }
+  }
+
+  // Mouse + touch hold on the front face only
+  const front = card.querySelector('.flipFront');
+  if (front) {
+    front.addEventListener('pointerdown', startHold);
+    front.addEventListener('pointerup', cancelHold);
+    front.addEventListener('pointerleave', cancelHold);
+    front.addEventListener('pointercancel', cancelHold);
+    // prevent the image's native context menu on long-press mobile
+    front.addEventListener('contextmenu', (e) => e.preventDefault());
+  }
+
+  if (btn) btn.addEventListener('click', tryUnlock);
+  if (pw) pw.addEventListener('keydown', (e) => { if (e.key === 'Enter') tryUnlock(); });
+  if (cancel) cancel.addEventListener('click', unflip);
+})();
+</script>
 </body>
 </html>

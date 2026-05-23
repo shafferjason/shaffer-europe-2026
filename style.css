@@ -635,6 +635,19 @@ body {
   margin-top: 4px;
 }
 
+.dayLedger {
+  font-family: 'Special Elite', monospace;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  color: var(--ink-soft);
+  margin-top: 12px;
+  text-transform: lowercase;
+  min-height: 18px;
+}
+.dayLedger .ledgerItem { margin: 0 4px; }
+.dayLedger .ledgerSep { color: rgba(120, 90, 50, 0.4); margin: 0 2px; }
+.dayLedger .ledgerMuted { opacity: 0.7; text-transform: none; letter-spacing: 1px; }
+
 .photoStack {
   display: grid;
   grid-template-columns: 1fr;

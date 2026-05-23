@@ -15,6 +15,7 @@ window.TRIP = {
     hashtag: "ShaffersAbroad26",
   },
 
+  // Lookup of coordinates per day (used for weather + map). lat/lng pairs.
   // Day by day. Day 0 is the pre-trip Dallas overnight.
   days: [
     {
@@ -252,6 +253,25 @@ window.TRIP = {
       postcardTo: { to: "", text: "", signoff: "" },
     },
   ],
+
+  // Coordinates per day (latitude, longitude) — used for weather + map pins.
+  // For travel days, use the destination city. For sea days, use a mid-ocean pin.
+  coords: {
+    "day-0":  { lat: 32.78, lng: -96.80, where: "Dallas, TX" },
+    "day-1":  { lat: 33.57, lng:  -7.59, where: "Casablanca, MA" },
+    "day-2":  { lat: 33.57, lng:  -7.59, where: "Casablanca, MA" },
+    "day-3":  { lat: 36.72, lng:  -4.42, where: "Málaga, ES" },
+    "day-4":  { lat: 36.53, lng:  -6.30, where: "Cádiz, ES" },
+    "day-5":  { lat: 38.72, lng:  -9.14, where: "Lisbon, PT" },
+    "day-6":  { lat: 36.50, lng:  -3.00, where: "Mediterranean Sea" },
+    "day-7":  { lat: 38.35, lng:  -0.48, where: "Alicante, ES" },
+    "day-8":  { lat: 39.89, lng:   4.27, where: "Mahón, Menorca" },
+    "day-9":  { lat: 40.92, lng:   9.50, where: "Olbia, IT" },
+    "day-10": { lat: 44.41, lng:   8.93, where: "Genoa, IT" },
+    "day-11": { lat: 48.86, lng:   2.35, where: "Paris, FR" },
+    "day-12": { lat: 49.28, lng:  -0.70, where: "Bayeux / Normandy, FR" },
+    "day-13": { lat: 48.86, lng:   2.35, where: "Paris → DFW" },
+  },
 
   cities: [
     { name: "Dallas", flag: "🇺🇸" },

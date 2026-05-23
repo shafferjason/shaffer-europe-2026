@@ -65,6 +65,7 @@
       <div class="day-kicker">${day.label} · ${day.kicker || ''}</div>
       <h1>${day.title || day.city}</h1>
       <div class="day-city">${day.flag || ''} ${day.city} · ${day.country || ''}</div>
+      <div class="dayLedger" id="dayLedger"></div>
     </div>
     ${day.audio ? `
       <div class="audioCard">
@@ -79,6 +80,48 @@
     ${smallFindBlock}
     ${postcardBlock}
   `;
+
+  // ----- Weather ledger (Open-Meteo, free, no key) -----
+  const coords = (T.coords || {})[day.id];
+  if (coords && coords.lat) loadWeather(coords, day.date);
+
+  function wmoLabel(code) {
+    if (code === 0) return 'clear';
+    if (code <= 3) return 'partly cloudy';
+    if (code <= 48) return 'fog';
+    if (code <= 55) return 'drizzle';
+    if (code <= 65) return 'rain';
+    if (code <= 75) return 'snow';
+    if (code <= 82) return 'showers';
+    if (code <= 99) return 'thunder';
+    return '';
+  }
+  async function loadWeather(c, date) {
+    const ledger = document.getElementById('dayLedger');
+    if (!ledger) return;
+    const today = new Date(); today.setHours(0,0,0,0);
+    const target = new Date(date + 'T00:00:00');
+    const isPast = target < today;
+    const base = isPast
+      ? 'https://archive-api.open-meteo.com/v1/archive'
+      : 'https://api.open-meteo.com/v1/forecast';
+    const url = `${base}?latitude=${c.lat}&longitude=${c.lng}&start_date=${date}&end_date=${date}&daily=temperature_2m_max,temperature_2m_min,weathercode&temperature_unit=fahrenheit&timezone=auto`;
+    try {
+      const r = await fetch(url);
+      const j = await r.json();
+      const d = j.daily;
+      if (!d || !d.temperature_2m_max || d.temperature_2m_max[0] == null) return;
+      const hi = Math.round(d.temperature_2m_max[0]);
+      const lo = Math.round(d.temperature_2m_min[0]);
+      const cond = wmoLabel(d.weathercode[0]);
+      ledger.innerHTML = `
+        <span class="ledgerItem">${hi}° / ${lo}°</span>
+        ${cond ? `<span class="ledgerSep">·</span><span class="ledgerItem">${cond}</span>` : ''}
+        <span class="ledgerSep">·</span>
+        <span class="ledgerItem ledgerMuted">${c.where || ''}</span>
+      `;
+    } catch (e) { /* silently skip */ }
+  }
 })();
 </script>
 </body>

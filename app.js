@@ -72,10 +72,30 @@
   }
 
   // ---------- day cards ----------
+  const countryStampCode = (country) => {
+    if (!country) return '';
+    const c = country.toLowerCase();
+    if (c.includes('usa')) return 'USA';
+    if (c.includes('morocco')) return 'MAR';
+    if (c.includes('spain') || c.includes('balearic')) return 'ESP';
+    if (c.includes('portugal')) return 'PRT';
+    if (c.includes('italy')) return 'ITA';
+    if (c.includes('france')) return 'FRA';
+    if (c.includes('mediterranean')) return 'SEA';
+    if (c.includes('→')) {
+      // travel day — first country
+      const first = country.split('→')[0].trim().toLowerCase();
+      if (first.includes('🇲🇦') || first.includes('morocco')) return 'MAR';
+      if (first.includes('🇺🇸') || first.includes('usa')) return 'USA';
+      return '✈';
+    }
+    return '';
+  };
+
   function renderDays() {
     const grid = $('#daysGrid');
     if (!grid || !T.days) return;
-    grid.innerHTML = T.days.map(day => {
+    grid.innerHTML = T.days.map((day, i) => {
       const hasPhoto = day.photos && day.photos.length > 0;
       const cover = hasPhoto ? day.photos[0] : null;
       const photoBlock = cover
@@ -84,13 +104,20 @@
              <div class="icon">${day.flag || '✦'}</div>
              <div>photo soon</div>
            </div></div>`;
+      const stampCode = countryStampCode(day.country);
+      const stampBlock = stampCode
+        ? `<div class="countryStamp">${stampCode}<br><span style="font-size:8px;letter-spacing:1px;opacity:0.8;">2026</span></div>`
+        : '';
+      const stickerNum = i === 0 ? 'no. 00' : `no. ${String(i).padStart(2, '0')}`;
       return `
         <a class="dayCard" href="day.html?id=${day.id}">
+          <div class="pageSticker">${stickerNum}</div>
           ${photoBlock}
           <div class="dayLabel">${day.label}</div>
           <div class="dayCity">${day.city}</div>
           <div class="dayKicker">${day.kicker || ''}</div>
           <div class="dayCaption">${day.summary || ''}</div>
+          ${stampBlock}
         </a>
       `;
     }).join('');

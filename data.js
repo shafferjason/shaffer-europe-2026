@@ -1,6 +1,6 @@
 // ============================================================
 // SHAFFERS ABROAD — content file (single source of truth on the site)
-// Mirrors the master dossier in iCloud Drive (trip-dossier.md).
+// Mirrors the master dossier in this repo (./trip-dossier.md) and in iCloud Drive.
 // Edit here, then commit + push.
 // ============================================================
 
@@ -24,9 +24,9 @@ window.TRIP = {
       city: "Dallas, TX",
       country: "USA",
       flag: "🇺🇸",
-      kicker: "Camp drop-off → Dallas",
-      title: "Bags in the car, kids at camp.",
-      summary: "Drop the kids at camp in the morning. Drive to Dallas, check in at The Highland, dinner at Knife on-site. Sleep close to the airport.",
+      kicker: "Drive to Dallas",
+      title: "Bags in the car, Dallas tonight.",
+      summary: "Drive to Dallas, check in at The Highland, dinner at Knife on-site. Sleep close to the airport. Camp-bus drop-off is tomorrow morning at Lake Highlands High.",
       photos: [],
       audio: null,
       journal: "",
@@ -42,7 +42,7 @@ window.TRIP = {
       flag: "✈️",
       kicker: "Travel day · the long one",
       title: "Wheels up, two planes, one ocean.",
-      summary: "Out of Dallas in the morning. Park at DFW Terminal A, Skylink to gate C. AA to JFK at 11:57 AM, then the overnight Royal Air Maroc 787 to Casablanca.",
+      summary: "Up early. Drop the kids at Lake Highlands High to catch the camp bus, then over to DFW. Park at Terminal A, Skylink to gate C. AA to JFK at 11:57 AM, then the overnight Royal Air Maroc 787 to Casablanca.",
       photos: [],
       audio: null,
       journal: "",
@@ -406,6 +406,6 @@ window.TRIP = {
       { who: "US State Dept · emergencies abroad", phone: "+1 202-501-4444" },
     ],
 
-    notes: "Sat May 23: drop kids at camp in the morning, then drive to Dallas, check in to Highland by 3 PM, dinner at Knife. Sun May 24: out of Highland by ~8:30 AM, DFW Terminal A garage by 9 AM, AA Terminal A counter for bag drop + security, Skylink to gate C for the 11:57 AM departure. Casablanca arrival May 25: taxi from RAM official stand (~$25–30, 30 min) to Marriott; front desk will hold bags pre-3-PM. Cruise check-in deadline May 26 is 4 PM Málaga local — landing 13:20 leaves about 1h 45m buffer. Time zones: Morocco & Portugal +6 from Midland, everywhere else +7.",
+    notes: "Sat May 23: drive to Dallas, check in to Highland by 3 PM, dinner at Knife. Sun May 24: out of Highland by ~7:30 AM, drop the kids at Lake Highlands High for the camp bus, DFW Terminal A garage by ~9 AM, AA Terminal A counter for bag drop + security, Skylink to gate C for the 11:57 AM departure. Casablanca arrival May 25: taxi from RAM official stand (~$25–30, 30 min) to Marriott; front desk will hold bags pre-3-PM. Cruise check-in deadline May 26 is 4 PM Málaga local — landing 13:20 leaves about 1h 45m buffer. Time zones: Morocco & Portugal +6 from Midland, everywhere else +7.",
   },
 };

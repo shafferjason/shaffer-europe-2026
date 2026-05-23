@@ -101,6 +101,5 @@ GitHub Pages picks it up within a minute or two.
 - `private.html` — locked logistics side
 - `style.css` — scrapbook styling
 - `data.js` — **all content lives here**
-- `app.js` — homepage rendering (countdown, day cards, postcards)
+- `app.js` — homepage rendering (countdown, day cards)
 - `images/` — trip photos
-- `audio/` — voice notes

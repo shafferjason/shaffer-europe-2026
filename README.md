@@ -35,17 +35,6 @@ whereNow: {
 
 The first photo becomes the card cover on the homepage; all photos show on the day's detail page.
 
-### Adding a voice note (audio postcard)
-
-1. Drop your MP3 into the `audio/` folder. Suggested naming: `day-5-cadiz.mp3`.
-2. In `data.js`, on that day, set `audio` to the path:
-
-```javascript
-audio: "audio/day-5-cadiz.mp3",
-```
-
-It will show up as a player on both the day page and in the Postcards Home section on the homepage.
-
 ### Writing a journal entry for a day
 
 In `data.js`, set the day's `journal` field. Double line breaks become paragraphs.

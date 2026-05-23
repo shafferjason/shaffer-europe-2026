@@ -67,11 +67,6 @@
       <div class="day-city">${day.flag || ''} ${day.city} · ${day.country || ''}</div>
       <div class="dayLedger" id="dayLedger"></div>
     </div>
-    ${day.audio ? `
-      <div class="audioCard">
-        <div class="audioLabel">A postcard from ${day.city}</div>
-        <audio controls src="${day.audio}"></audio>
-      </div>` : ''}
     ${photoBlocks ? `<div class="photoStack">${photoBlocks}</div>` : ''}
     <div class="journal">
       ${day.journal ? day.journal.split('\n\n').map(p => `<p>${p}</p>`).join('') :

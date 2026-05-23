@@ -96,26 +96,11 @@
     }).join('');
   }
 
-  // ---------- postcards (audio) ----------
-  function renderPostcards() {
-    const stack = $('#postcardStack');
-    if (!stack || !T.days) return;
-    const withAudio = T.days.filter(d => d.audio);
-    if (!withAudio.length) return;
-    stack.innerHTML = withAudio.map(d => `
-      <div class="audioCard">
-        <div class="audioLabel">${d.label} · ${d.city}</div>
-        <audio controls src="${d.audio}"></audio>
-      </div>
-    `).join('');
-  }
-
   // ---------- init ----------
   document.addEventListener('DOMContentLoaded', () => {
     renderCountdown();
     renderWhereNow();
     renderCities();
     renderDays();
-    renderPostcards();
   });
 })();

@@ -7,7 +7,7 @@
 window.TRIP = {
   meta: {
     title: "Shaffers Abroad",
-    tagline: "Two weeks across Morocco, the Mediterranean, and France",
+    tagline: "Our two weeks across Morocco, the Mediterranean, and France",
     departDate: "2026-05-23",  // drive to Dallas (pre-trip night)
     sailDate: "2026-05-26",
     returnDate: "2026-06-05",

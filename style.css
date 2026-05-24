@@ -234,6 +234,15 @@ body {
 .mapFigure img {
   filter: contrast(0.92) saturate(0.85);
 }
+.mapCaption {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 17px;
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  margin: 14px 4px 0;
+  padding: 0 6px;
+}
 .masthead::after {
   content: '';
   display: block;

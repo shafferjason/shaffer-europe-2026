@@ -92,7 +92,121 @@
     <h2 class="sectionTitle">The Route</h2>
     <p class="sectionLede">Hand-drawn — not to scale, on purpose.</p>
     <figure class="mapFigure">
-      <img src="images/gulf-of-med-map.png" alt="Map of the route across the Mediterranean — Casablanca, Málaga, Cádiz, Lisbon, Alicante, Menorca, Sardinia, Genoa, Marseille." />
+      <svg class="medMap" viewBox="0 0 1400 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Route across the western Mediterranean — Casablanca to Marseille, stopping in Málaga, Cádiz, Lisbon, Alicante, Mahón, Olbia (Sardinia), and Genoa.">
+        <!-- Sea background -->
+        <rect width="1400" height="800" fill="#eadcb6" />
+        <rect width="1400" height="800" fill="#cfd9d8" opacity="0.18" />
+
+        <!-- Iberian Peninsula (Portugal + Spain) -->
+        <path d="M -30 280 Q 40 250, 150 270 Q 240 260, 320 285 Q 410 290, 470 330 Q 510 380, 495 460 Q 470 530, 400 565 Q 320 590, 220 590 Q 110 580, 30 570 Q -20 540, -30 480 Z"
+              fill="#d8c08e" stroke="#7a5d33" stroke-width="2.2" stroke-linejoin="round" />
+
+        <!-- North African coast (Morocco strip) -->
+        <path d="M -30 720 Q 80 695, 200 705 Q 340 695, 480 705 Q 640 695, 800 715 Q 1000 705, 1200 715 L 1430 720 L 1430 820 L -30 820 Z"
+              fill="#d8c08e" stroke="#7a5d33" stroke-width="2.2" stroke-linejoin="round" />
+
+        <!-- Strait of Gibraltar gap is implicit (sea between Iberia bottom and Morocco top) -->
+
+        <!-- France + Italy (north coast) -->
+        <path d="M 600 0 L 1430 0 L 1430 80 Q 1380 100, 1320 90 Q 1260 75, 1200 100 Q 1140 130, 1080 130 Q 1020 110, 960 145 Q 900 165, 840 145 Q 770 120, 700 110 Q 640 90, 600 60 Z"
+              fill="#d8c08e" stroke="#7a5d33" stroke-width="2.2" stroke-linejoin="round" />
+
+        <!-- Italian peninsula (boot) -->
+        <path d="M 1240 95 Q 1305 110, 1340 165 Q 1370 230, 1370 310 Q 1370 390, 1355 460 Q 1335 530, 1330 600 L 1370 670 L 1430 670 L 1430 95 Z"
+              fill="#d8c08e" stroke="#7a5d33" stroke-width="2.2" stroke-linejoin="round" />
+
+        <!-- Corsica -->
+        <path d="M 1175 215 Q 1195 220, 1198 250 Q 1196 285, 1180 295 Q 1163 290, 1160 260 Q 1162 225, 1175 215 Z"
+              fill="#d8c08e" stroke="#7a5d33" stroke-width="1.8" />
+
+        <!-- Sardinia -->
+        <path d="M 1190 320 Q 1218 318, 1230 345 Q 1240 380, 1235 410 Q 1228 442, 1210 450 Q 1185 445, 1178 415 Q 1175 380, 1180 350 Q 1182 330, 1190 320 Z"
+              fill="#d8c08e" stroke="#7a5d33" stroke-width="1.8" />
+
+        <!-- Balearic Islands (Mallorca + Menorca + Ibiza, small) -->
+        <ellipse cx="870" cy="395" rx="22" ry="10" fill="#d8c08e" stroke="#7a5d33" stroke-width="1.6" />
+        <ellipse cx="915" cy="378" rx="11" ry="6"  fill="#d8c08e" stroke="#7a5d33" stroke-width="1.5" />
+        <ellipse cx="820" cy="412" rx="11" ry="6"  fill="#d8c08e" stroke="#7a5d33" stroke-width="1.5" />
+
+        <!-- Country labels (handwritten) -->
+        <text x="80" y="370" font-family="Caveat, cursive" font-size="26" fill="#7a5d33" font-style="italic" opacity="0.65">Portugal</text>
+        <text x="260" y="445" font-family="Caveat, cursive" font-size="28" fill="#7a5d33" font-style="italic" opacity="0.65">Spain</text>
+        <text x="290" y="785" font-family="Caveat, cursive" font-size="26" fill="#7a5d33" font-style="italic" opacity="0.65">Morocco</text>
+        <text x="760" y="55"  font-family="Caveat, cursive" font-size="26" fill="#7a5d33" font-style="italic" opacity="0.65">France</text>
+        <text x="1290" y="280" font-family="Caveat, cursive" font-size="26" fill="#7a5d33" font-style="italic" opacity="0.65">Italy</text>
+
+        <!-- Cruise route — dashed line in port order:
+             Casablanca → Málaga → Cádiz → Lisbon → Alicante → Mahón → Olbia → Genoa → Marseille -->
+        <path d="
+          M 168 660
+          Q 240 595, 358 525
+          Q 295 535, 232 540
+          Q 145 480, 75 415
+          Q 320 430, 598 442
+          Q 760 415, 868 392
+          Q 1040 360, 1198 350
+          Q 1210 220, 1175 95
+          Q 1075 130, 985 158"
+          fill="none" stroke="#7c1717" stroke-width="2.6" stroke-dasharray="8 6" stroke-linecap="round" opacity="0.85" />
+
+        <!-- City dots -->
+        <g fill="#7c1717" stroke="#3a0c0c" stroke-width="0.8">
+          <circle cx="168"  cy="660" r="5.5" />  <!-- Casablanca -->
+          <circle cx="358"  cy="525" r="5.5" />  <!-- Málaga -->
+          <circle cx="232"  cy="540" r="5.5" />  <!-- Cádiz -->
+          <circle cx="75"   cy="415" r="5.5" />  <!-- Lisbon -->
+          <circle cx="598"  cy="442" r="5.5" />  <!-- Alicante -->
+          <circle cx="868"  cy="392" r="5.5" />  <!-- Mahón / Menorca -->
+          <circle cx="1198" cy="350" r="5.5" />  <!-- Olbia / Sardinia -->
+          <circle cx="1175" cy="95"  r="5.5" />  <!-- Genoa -->
+          <circle cx="985"  cy="158" r="5.5" />  <!-- Marseille -->
+        </g>
+
+        <!-- City labels (typewriter) -->
+        <g font-family="Special Elite, monospace" font-size="17" fill="#2a241a">
+          <text x="180" y="688">Casablanca</text>
+          <text x="372" y="520">Málaga</text>
+          <text x="155" y="558">Cádiz</text>
+          <text x="-2"  y="408">Lisbon</text>
+          <text x="612" y="447">Alicante</text>
+          <text x="800" y="378">Mahón</text>
+          <text x="1212" y="346">Olbia</text>
+          <text x="1208" y="395" font-size="13" fill="#7a5d33" font-style="italic" font-family="Caveat, cursive">Sardinia</text>
+          <text x="1110" y="90">Genoa</text>
+          <text x="930"  y="148">Marseille</text>
+        </g>
+
+        <!-- Tiny ship icon mid-route, between Alicante and Mahón -->
+        <g transform="translate(735, 422)" opacity="0.85">
+          <path d="M -22 0 L 22 0 L 16 10 L -16 10 Z" fill="#f4ead5" stroke="#2a241a" stroke-width="1.2" />
+          <line x1="0" y1="-14" x2="0" y2="0" stroke="#2a241a" stroke-width="1.2" />
+          <path d="M 0 -14 L 12 -3 L 0 -3 Z" fill="#7c1717" />
+          <line x1="0" y1="-22" x2="0" y2="-14" stroke="#2a241a" stroke-width="1" />
+        </g>
+
+        <!-- Compass rose, bottom-right corner -->
+        <g transform="translate(1280, 670)">
+          <circle cx="0" cy="0" r="42" fill="none" stroke="#7a5d33" stroke-width="1.3" />
+          <circle cx="0" cy="0" r="2.5" fill="#2a241a" />
+          <polygon points="0,-40 5,-5 0,0 -5,-5" fill="#2a241a" />
+          <polygon points="0,40 -4,5 0,0 4,5" fill="#7a5d33" />
+          <polygon points="-40,0 -5,-4 0,0 -5,4" fill="#7a5d33" />
+          <polygon points="40,0 5,-4 0,0 5,4" fill="#7a5d33" />
+          <text x="0" y="-50" font-family="Caveat, cursive" font-size="18" fill="#2a241a" text-anchor="middle">N</text>
+        </g>
+
+        <!-- Faint paper grain overlay -->
+        <rect width="1400" height="800" fill="url(#grain)" opacity="0.15" />
+        <defs>
+          <filter id="noise">
+            <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" />
+            <feColorMatrix values="0 0 0 0 0.45  0 0 0 0 0.34  0 0 0 0 0.18  0 0 0 0.22 0" />
+          </filter>
+          <pattern id="grain" patternUnits="userSpaceOnUse" width="200" height="200">
+            <rect width="200" height="200" filter="url(#noise)" />
+          </pattern>
+        </defs>
+      </svg>
     </figure>
   </section>
 

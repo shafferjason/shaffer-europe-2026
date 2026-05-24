@@ -225,9 +225,13 @@ body {
   background-size: 10px 10px;
   box-shadow: 0 2px 3px rgba(0,0,0,0.12);
 }
-.mapFigure img {
+.mapFigure img,
+.mapFigure svg.medMap {
   width: 100%;
   display: block;
+  height: auto;
+}
+.mapFigure img {
   filter: contrast(0.92) saturate(0.85);
 }
 .masthead::after {

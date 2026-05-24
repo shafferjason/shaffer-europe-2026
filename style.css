@@ -1150,6 +1150,111 @@ body {
   opacity: 0.65;
 }
 
+/* ===== Things we noticed (index page) ===== */
+
+.noticedHead { margin-bottom: 30px; }
+.noticedKicker {
+  font-family: 'Special Elite', monospace;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.noticedTitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(38px, 7vw, 56px);
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  margin: 6px 0 8px;
+  line-height: 1.05;
+}
+.noticedLede {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.noticedList { display: grid; gap: 28px; }
+.noticedEmpty {
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  color: rgba(60, 40, 10, 0.5);
+  text-align: center;
+  padding: 32px;
+  border: 2px dashed rgba(120, 90, 50, 0.3);
+}
+
+.noticedItem {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 16px 18px;
+  padding: 18px 0;
+  border-bottom: 0;
+  background-image: linear-gradient(90deg, rgba(120, 90, 50, 0.4) 50%, transparent 50%);
+  background-size: 8px 1px;
+  background-position: 0 100%;
+  background-repeat: repeat-x;
+}
+.noticedItem:last-child { background: none; }
+.noticedNumber {
+  font-family: 'Special Elite', monospace;
+  font-size: 12px;
+  letter-spacing: 2px;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  padding-top: 4px;
+}
+.noticedMeta {
+  font-family: 'Special Elite', monospace;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+}
+.noticedLabel {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  color: var(--ink);
+  font-weight: 600;
+  margin-top: 4px;
+}
+.noticedText {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px;
+  font-style: italic;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  margin-top: 6px;
+}
+.noticedThumb {
+  grid-column: 1 / -1;
+  max-width: 280px;
+  margin: 4px auto 0;
+  display: block;
+  border: 1px solid var(--cream-deep);
+  filter: sepia(0.06) saturate(0.92);
+}
+@media (min-width: 620px) {
+  .noticedItem { grid-template-columns: 80px 1fr; }
+  .noticedThumb { grid-column: 2; margin: 4px 0 0; }
+}
+
+.indexLink {
+  display: block;
+  text-align: center;
+  margin: 40px 0 0;
+  font-family: 'Caveat', cursive;
+  font-size: 22px;
+  color: var(--ink-soft);
+  text-decoration: none;
+  border-bottom: 1px dotted transparent;
+}
+.indexLink:hover {
+  color: var(--ink);
+  border-bottom-color: var(--ink-soft);
+}
+
 /* ===== Tiny utilities ===== */
 .handwritten { font-family: 'Caveat', cursive; }
 .dim { color: var(--ink-soft); font-style: italic; font-size: 0.92em; }

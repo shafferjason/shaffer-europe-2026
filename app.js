@@ -99,7 +99,7 @@
       const hasPhoto = day.photos && day.photos.length > 0;
       const cover = hasPhoto ? day.photos[0] : null;
       const photoBlock = cover
-        ? `<div class="dayPhoto" style="padding-top:0;background:#fff;"><img src="${cover}" alt="" style="width:100%;display:block;" /></div>`
+        ? `<div class="dayPhoto dayPhoto--cover"><img src="${cover}" alt="" /></div>`
         : `<div class="dayPhoto"><div class="placeholder">
              <div class="icon">${day.flag || '✦'}</div>
              <div>photo soon</div>

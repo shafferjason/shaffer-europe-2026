@@ -27,13 +27,26 @@ window.TRIP = {
       flag: "🇺🇸",
       kicker: "Drive to Dallas",
       title: "Bags in the car, Dallas tonight.",
-      summary: "Drive to Dallas, check in at The Highland, dinner at Knife on-site. Sleep close to the airport. Camp-bus drop-off is tomorrow morning at Lake Highlands High.",
+      summary: "Drive to Dallas, dinner at Culver's, then check in at The Highland. Out for sack lunches for the kids' camp trip. Two rooms for a quiet night before the trip.",
       photos: [],
       audio: null,
-      journal: "",
-      smallFind: { number: "", label: "", text: "", photo: "" },
+      journal: "Smooth drive east on I-20 — minimal construction for once. Dinner at Culver's before checking in. After we settled in at the Highland, we went out for sack lunches for the kids' camp trip tomorrow. Separate rooms for the kids tonight so the four of us could try for a quiet night.",
+      plan: [
+        { time: "Morning",       text: "Drive east from Midland to Dallas." },
+        { time: "Evening",       text: "Dinner at Culver's." },
+        { time: "After dinner",  text: "Check in at The Highland Dallas (5300 E Mockingbird Ln)." },
+        { time: "After check-in", text: "Out to pick up sack lunches for the kids' camp trip tomorrow." },
+        { time: "Night",         text: "Two rooms. Early to bed." },
+      ],
+      smallFind: {
+        number: "01",
+        label: "Blue tile shower wall, The Highland",
+        text: "Rachel liked the blue tile in the shower."
+      },
       postcardTo: { to: "", text: "", signoff: "" },
-      meals: [],
+      meals: [
+        { place: "Culver's", dish: "dinner before checking in", when: "dinner", cost: "" },
+      ],
     },
     {
       id: "day-1",
@@ -44,13 +57,23 @@ window.TRIP = {
       flag: "✈️",
       kicker: "Travel day · the long one",
       title: "Wheels up, two planes, one ocean.",
-      summary: "Up early. Drop the kids at Lake Highlands High to catch the camp bus, then over to DFW. Park at Terminal A, Skylink to gate C. AA to JFK at 11:57 AM, then the overnight Royal Air Maroc 787 to Casablanca.",
+      summary: "Up early. Drop the kids at Lake Highlands High to catch the camp bus, then over to DFW. Park at Terminal A, TerminaLink bus to Terminal C for check-in. AA to JFK at 11:57 AM, then the overnight Royal Air Maroc 787 to Casablanca.",
       photos: [],
       audio: null,
-      journal: "",
+      journal: "Spent the time between check-in and the flight in the Admirals Club lounge. Breakfast: bao buns stuffed with scrambled eggs and bacon. Delicious.",
+      plan: [
+        { time: "Early AM",       text: "Drop the kids at Lake Highlands High for the camp bus." },
+        { time: "~9:00 AM",       text: "Park at DFW Terminal A garage. TerminaLink bus over to Terminal C for AA check-in, bag drop, and security." },
+        { time: "Pre-flight",     text: "Admirals Club lounge. Breakfast — bao buns stuffed with scrambled eggs and bacon." },
+        { time: "11:57 AM",       text: "AA 1049 DFW → JFK." },
+        { time: "4:38 PM",        text: "Land JFK Terminal 8 — about a 4-hour layover for the international transfer." },
+        { time: "8:45 PM",        text: "AA 7951 / Royal Air Maroc 787 JFK → Casablanca (overnight)." },
+      ],
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
-      meals: [],
+      meals: [
+        { place: "Admirals Club, DFW", dish: "bao buns stuffed with scrambled eggs and bacon", when: "breakfast", cost: "" },
+      ],
     },
     {
       id: "day-2",
@@ -65,6 +88,20 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      context: {
+        about: "Morocco's largest city and commercial heart, sat right on the Atlantic. The Casablanca most Americans picture comes from the 1942 film — but the real city is Art Deco boulevards, French colonial buildings, a working port, and over four million people. The Habous Quarter, where we'll spend the afternoon, is a 1920s 'new medina' built by the French to look traditional — neat, walkable, full of leather and lantern shops.",
+        timing: "Two days before Eid al-Adha (Feast of Sacrifice — May 27 this year). The city will feel busy in a particular way: sheep being sold on corners, families traveling, restaurants and markets in pre-holiday motion. Atmospheric, not chaotic.",
+        tidbit: "The Hassan II Mosque sits partly out over the Atlantic — its 690-ft minaret is among the tallest in the world, and the floor of the prayer hall has glass panels looking down to the sea below."
+      },
+      plan: [
+        { time: "8:50 AM",  text: "Land at Casablanca (CMN)." },
+        { time: "~10:15 AM", text: "Taxi from the RAM official stand to the Marriott — drop bags, nap." },
+        { time: "Late AM",  text: "Light brunch at the hotel." },
+        { time: "2:00 PM",  text: "Red petit taxi from the Marriott to the Habous Quarter." },
+        { time: "2:30–5:00 PM", text: "Habous Quarter wander — mint tea, leather and spice and lantern shops." },
+        { time: "5:30 PM",  text: "Taxi back to the Marriott." },
+        { time: "Evening",  text: "Dinner. Early to bed — flight to Málaga in the morning." },
+      ],
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
       meals: [],
@@ -82,6 +119,18 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      context: {
+        about: "Málaga is the gateway to Spain's Costa del Sol — Mediterranean light, beach culture, palm-lined plazas. It's also one of the oldest continuously inhabited cities in Europe, founded by Phoenician sailors around 770 BC.",
+        tidbit: "Pablo Picasso was born here in 1881. His childhood home on the Plaza de la Merced is now a small museum."
+      },
+      plan: [
+        { time: "6:00 AM",  text: "Wake. Out of the Marriott by 7:00." },
+        { time: "7:35 AM",  text: "Arrive Casablanca airport (RAM recommends 4 hours early). Check-in closes 10:05, gate closes 10:50." },
+        { time: "11:05 AM", text: "AT 988 Royal Air Maroc CMN → Málaga (AGP). Lands 13:20." },
+        { time: "~2:15 PM", text: "Customs, bags, taxi to the Málaga cruise terminal (Dique de Levante)." },
+        { time: "4:00 PM",  text: "Cruise check-in deadline — onboard the MSC Opera." },
+        { time: "6:00 PM",  text: "Ship sails. Eight nights, six ports." },
+      ],
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
       meals: [],
@@ -99,6 +148,18 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      context: {
+        about: "Cádiz claims to be the oldest continuously inhabited city in western Europe — Phoenicians founded it around 1100 BC. It's where Columbus set sail on his second and fourth voyages. The MSC excursion takes us inland to Seville, the Andalusian capital — flamenco, orange-blossom courtyards, the Real Alcázar palace, and Columbus's tomb.",
+        timing: "Eid al-Adha — Morocco celebrates today. The boat will feel the shift as the cruise moves fully into Spanish waters.",
+        tidbit: "Seville Cathedral holds the largest Gothic interior in the world. Its bell tower, the Giralda, was originally a 12th-century minaret — they kept the Moorish base and just stacked a Renaissance belfry on top."
+      },
+      plan: [
+        { time: "7:00 AM",  text: "Dock in Cádiz." },
+        { time: "Morning",  text: "MSC excursion CAD11 — bus to Seville for a walking tour: cathedral, orange-tree courtyards, the old Jewish quarter." },
+        { time: "Lunch",    text: "Lunch in Seville (part of the tour or on our own depending on the operator)." },
+        { time: "Afternoon", text: "Return drive to Cádiz." },
+        { time: "5:00 PM",  text: "Back aboard. Ship sails for Lisbon." },
+      ],
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
       meals: [],
@@ -116,22 +177,22 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
-      // Example — replace once you're actually in Lisbon. Show what the layout looks like.
-      smallFind: {
-        number: "01",
-        label: "Hand-painted azulejo, Alfama wall",
-        text: "Most of the tiles are faded blue and ordered. This one was off — a single fishing boat and a bird, the corner cracked, the date 1894 in faded script. Probably nobody notices it. We did.",
-        photo: ""
+      context: {
+        about: "Portugal's coastal capital, built on seven hills above the Tagus River. Lisbon launched the Age of Discovery in the 1400s — Vasco da Gama sailed from here to India. Pastel de nata (the custard tart) was invented by Hieronymite monks at the Belém Monastery before 1820, when the original recipe leaked to a local bakery that still makes them today.",
+        tidbit: "The 1755 earthquake — one of the deadliest in human history — destroyed most of the city in minutes. The grid you'll walk in the Baixa downtown was rebuilt from scratch by the Marquês de Pombal in one of Europe's earliest urban-planning interventions."
       },
-      postcardTo: {
-        to: "Jai",
-        text: "Your mother declared the pastéis de nata better than any donut and then ate three. There's a tram outside the bakery that goes up the hill so steep the coffee tilts in the cup. We thought of you on the river — you'd have liked the light off the water at four o'clock.\n\nWe'll be home soon.",
-        signoff: "— Dad"
-      },
-      meals: [
-        { place: "Nat'elier (after class)", dish: "the three pastéis we just made + bicas", when: "morning", cost: "in class" },
-        { place: "Time Out Market", dish: "bacalhau croquettes + a glass of vinho verde", when: "lunch", cost: "€18" },
+      plan: [
+        { time: "9:00 AM",  text: "Dock in Lisbon." },
+        { time: "9:50 AM",  text: "Arrive at Nat'elier (Rua de Santa Justa 87)." },
+        { time: "10:00 AM", text: "Pastel de Nata Masterclass — two hours, ends with a bag of warm tarts." },
+        { time: "Midday",   text: "Lunch in town. (Time Out Market is one option, the chef-curated food hall in the Mercado da Ribeira.)" },
+        { time: "Afternoon", text: "Self-guided walk: Santa Justa Lift → Carmo Convent → Praça do Comércio + Cais das Colunas → Sé Cathedral → Miradouro de Santa Luzia." },
+        { time: "4:30 PM",  text: "Back aboard." },
+        { time: "6:00 PM",  text: "Ship sails." },
       ],
+      smallFind: { number: "", label: "", text: "", photo: "" },
+      postcardTo: { to: "", text: "", signoff: "" },
+      meals: [],
     },
     {
       id: "day-6",
@@ -146,6 +207,13 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      context: {
+        about: "A full day at sea, crossing east from the Atlantic side of Iberia into the Mediterranean proper.",
+        tidbit: "The Mediterranean is about 2.5 million square kilometers — roughly 1% of the world's ocean area, but the largest inland sea on the planet. Average depth: about a mile."
+      },
+      plan: [
+        { time: "All day",  text: "Nothing scheduled. Deck chairs, books, espresso, a long lunch, the pool, the ship." },
+      ],
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
       meals: [],
@@ -163,6 +231,16 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      context: {
+        about: "Alicante is a Costa Blanca port city below the Castillo de Santa Bárbara, a Moorish hilltop fortress. The MSC excursion goes inland to Guadalest — a fortified clifftop village built into a 595-meter mountain pass. Population about 210. Held by the Moors, then taken by the Crown of Aragon in 1308 and held by the same noble family for the next five centuries.",
+        tidbit: "Guadalest's church and bell tower had to be carved straight out of the solid rock of the cliff — the only way to fit a town up there."
+      },
+      plan: [
+        { time: "9:00 AM",  text: "Dock in Alicante." },
+        { time: "Morning",  text: "MSC excursion ALI11 — bus up into the Costa Blanca hills to Guadalest. Castle, village, the views." },
+        { time: "~2:00 PM", text: "Return drive to Alicante. Optional time on the esplanade if there's any left." },
+        { time: "5:00 PM",  text: "Back aboard. Ship sails." },
+      ],
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
       meals: [],
@@ -180,6 +258,15 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      context: {
+        about: "The capital of Menorca, the quietest of the Balearic Islands. Mahón has the second-deepest natural harbor in the world — only Pearl Harbor is deeper. Britain held Menorca for most of the 18th century, and you can still see the influence in the architecture and the local fondness for gin.",
+        tidbit: "The word 'mayonnaise' comes from Mahón. It was invented here by a French chef during the British siege of 1756 — originally 'Mahonnaise.'"
+      },
+      plan: [
+        { time: "9:00 AM",  text: "Dock in Mahón." },
+        { time: "Day",      text: "Free day — no excursion booked. A wander into town, a long lunch on a terrace, gin and lemonade (the local specialty: pomada)." },
+        { time: "4:00 PM",  text: "Back aboard. Ship sails for Sardinia." },
+      ],
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
       meals: [],
@@ -197,6 +284,16 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      context: {
+        about: "Olbia is the gateway to Sardinia's Costa Smeralda — the emerald-water coast. The La Maddalena Archipelago is a national park of seven granite islands off the northeast tip, famous for water in shades of blue you don't quite believe.",
+        tidbit: "Giuseppe Garibaldi, the soldier-statesman who unified Italy, spent his final years on Caprera, one of the La Maddalena islands. His house is now a museum — he chose it specifically because it was about as far as one could get from politics."
+      },
+      plan: [
+        { time: "10:00 AM", text: "Dock in Olbia." },
+        { time: "Morning",  text: "MSC excursion OLB01 — boat tour through the La Maddalena Archipelago. Beach stops, swim breaks, the granite-and-turquoise coastline." },
+        { time: "Afternoon", text: "Continued boat tour and return to port." },
+        { time: "7:00 PM",  text: "Back aboard. Ship sails for Genoa." },
+      ],
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
       meals: [],
@@ -214,6 +311,15 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      context: {
+        about: "One of Europe's great old maritime republics — Genoa rivaled Venice for centuries. Christopher Columbus was born here. The Banca di San Giorgio, founded here in 1407, was one of the first chartered banks in the world. The 16th-century Strada Nuova — a street of palaces built by the city's noble families — is a UNESCO site.",
+        tidbit: "Both focaccia and pesto were invented in Genoa. The classical pesto recipe insists on Genoese basil only — DOP-protected and grown in greenhouses on the city's western slopes."
+      },
+      plan: [
+        { time: "9:00 AM",  text: "Dock in Genoa." },
+        { time: "Day",      text: "Free day — no excursion booked. The medieval old town, the Strada Nuova palaces, focaccia and pesto, a walk by the old port." },
+        { time: "6:00 PM",  text: "Back aboard. Ship sails for Marseille — the final leg." },
+      ],
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
       meals: [],
@@ -231,6 +337,17 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      context: {
+        about: "Marseille is France's oldest city, founded by Greek sailors around 600 BC. France's largest port — gritty, Mediterranean, multicultural — closer in feel to Naples than to Paris. Then a short flight north to Paris, the capital on the Seine.",
+        tidbit: "The French national anthem, 'La Marseillaise,' was actually composed in Strasbourg but adopted by volunteers from Marseille who sang it as they marched on Paris during the 1792 Revolution. The name stuck."
+      },
+      plan: [
+        { time: "9:00 AM",  text: "Disembark MSC Opera in Marseille." },
+        { time: "Midday",   text: "Cruise transfer or taxi to Marseille airport. Check-in deadline 14:35." },
+        { time: "3:05 PM",  text: "AF 7339 Marseille → Paris CDG. Lands 16:35." },
+        { time: "Late PM",  text: "Le Bus Direct (or taxi) into Paris. Check in at Le Méridien Étoile (Arc de Triomphe)." },
+        { time: "Evening",  text: "Dinner. Early to bed — Normandy starts at 7 AM tomorrow." },
+      ],
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
       meals: [],
@@ -248,6 +365,18 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      context: {
+        about: "Two icons in a single long day. Normandy's beaches — Omaha, Utah, Gold, Juno, Sword — were the site of the Allied landings on June 6, 1944, the start of the liberation of western Europe. The American Cemetery at Colleville-sur-Mer overlooks Omaha Beach. Then west to Mont Saint-Michel, a medieval abbey on a tidal island rising from the bay — UNESCO since 1979, monastic since the 8th century.",
+        timing: "Two days before the 82nd anniversary of D-Day (June 6, 1944). Memorial events, gatherings, and ceremonies will be ramping up across the beaches and in the cemeteries as we visit. Veterans and families come back every year — fewer of the original Allied soldiers left each anniversary.",
+        tidbit: "At Mont Saint-Michel the tide retreats up to 14 km out into the bay — one of the largest tidal ranges in Europe — and can rush back in at the speed of a galloping horse. Medieval pilgrims occasionally drowned trying to cross at the wrong hour."
+      },
+      plan: [
+        { time: "7:00 AM",  text: "Meet the Amigo Tours van at 11 Bd Pershing — in front of the Hyatt Regency Étoile. About a 5-minute walk from Le Méridien." },
+        { time: "Morning",  text: "Drive to Normandy. Omaha Beach. The American Cemetery at Colleville-sur-Mer." },
+        { time: "Midday",   text: "Drive west to Mont Saint-Michel." },
+        { time: "Afternoon", text: "Visit Mont Saint-Michel — the abbey, the village built up the rock, the bay." },
+        { time: "Evening",  text: "Drive back to Paris. Late dinner." },
+      ],
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
       meals: [],
@@ -265,6 +394,11 @@ window.TRIP = {
       photos: [],
       audio: null,
       journal: "",
+      plan: [
+        { time: "Morning",  text: "Out of Le Méridien. Le Bus Direct or taxi to CDG." },
+        { time: "10:00 AM", text: "AA 49 CDG → DFW. Lands 1:30 PM." },
+        { time: "Afternoon", text: "Customs at Terminal D. TerminaLink shuttle to Terminal A garage. Drive home." },
+      ],
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
       meals: [],
@@ -466,6 +600,6 @@ window.TRIP = {
       { who: "US State Dept · emergencies abroad", phone: "+1 202-501-4444" },
     ],
 
-    notes: "Sat May 23: drive to Dallas, check in to Highland by 3 PM, dinner at Knife. Sun May 24: out of Highland by ~7:30 AM, drop the kids at Lake Highlands High for the camp bus, DFW Terminal A garage by ~9 AM, AA Terminal A counter for bag drop + security, Skylink to gate C for the 11:57 AM departure. Casablanca arrival May 25: taxi from RAM official stand (~$25–30, 30 min) to Marriott; front desk will hold bags pre-3-PM. Cruise check-in deadline May 26 is 4 PM Málaga local — landing 13:20 leaves about 1h 45m buffer. Time zones: Morocco & Portugal +6 from Midland, everywhere else +7.",
+    notes: "Sat May 23: drive to Dallas, dinner at Culver's, check in to Highland, sack lunches for the kids' camp trip. Sun May 24: out of Highland early, drop the kids at Lake Highlands High for the camp bus, DFW Terminal A garage by ~9 AM, TerminaLink bus to Terminal C for AA check-in + bag drop + security, then to the gate for 11:57 AM departure. Casablanca arrival May 25: taxi from RAM official stand (~$25–30, 30 min) to Marriott; front desk will hold bags pre-3-PM. Cruise check-in deadline May 26 is 4 PM Málaga local — landing 13:20 leaves about 1h 45m buffer. Time zones: Morocco & Portugal +6 from Midland, everywhere else +7.",
   },
 };

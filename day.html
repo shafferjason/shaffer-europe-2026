@@ -48,6 +48,32 @@
     </figure>
   `).join('');
 
+  // About this place — only if context exists
+  const ctx = day.context;
+  const contextBlock = (ctx && (ctx.about || ctx.timing || ctx.tidbit)) ? `
+    <section class="dayContext">
+      <div class="dayContextLabel">About this place</div>
+      ${ctx.about ? `<p class="dayContextAbout">${ctx.about}</p>` : ''}
+      ${ctx.timing ? `<div class="dayContextTiming"><span class="dayContextTimingLabel">Timing</span><span>${ctx.timing}</span></div>` : ''}
+      ${ctx.tidbit ? `<p class="dayContextTidbit"><em>— ${ctx.tidbit}</em></p>` : ''}
+    </section>
+  ` : '';
+
+  // The plan — only if plan exists
+  const planBlock = (day.plan && day.plan.length) ? `
+    <section class="dayPlan">
+      <div class="dayPlanLabel">The plan</div>
+      <ol class="dayPlanList">
+        ${day.plan.map(p => `
+          <li class="dayPlanItem">
+            <div class="dayPlanTime">${p.time || ''}</div>
+            <div class="dayPlanText">${p.text || ''}</div>
+          </li>
+        `).join('')}
+      </ol>
+    </section>
+  ` : '';
+
   // Small Find — only if text exists
   const sf = day.smallFind;
   const smallFindBlock = (sf && sf.text) ? `
@@ -78,6 +104,8 @@
       <div class="day-city">${day.flag || ''} ${day.city} · ${day.country || ''}</div>
       <div class="dayLedger" id="dayLedger"></div>
     </div>
+    ${contextBlock}
+    ${planBlock}
     ${photoBlocks ? `<div class="photoStack">${photoBlocks}</div>` : ''}
     <div class="journal">
       ${day.journal ? day.journal.split('\n\n').map(p => `<p>${p}</p>`).join('') :

@@ -33,6 +33,7 @@ window.TRIP = {
       journal: "",
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
+      meals: [],
     },
     {
       id: "day-1",
@@ -49,6 +50,7 @@ window.TRIP = {
       journal: "",
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
+      meals: [],
     },
     {
       id: "day-2",
@@ -65,6 +67,7 @@ window.TRIP = {
       journal: "",
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
+      meals: [],
     },
     {
       id: "day-3",
@@ -81,6 +84,7 @@ window.TRIP = {
       journal: "",
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
+      meals: [],
     },
     {
       id: "day-4",
@@ -97,6 +101,7 @@ window.TRIP = {
       journal: "",
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
+      meals: [],
     },
     {
       id: "day-5",
@@ -123,6 +128,10 @@ window.TRIP = {
         text: "Your mother declared the pastéis de nata better than any donut and then ate three. There's a tram outside the bakery that goes up the hill so steep the coffee tilts in the cup. We thought of you on the river — you'd have liked the light off the water at four o'clock.\n\nWe'll be home soon.",
         signoff: "— Dad"
       },
+      meals: [
+        { place: "Nat'elier (after class)", dish: "the three pastéis we just made + bicas", when: "morning", cost: "in class" },
+        { place: "Time Out Market", dish: "bacalhau croquettes + a glass of vinho verde", when: "lunch", cost: "€18" },
+      ],
     },
     {
       id: "day-6",
@@ -139,6 +148,7 @@ window.TRIP = {
       journal: "",
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
+      meals: [],
     },
     {
       id: "day-7",
@@ -155,6 +165,7 @@ window.TRIP = {
       journal: "",
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
+      meals: [],
     },
     {
       id: "day-8",
@@ -171,6 +182,7 @@ window.TRIP = {
       journal: "",
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
+      meals: [],
     },
     {
       id: "day-9",
@@ -187,6 +199,7 @@ window.TRIP = {
       journal: "",
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
+      meals: [],
     },
     {
       id: "day-10",
@@ -203,6 +216,7 @@ window.TRIP = {
       journal: "",
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
+      meals: [],
     },
     {
       id: "day-11",
@@ -219,6 +233,7 @@ window.TRIP = {
       journal: "",
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
+      meals: [],
     },
     {
       id: "day-12",
@@ -235,6 +250,7 @@ window.TRIP = {
       journal: "",
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
+      meals: [],
     },
     {
       id: "day-13",
@@ -251,6 +267,7 @@ window.TRIP = {
       journal: "",
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
+      meals: [],
     },
   ],
 

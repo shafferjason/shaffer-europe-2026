@@ -56,6 +56,19 @@ smallFind: {
 
 Leave any field blank to hide it. Empty `text` hides the whole block.
 
+### Logging a meal (shows on the "Things we ate" page)
+
+Each day has a `meals` list — every entry is one meal. Leave it as `[]` for a day with nothing notable.
+
+```javascript
+meals: [
+  { place: "Time Out Market",          dish: "bacalhau croquettes + vinho verde", when: "lunch",   cost: "€18" },
+  { place: "A Cevicheria",             dish: "tuna tartare + the special",         when: "dinner", cost: "€62" },
+],
+```
+
+`place`, `dish`, `when`, and `cost` are all optional. Leave any of them blank if you didn't catch them.
+
 ### Postcard to a person (recommended — one per day)
 
 A short typed note written TO one person by name — Jai, Noah, Rachel's mom, a friend. Three sentences is plenty. Feels like a letter, not a blog post.

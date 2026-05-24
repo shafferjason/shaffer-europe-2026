@@ -92,10 +92,10 @@
     <h2 class="sectionTitle">The Route</h2>
     <p class="sectionLede">Hand-drawn — not to scale, on purpose.</p>
     <figure class="mapFigure">
-      <svg class="medMap" viewBox="0 0 1400 800" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Route across the western Mediterranean — Casablanca to Marseille, stopping in Málaga, Cádiz, Lisbon, Alicante, Mahón, Olbia (Sardinia), and Genoa.">
-        <!-- Sea background -->
-        <rect width="1400" height="800" fill="#eadcb6" />
-        <rect width="1400" height="800" fill="#cfd9d8" opacity="0.18" />
+      <svg class="medMap" viewBox="0 -340 1400 1140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Route from Casablanca across the Mediterranean to Marseille, then north overland to Paris and a day in Normandy.">
+        <!-- Sea + sky background -->
+        <rect x="0" y="-340" width="1400" height="1140" fill="#eadcb6" />
+        <rect x="0" y="-340" width="1400" height="1140" fill="#cfd9d8" opacity="0.18" />
 
         <!-- Iberian Peninsula (Portugal + Spain) -->
         <path d="M -30 280 Q 40 250, 150 270 Q 240 260, 320 285 Q 410 290, 470 330 Q 510 380, 495 460 Q 470 530, 400 565 Q 320 590, 220 590 Q 110 580, 30 570 Q -20 540, -30 480 Z"
@@ -107,9 +107,37 @@
 
         <!-- Strait of Gibraltar gap is implicit (sea between Iberia bottom and Morocco top) -->
 
-        <!-- France + Italy (north coast) -->
-        <path d="M 600 0 L 1430 0 L 1430 80 Q 1380 100, 1320 90 Q 1260 75, 1200 100 Q 1140 130, 1080 130 Q 1020 110, 960 145 Q 900 165, 840 145 Q 770 120, 700 110 Q 640 90, 600 60 Z"
-              fill="#d8c08e" stroke="#7a5d33" stroke-width="2.2" stroke-linejoin="round" />
+        <!-- France — extended north to include the Channel coast, Normandy, and Paris region -->
+        <path d="
+          M 380 -320
+          Q 480 -340, 600 -325
+          Q 700 -315, 780 -300
+          Q 860 -295, 920 -300
+          Q 980 -310, 1040 -290
+          L 1080 -260
+          Q 1100 -200, 1080 -120
+          Q 1100 -80, 1140 -50
+          L 1430 -10
+          L 1430 80
+          Q 1380 100, 1320 90
+          Q 1260 75, 1200 100
+          Q 1140 130, 1080 130
+          Q 1020 110, 960 145
+          Q 900 165, 840 145
+          Q 770 120, 700 110
+          Q 640 90, 600 60
+          L 540 30
+          Q 470 0, 430 -60
+          Q 400 -130, 390 -200
+          Q 380 -260, 380 -320 Z"
+          fill="#d8c08e" stroke="#7a5d33" stroke-width="2.2" stroke-linejoin="round" />
+
+        <!-- Brittany peninsula bulge on the west (so Mont Saint-Michel sits in a coastline) -->
+        <path d="M 430 -150 Q 380 -135, 350 -110 Q 340 -85, 380 -70 Q 420 -75, 460 -90 Z"
+              fill="#d8c08e" stroke="#7a5d33" stroke-width="2" stroke-linejoin="round" />
+
+        <!-- English Channel hint (small dashed wave near top edge) -->
+        <text x="630" y="-300" font-family="Caveat, cursive" font-size="20" fill="#6b7a8a" font-style="italic" opacity="0.55">English Channel</text>
 
         <!-- Italian peninsula (boot) -->
         <path d="M 1240 95 Q 1305 110, 1340 165 Q 1370 230, 1370 310 Q 1370 390, 1355 460 Q 1335 530, 1330 600 L 1370 670 L 1430 670 L 1430 95 Z"
@@ -132,7 +160,8 @@
         <text x="80" y="370" font-family="Caveat, cursive" font-size="26" fill="#7a5d33" font-style="italic" opacity="0.65">Portugal</text>
         <text x="260" y="445" font-family="Caveat, cursive" font-size="28" fill="#7a5d33" font-style="italic" opacity="0.65">Spain</text>
         <text x="290" y="785" font-family="Caveat, cursive" font-size="26" fill="#7a5d33" font-style="italic" opacity="0.65">Morocco</text>
-        <text x="760" y="55"  font-family="Caveat, cursive" font-size="26" fill="#7a5d33" font-style="italic" opacity="0.65">France</text>
+        <text x="720" y="-180" font-family="Caveat, cursive" font-size="32" fill="#7a5d33" font-style="italic" opacity="0.6">France</text>
+        <text x="380" y="-100" font-family="Caveat, cursive" font-size="20" fill="#7a5d33" font-style="italic" opacity="0.55">Normandy</text>
         <text x="1290" y="280" font-family="Caveat, cursive" font-size="26" fill="#7a5d33" font-style="italic" opacity="0.65">Italy</text>
 
         <!-- Cruise route — dashed line in port order:
@@ -149,6 +178,13 @@
           Q 1075 130, 985 158"
           fill="none" stroke="#7c1717" stroke-width="2.6" stroke-dasharray="8 6" stroke-linecap="round" opacity="0.85" />
 
+        <!-- Overland leg: Marseille → Paris, then a side spur Paris → Normandy and back.
+             Different dash pattern signals 'no longer on a ship'. -->
+        <path d="M 985 158 Q 920 60, 870 -50 Q 830 -120, 800 -170"
+              fill="none" stroke="#7c1717" stroke-width="2.6" stroke-dasharray="3 5" stroke-linecap="round" opacity="0.85" />
+        <path d="M 800 -170 Q 700 -150, 600 -140 Q 500 -130, 440 -110"
+              fill="none" stroke="#7c1717" stroke-width="2.4" stroke-dasharray="3 5" stroke-linecap="round" opacity="0.7" />
+
         <!-- City dots -->
         <g fill="#7c1717" stroke="#3a0c0c" stroke-width="0.8">
           <circle cx="168"  cy="660" r="5.5" />  <!-- Casablanca -->
@@ -160,6 +196,8 @@
           <circle cx="1198" cy="350" r="5.5" />  <!-- Olbia / Sardinia -->
           <circle cx="1175" cy="95"  r="5.5" />  <!-- Genoa -->
           <circle cx="985"  cy="158" r="5.5" />  <!-- Marseille -->
+          <circle cx="800"  cy="-170" r="6" />   <!-- Paris -->
+          <circle cx="440"  cy="-110" r="5.5" /> <!-- Mont Saint-Michel -->
         </g>
 
         <!-- City labels (typewriter) -->
@@ -174,6 +212,9 @@
           <text x="1208" y="395" font-size="13" fill="#7a5d33" font-style="italic" font-family="Caveat, cursive">Sardinia</text>
           <text x="1110" y="90">Genoa</text>
           <text x="930"  y="148">Marseille</text>
+          <text x="815"  y="-178" font-size="19">Paris</text>
+          <text x="320"  y="-130" font-size="14">Mont</text>
+          <text x="320"  y="-114" font-size="14">Saint-Michel</text>
         </g>
 
         <!-- Tiny ship icon mid-route, between Alicante and Mahón -->
@@ -182,6 +223,13 @@
           <line x1="0" y1="-14" x2="0" y2="0" stroke="#2a241a" stroke-width="1.2" />
           <path d="M 0 -14 L 12 -3 L 0 -3 Z" fill="#7c1717" />
           <line x1="0" y1="-22" x2="0" y2="-14" stroke="#2a241a" stroke-width="1" />
+        </g>
+
+        <!-- Tiny train icon along the Marseille-to-Paris leg -->
+        <g transform="translate(925, 60)" opacity="0.8">
+          <rect x="-12" y="-5" width="24" height="10" fill="#f4ead5" stroke="#2a241a" stroke-width="1" />
+          <circle cx="-7" cy="6" r="2" fill="#2a241a" />
+          <circle cx="7"  cy="6" r="2" fill="#2a241a" />
         </g>
 
         <!-- Compass rose, bottom-right corner -->
@@ -196,7 +244,7 @@
         </g>
 
         <!-- Faint paper grain overlay -->
-        <rect width="1400" height="800" fill="url(#grain)" opacity="0.15" />
+        <rect x="0" y="-340" width="1400" height="1140" fill="url(#grain)" opacity="0.15" />
         <defs>
           <filter id="noise">
             <feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" />

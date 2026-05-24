@@ -290,6 +290,29 @@ window.TRIP = {
     "day-13": { lat: 48.86, lng:   2.35, where: "Paris → DFW" },
   },
 
+  // Back of the book — reflections after the trip. Populated when you're home.
+  backOfBook: {
+    whereWeSlept: [
+      // { place: "The Highland", city: "Dallas", nights: 1, verdict: "" },
+      // { place: "Casablanca Marriott", city: "Casablanca", nights: 1, verdict: "" },
+      // { place: "MSC Opera, cabin 8208", city: "at sea", nights: 8, verdict: "" },
+      // { place: "Le Méridien Étoile", city: "Paris", nights: 2, verdict: "" },
+    ],
+    wedDoAgain: [
+      // "Pastel de nata masterclass — short, fun, ended with a bag of warm pastries",
+    ],
+    wedSkip: [
+      // "...",
+    ],
+    wishWedBrought: [
+      // "A second pair of walking shoes",
+    ],
+    learned: [
+      // Words, phrases, signs that stuck with us.
+      // { word: "saudade", from: "Portugal", meaning: "a wistful longing for what's gone" },
+    ],
+  },
+
   cities: [
     { name: "Dallas", flag: "🇺🇸" },
     { name: "Casablanca", flag: "🇲🇦" },

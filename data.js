@@ -146,6 +146,7 @@ window.TRIP = {
       photos: [
         "images/casa-airport-empty.jpg",
         "images/casa-heres-looking.jpg",
+        "images/ship-cabin-8208.jpg",
       ],
       audio: null,
       journal: "",

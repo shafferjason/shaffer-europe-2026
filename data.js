@@ -142,7 +142,7 @@ window.TRIP = {
       flag: "🛳",
       kicker: "Board the MSC Opera",
       title: "Crossing to Spain — boarding day.",
-      summary: "Up early. Hotel-taxi dance with a cancelled Uber. Showed up to Casablanca's airport 4 hours early and found it empty. Royal Air Maroc to Málaga, then the MSC Opera by 4 PM.",
+      summary: "Up early to an empty Casablanca airport. Smooth flight to Málaga, Uber to the ship, straight on. Then briefly called off the ship by the Port Authority over a souvenir from yesterday.",
       photos: [
         "images/casa-airport-empty.jpg",
         "images/casa-heres-looking.jpg",
@@ -153,7 +153,7 @@ window.TRIP = {
         about: "Málaga is the gateway to Spain's Costa del Sol — Mediterranean light, beach culture, palm-lined plazas. It's also one of the oldest continuously inhabited cities in Europe, founded by Phoenician sailors around 770 BC.",
         tidbit: "Pablo Picasso was born here in 1881. His childhood home on the Plaza de la Merced is now a small museum."
       },
-      journal: "Up early for the flight out. Rounded the corner of the Marriott to order an Uber and avoid the taxi crowd — but a taxi driver pulled up first and offered to match the Uber price and take card. I held the line and refused, until the Uber cancelled. The taxi guy won by default.\n\nLeft the hotel around 6:20 AM. Took the airline's 'four hours early' guidance seriously after yesterday at JFK.\n\nGot to CMN at 7 AM to an almost empty airport. Not a soul in front of us at check-in — agents sitting at three or four open desks waiting for business. Straight through two security checkpoints where we were the only ones in the room. Never saw another passenger the whole way. Check-in, security, customs, and immigration done in under ten minutes. So much for the four-hour buffer.\n\nOn the way out we passed a wall installation with the Bogart line — 'Here's looking at you, kid.' Goodbye, Casablanca.",
+      journal: "Up early for the flight out. Rounded the corner of the Marriott to order an Uber and avoid the taxi crowd — but a taxi driver pulled up first and offered to match the Uber price and take card. I held the line and refused, until the Uber cancelled. The taxi guy won by default.\n\nLeft the hotel around 6:20 AM. Took the airline's 'four hours early' guidance seriously after yesterday at JFK.\n\nGot to CMN at 7 AM to an almost empty airport. Not a soul in front of us at check-in — agents sitting at three or four open desks waiting for business. Straight through two security checkpoints where we were the only ones in the room. Never saw another passenger the whole way. Check-in, security, customs, and immigration done in under ten minutes. So much for the four-hour buffer.\n\nOn the way out we passed a wall installation with the Bogart line — 'Here's looking at you, kid.' Goodbye, Casablanca.\n\nSecurity at the Málaga airport was a breeze too. Uber to the ship. When we arrived there was no wait — straight on. The opposite of this morning: this time we were one of the last to arrive, not the first. Still no line.\n\nThe cabin is small. Looks like it was decorated in the '90s.\n\nWe settled in and got a call from reception — both of us, please come up. When we got there they sent us off the ship to meet the Port Authority. No explanation. Just: you have to get off and see Port Authority.\n\nWhen we found them they had our luggage open. They asked us to open an item inside. It was the unsharpened dagger we'd bought at the market yesterday for Noah. They examined the blade, said it was fine to keep, but the ship would confiscate it until we disembarked. Back on board now.",
       smallFind: {
         number: "04",
         label: "Overcorrecting after JFK",
@@ -161,10 +161,12 @@ window.TRIP = {
         photo: "images/casa-airport-empty.jpg"
       },
       plan: [
-        { time: "Early AM",  text: "Out of the Marriott. Aim for 7 AM at CMN — 4 hours ahead of departure as RAM recommends." },
-        { time: "11:05 AM",  text: "AT 988 Royal Air Maroc CMN → Málaga (AGP). Lands 13:20." },
-        { time: "~2:15 PM",  text: "Customs, bags, taxi to the Málaga cruise terminal (Dique de Levante)." },
-        { time: "4:00 PM",   text: "Cruise check-in deadline — onboard the MSC Opera." },
+        { time: "Early AM",  text: "Out of the Marriott. Aim for 7 AM at CMN — 4 hours ahead of departure as RAM recommends. Airport empty." },
+        { time: "11:05 AM",  text: "AT 988 Royal Air Maroc CMN → Málaga. Lands 13:20." },
+        { time: "Afternoon", text: "Málaga airport security: a breeze. Uber to the cruise terminal." },
+        { time: "Boarding",  text: "Walked straight onto the MSC Opera — last ones in, no line at all." },
+        { time: "Cabin",     text: "Cabin 8208 — small, '90s décor. Settled in." },
+        { time: "Surprise",  text: "Called by reception. Sent off the ship to meet the Port Authority over the unsharpened dagger we bought for Noah yesterday. Examined, cleared, but confiscated by the ship until we disembark." },
         { time: "6:00 PM",   text: "Ship sails. Eight nights, six ports." },
       ],
       smallFind: { number: "", label: "", text: "", photo: "" },
@@ -499,9 +501,9 @@ window.TRIP = {
   ],
 
   whereNow: {
-    city: "Casablanca → Málaga",
-    country: "Day 3",
-    note: "Early flight out. Empty Casablanca airport. Boarding the MSC Opera tonight.",
+    city: "Aboard the MSC Opera",
+    country: "Málaga — sail-away tonight",
+    note: "Cabin 8208. Briefly summoned off the ship by Port Authority over a souvenir dagger. All sorted.",
     updated: "2026-05-26",
   },
 

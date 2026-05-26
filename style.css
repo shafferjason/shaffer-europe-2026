@@ -913,6 +913,7 @@ body {
   grid-template-columns: 1fr;
   gap: 24px;
   margin: 24px 0;
+  align-items: start;
 }
 @media (min-width: 560px) {
   .photoStack { grid-template-columns: 1fr 1fr; }
@@ -1065,6 +1066,52 @@ body {
   color: var(--ink-soft);
   text-align: right;
   margin-top: 12px;
+}
+
+/* ===== Day mural (hero illustration per day) ===== */
+
+.dayMural {
+  margin: 0 -16px 24px;
+  padding: 12px;
+  background: #fff;
+  border: 1px solid var(--cream-deep);
+  box-shadow: var(--shadow);
+  position: relative;
+  transform: rotate(-0.4deg);
+}
+.dayMural::before {
+  content: '';
+  position: absolute;
+  top: -10px; left: 50%;
+  transform: translateX(-50%) rotate(-2deg);
+  width: 130px; height: 18px;
+  background: var(--tape-gold);
+  background-image: radial-gradient(circle at 5px 5px, rgba(0,0,0,0.16) 1.3px, transparent 1.5px);
+  background-size: 10px 10px;
+  box-shadow: 0 2px 3px rgba(0,0,0,0.12);
+  z-index: 1;
+}
+.dayMural img {
+  width: 100%;
+  display: block;
+  filter: contrast(0.95) saturate(0.95);
+}
+.dayMural::after {
+  /* paper-grain overlay so it harmonizes with the rest of the page */
+  content: '';
+  position: absolute;
+  inset: 12px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.55  0 0 0 0 0.42  0 0 0 0 0.22  0 0 0 0.06 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 200px 200px;
+  mix-blend-mode: multiply;
+  opacity: 0.6;
+  pointer-events: none;
+}
+@media (min-width: 900px) {
+  .dayMural { margin-left: -32px; margin-right: -32px; }
+}
+@media (max-width: 600px) {
+  .dayMural { margin: 0 -8px 20px; padding: 8px; }
 }
 
 /* ===== About this place (day-page context block) ===== */

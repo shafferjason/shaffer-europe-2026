@@ -97,7 +97,14 @@
     </section>
   ` : '';
 
+  const muralBlock = day.mural ? `
+    <figure class="dayMural">
+      <img src="${day.mural}" alt="${day.city} — day mural" />
+    </figure>
+  ` : '';
+
   mount.innerHTML = `
+    ${muralBlock}
     <div class="dayHero">
       <div class="day-kicker">${day.label} · ${day.kicker || ''}</div>
       <h1>${day.title || day.city}</h1>

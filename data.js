@@ -91,6 +91,7 @@ window.TRIP = {
       kicker: "Land in Africa",
       title: "Mint tea in the Habous Quarter.",
       summary: "Landed Casablanca around 10 AM. Marriott upgrade to a junior suite, a long nap, then a Careem to the Habous Quarter for the afternoon. Dinner on the Corniche at sunset.",
+      mural: "images/mural-day-2.jpg",
       photos: [
         "images/casa-habous-mosque.jpg",
         "images/casa-habous-gate.jpg",
@@ -105,7 +106,7 @@ window.TRIP = {
       audio: null,
       journal: "Got into Casablanca around 10 AM after the overnight from JFK on Royal Air Maroc. Customs was a breeze. Uber to the Marriott — the hotel was kind enough to upgrade us to a junior suite, plenty of room to stretch out and recover. Crashed for a few hours.\n\nOn the drive in we started seeing the first signs of Eid al-Adha — vans with sheep stuffed in the back, heading home for the holiday on the 27th. That was the same reason we pivoted away from the planned Bouznika camel ride: the handlers were likely thinning out for the holiday. Kept it local instead with Habous Quarter on our own, skipping the guide.\n\nCaught a Careem to the medina. Had to meet the 'Captain' off-property because the hotel taxi drivers don't take kindly to rideshare pickups. Spent the afternoon walking Habous, the Nouvelle Médina with its Hispano-Moorish architecture, browsing the market. Rachel came away with a tagine pot, a teapot, a coaster set, and a few more knickknacks. Prices were already low enough that bargaining didn't really come into play.\n\nFor dinner the plan was Le Cabestan on the Corniche, but the driver dropped us somewhere else — still oceanfront with a great view, so we rolled with it. Arrived around 5, well ahead of the Moroccan dinner rush, and got a terrace seat for the long arc toward sunset. Worked through the French menu with some translation help and ordered the three bao bun varieties — beef rib, parmigiana, crispy salmon — then split a Paris-Brest and a warm chocolate cake. The dessert was the standout. The Paris-Brest in particular.",
       context: {
-        about: "Morocco's largest city and commercial heart, sat right on the Atlantic. The Casablanca most Americans picture comes from the 1942 film — but the real city is Art Deco boulevards, French colonial buildings, a working port, and over four million people. The Habous Quarter is a 1920s 'new medina' built by the French to look traditional — neat, walkable, full of leather and lantern shops.",
+        about: "Morocco's largest city and commercial heart, sat right on the Atlantic. The Casablanca most Americans picture comes from the 1942 film — but the real city is Art Deco boulevards, French colonial buildings, a working port, and over four million people. The Habous Quarter is a 1920s 'new medina' built by the French to look traditional — neat, walkable, full of leather and lantern shops.\n\nFor us, this stop is the one that matters most: Africa was the last continent on our list. Landing here finished it. Seven for seven.",
         timing: "Two days before Eid al-Adha (Feast of Sacrifice — May 27 this year). Vans full of sheep on the way in from the airport, headed home for the holiday. Some of the camel-ride handlers in Bouznika were already thinning out, so we pivoted to Habous on our own.",
         tidbit: "The Hassan II Mosque sits partly out over the Atlantic — its 690-ft minaret is among the tallest in the world, and the floor of the prayer hall has glass panels looking down to the sea below."
       },
@@ -137,13 +138,23 @@ window.TRIP = {
       flag: "🛳",
       kicker: "Board the MSC Opera",
       title: "Crossing to Spain — boarding day.",
-      summary: "Morning Royal Air Maroc to Málaga. Taxi to the cruise terminal. Onboard the MSC Opera by 4 PM, sailing 6 PM. Eight nights, six ports.",
-      photos: [],
+      summary: "Up early. Hotel-taxi dance with a cancelled Uber. Showed up to Casablanca's airport 4 hours early and found it empty. Royal Air Maroc to Málaga, then the MSC Opera by 4 PM.",
+      photos: [
+        "images/casa-airport-empty.jpg",
+        "images/casa-heres-looking.jpg",
+      ],
       audio: null,
       journal: "",
       context: {
         about: "Málaga is the gateway to Spain's Costa del Sol — Mediterranean light, beach culture, palm-lined plazas. It's also one of the oldest continuously inhabited cities in Europe, founded by Phoenician sailors around 770 BC.",
         tidbit: "Pablo Picasso was born here in 1881. His childhood home on the Plaza de la Merced is now a small museum."
+      },
+      journal: "Up early for the flight out. Rounded the corner of the Marriott to order an Uber and avoid the taxi crowd — but a taxi driver pulled up first and offered to match the Uber price and take card. I held the line and refused, until the Uber cancelled. The taxi guy won by default.\n\nLeft the hotel around 6:20 AM. Took the airline's 'four hours early' guidance seriously after yesterday at JFK.\n\nGot to CMN at 7 AM to an almost empty airport. Not a soul in front of us at check-in — agents sitting at three or four open desks waiting for business. Straight through two security checkpoints where we were the only ones in the room. Never saw another passenger the whole way. Check-in, security, customs, and immigration done in under ten minutes. So much for the four-hour buffer.\n\nOn the way out we passed a wall installation with the Bogart line — 'Here's looking at you, kid.' Goodbye, Casablanca.",
+      smallFind: {
+        number: "04",
+        label: "Overcorrecting after JFK",
+        text: "After yesterday's RAM-line panic at JFK we took the 'four hours early' email seriously and got to Casablanca's airport at 7 AM for an 11:05 AM flight. Not a soul in front of us at check-in. Agents at three or four open desks waiting for business. Through two security checkpoints — only ones in the room. Done in under ten minutes. So much for the four-hour buffer.",
+        photo: "images/casa-airport-empty.jpg"
       },
       plan: [
         { time: "Early AM",  text: "Out of the Marriott. Aim for 7 AM at CMN — 4 hours ahead of departure as RAM recommends." },
@@ -484,10 +495,10 @@ window.TRIP = {
   ],
 
   whereNow: {
-    city: "Casablanca, Morocco",
-    country: "Day 2",
-    note: "Bao buns and a Paris-Brest as the sun went down on the Corniche.",
-    updated: "2026-05-25",
+    city: "Casablanca → Málaga",
+    country: "Day 3",
+    note: "Early flight out. Empty Casablanca airport. Boarding the MSC Opera tonight.",
+    updated: "2026-05-26",
   },
 
   // ============================================================

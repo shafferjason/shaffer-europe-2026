@@ -8,7 +8,7 @@ window.TRIP = {
   meta: {
     title: "Shaffers Abroad",
     tagline: "Our two weeks across Morocco, the Mediterranean, and France",
-    departDate: "2026-05-23",  // drive to Dallas (pre-trip night)
+    departDate: "2026-05-24",  // Day 1 — the real travel day (May 23 is Day 0 pre-trip)
     sailDate: "2026-05-26",
     returnDate: "2026-06-05",
     travelers: "Jason & Rachel",
@@ -93,6 +93,8 @@ window.TRIP = {
       summary: "Landed Casablanca around 10 AM. Marriott upgrade to a junior suite, a long nap, then a Careem to the Habous Quarter for the afternoon. Dinner on the Corniche at sunset.",
       mural: "images/mural-day-2.jpg",
       photos: [
+        "images/casa-mosque-palms.jpg",
+        "images/casa-mosque-close.jpg",
         "images/casa-habous-mosque.jpg",
         "images/casa-habous-gate.jpg",
         "images/casa-marriott-arch.jpg",
@@ -102,6 +104,8 @@ window.TRIP = {
         "images/casa-teapot.jpg",
         "images/casa-sheep-van.jpg",
         "images/casa-balcony.jpg",
+        "images/casa-lighthouse-corniche.jpg",
+        "images/casa-paris-brest.jpg",
       ],
       audio: null,
       journal: "Got into Casablanca around 10 AM after the overnight from JFK on Royal Air Maroc. Customs was a breeze. Uber to the Marriott — the hotel was kind enough to upgrade us to a junior suite, plenty of room to stretch out and recover. Crashed for a few hours.\n\nOn the drive in we started seeing the first signs of Eid al-Adha — vans with sheep stuffed in the back, heading home for the holiday on the 27th. That was the same reason we pivoted away from the planned Bouznika camel ride: the handlers were likely thinning out for the holiday. Kept it local instead with Habous Quarter on our own, skipping the guide.\n\nCaught a Careem to the medina. Had to meet the 'Captain' off-property because the hotel taxi drivers don't take kindly to rideshare pickups. Spent the afternoon walking Habous, the Nouvelle Médina with its Hispano-Moorish architecture, browsing the market. Rachel came away with a tagine pot, a teapot, a coaster set, and a few more knickknacks. Prices were already low enough that bargaining didn't really come into play.\n\nFor dinner the plan was Le Cabestan on the Corniche, but the driver dropped us somewhere else — still oceanfront with a great view, so we rolled with it. Arrived around 5, well ahead of the Moroccan dinner rush, and got a terrace seat for the long arc toward sunset. Worked through the French menu with some translation help and ordered the three bao bun varieties — beef rib, parmigiana, crispy salmon — then split a Paris-Brest and a warm chocolate cake. The dessert was the standout. The Paris-Brest in particular.",

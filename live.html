@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Live Translator · Shaffers Abroad</title>
+<meta name="robots" content="noindex,nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Special+Elite&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<style>
+  .trWrap { max-width: 600px; margin: 0 auto; }
+  .trLangRow { display: flex; gap: 8px; justify-content: center; margin: 4px 0 22px; flex-wrap: wrap; }
+  .trLang {
+    font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 600;
+    padding: 8px 20px; border-radius: 999px; cursor: pointer;
+    background: transparent; color: var(--ink-soft);
+    border: 1.5px solid rgba(90, 79, 58, 0.35); transition: all 0.15s;
+  }
+  .trLang.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .trLang:disabled { opacity: 0.45; cursor: default; }
+  .liveBtnRow { text-align: center; margin: 8px 0 4px; }
+  .liveBtn {
+    font-family: 'Cormorant Garamond', serif; font-size: 22px; font-weight: 600;
+    padding: 14px 34px; border-radius: 999px; border: none; cursor: pointer;
+    background: var(--accent); color: #fff; box-shadow: var(--shadow); transition: background 0.2s;
+  }
+  .liveBtn.listening { background: #6e1f1f; }
+  .liveStatus { text-align: center; color: var(--ink-soft); font-style: italic; font-size: 15px; margin: 12px 0 0; min-height: 20px; }
+  .liveDot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #b0a890; margin-right: 7px; vertical-align: middle; }
+  .liveDot.on { background: #2e7d32; animation: livePulse 1.3s ease-in-out infinite; }
+  @keyframes livePulse { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
+  .liveFeed {
+    background: rgba(255,255,255,0.6); border: 1px solid rgba(90,79,58,0.18);
+    border-radius: 12px; padding: 20px 22px; margin: 20px 0; min-height: 200px;
+    box-shadow: var(--shadow-soft); font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; line-height: 1.45; color: var(--ink); white-space: pre-wrap;
+  }
+  .liveFeed .pending { color: var(--ink-soft); }
+  .liveFeed .placeholder { color: var(--ink-soft); font-style: italic; font-size: 18px; }
+  .liveHint { text-align:center; color: var(--ink-soft); font-size: 14px; margin-top: 10px; font-style: italic; }
+  .trError { color: var(--accent); text-align: center; font-style: italic; margin-top: 14px; }
+</style>
+</head>
+<body>
+<div class="paper">
+
+  <a href="translate.html" class="backLink">← quick translate</a>
+
+  <div id="gate" class="lockGate">
+    <h2>Live Translator</h2>
+    <p>Point it at a conversation or a guide — the translation writes itself as people speak. For Jason &amp; Rachel.</p>
+    <input type="password" id="pw" placeholder="Password" autocomplete="off" inputmode="numeric" />
+    <button id="unlockBtn">Unlock</button>
+    <div class="lockError" id="lockErr"></div>
+  </div>
+
+  <div id="panel" class="privatePanel">
+    <div class="trWrap">
+      <h1 style="font-family:'Cormorant Garamond',serif;font-size:42px;margin:0 0 4px;text-align:center;">Live Translator</h1>
+      <p style="font-style:italic;color:var(--ink-soft);margin:0 0 20px;text-align:center;">Pick the language you want to read, then start listening.</p>
+
+      <div class="trLangRow" id="trLangRow">
+        <button class="trLang active" data-lang="English">English</button>
+        <button class="trLang" data-lang="French">Français</button>
+        <button class="trLang" data-lang="Spanish">Español</button>
+      </div>
+
+      <div class="liveBtnRow">
+        <button class="liveBtn" id="liveBtn">Start listening</button>
+      </div>
+      <p class="liveStatus" id="liveStatus"><span class="liveDot" id="liveDot"></span>Not listening</p>
+
+      <div class="liveFeed" id="liveFeed"><span class="placeholder">The translation will appear here, line by line, as people speak.</span></div>
+      <p class="liveHint">Live captions tidy themselves up as more words come in. Keep the phone near the speaker.</p>
+      <div class="trError" id="trError"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p class="handwritten">ours · May 2026</p>
+  </footer>
+</div>
+
+<script src="update-check.js"></script>
+<script>
+(function(){
+  const PASSWORD = '2026';
+  const gate = document.getElementById('gate');
+  const panel = document.getElementById('panel');
+  const pw = document.getElementById('pw');
+  const btn = document.getElementById('unlockBtn');
+  const err = document.getElementById('lockErr');
+
+  function showPanel(){ gate.style.display='none'; panel.classList.add('unlocked'); }
+  function unlock(){
+    if (pw.value === PASSWORD){ sessionStorage.setItem('sa-unlocked','1'); showPanel(); }
+    else { err.textContent='try again'; pw.value=''; pw.focus(); }
+  }
+  btn.addEventListener('click', unlock);
+  pw.addEventListener('keydown', e => { if (e.key==='Enter') unlock(); });
+  if (sessionStorage.getItem('sa-unlocked')==='1') showPanel();
+  else setTimeout(()=>pw.focus(),100);
+
+  // ===== Live translator =====
+  let target = 'English';
+  const langRow = document.getElementById('trLangRow');
+  const liveBtn = document.getElementById('liveBtn');
+  const statusEl = document.getElementById('liveStatus');
+  const dot = document.getElementById('liveDot');
+  const feed = document.getElementById('liveFeed');
+  const errOut = document.getElementById('trError');
+
+  let pc = null, dc = null, micStream = null, active = false;
+  let finalizedLines = [];
+  let pending = '';
+
+  langRow.addEventListener('click', e => {
+    if (active) return;
+    const b = e.target.closest('.trLang');
+    if (!b) return;
+    document.querySelectorAll('.trLang').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    target = b.dataset.lang;
+  });
+
+  function setStatus(text, on){ statusEl.innerHTML = `<span class="liveDot${on?' on':''}"></span>${text}`; }
+
+  function renderFeed(){
+    if (!finalizedLines.length && !pending){
+      feed.innerHTML = '<span class="placeholder">The translation will appear here, line by line, as people speak.</span>';
+      return;
+    }
+    const done = finalizedLines.map(escapeHtml).join('\n');
+    const pend = pending ? `${done ? '\n' : ''}<span class="pending">${escapeHtml(pending)}</span>` : '';
+    feed.innerHTML = done + pend;
+    feed.scrollTop = feed.scrollHeight;
+  }
+
+  liveBtn.addEventListener('click', () => { active ? stop() : start(); });
+
+  async function start(){
+    errOut.textContent = '';
+    finalizedLines = []; pending = ''; renderFeed();
+    setStatus('Connecting…', false);
+    liveBtn.disabled = true;
+    document.querySelectorAll('.trLang').forEach(x=>x.disabled = true);
+
+    try {
+      // 1) Get a short-lived pass from our server.
+      const sres = await fetch('/api/session', {
+        method:'POST', headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({ target })
+      });
+      const sdata = await sres.json();
+      if (!sres.ok || sdata.error || !sdata.client_secret){
+        throw new Error(sdata.error || 'Could not start the live session.');
+      }
+
+      // 2) Open the live connection to OpenAI.
+      micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      pc = new RTCPeerConnection();
+      micStream.getTracks().forEach(t => pc.addTrack(t, micStream));
+
+      dc = pc.createDataChannel('oai-events');
+      dc.addEventListener('message', onEvent);
+
+      const offer = await pc.createOffer();
+      await pc.setLocalDescription(offer);
+
+      // GA Realtime WebRTC: the model is already baked into the ephemeral session.
+      const rtc = await fetch('https://api.openai.com/v1/realtime/calls', {
+        method:'POST',
+        body: offer.sdp,
+        headers:{ Authorization:`Bearer ${sdata.client_secret}`, 'Content-Type':'application/sdp' }
+      });
+      if (!rtc.ok) throw new Error('Live connection was refused.');
+      const answer = { type:'answer', sdp: await rtc.text() };
+      await pc.setRemoteDescription(answer);
+
+      active = true;
+      liveBtn.disabled = false;
+      liveBtn.textContent = 'Stop';
+      liveBtn.classList.add('listening');
+      setStatus('Listening — speak now', true);
+    } catch (e){
+      errOut.textContent = (e && e.message) ? e.message : 'Could not start live mode.';
+      cleanup();
+      setStatus('Not listening', false);
+      liveBtn.disabled = false;
+      document.querySelectorAll('.trLang').forEach(x=>x.disabled = false);
+    }
+  }
+
+  function onEvent(ev){
+    let msg;
+    try { msg = JSON.parse(ev.data); } catch { return; }
+    const type = msg.type || '';
+
+    // Translated text streaming out of the model.
+    if (type === 'response.text.delta' || type === 'response.output_text.delta'){
+      if (typeof msg.delta === 'string'){ pending += msg.delta; renderFeed(); }
+      return;
+    }
+    if (type === 'response.text.done' || type === 'response.output_text.done' || type === 'response.done'){
+      const finalText = (typeof msg.text === 'string' && msg.text) ? msg.text : pending;
+      if (finalText && finalText.trim()){ finalizedLines.push(finalText.trim()); }
+      pending = '';
+      renderFeed();
+      return;
+    }
+    if (type === 'error'){
+      errOut.textContent = (msg.error && msg.error.message) ? msg.error.message : 'Live session error.';
+      return;
+    }
+  }
+
+  function stop(){
+    cleanup();
+    active = false;
+    liveBtn.textContent = 'Start listening';
+    liveBtn.classList.remove('listening');
+    setStatus('Stopped', false);
+    document.querySelectorAll('.trLang').forEach(x=>x.disabled = false);
+    if (pending){ finalizedLines.push(pending.trim()); pending=''; renderFeed(); }
+  }
+
+  function cleanup(){
+    try { if (dc) dc.close(); } catch {}
+    try { if (pc) pc.close(); } catch {}
+    try { if (micStream) micStream.getTracks().forEach(t=>t.stop()); } catch {}
+    dc = null; pc = null; micStream = null;
+  }
+
+  window.addEventListener('beforeunload', cleanup);
+
+  function escapeHtml(s){
+    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+})();
+</script>
+</body>
+</html>

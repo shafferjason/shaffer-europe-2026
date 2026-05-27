@@ -97,17 +97,21 @@ Change that to whatever password you and Rachel want. Anyone with the password s
 
 ## The translator (`/translate`)
 
-A speak-to-read translator lives at `translate.html` (served as `/translate`). Pick a target language (English / French / Spanish), tap the mic, speak — it transcribes the speech and shows the translation. It sits behind the same soft password as the logistics side.
+Two modes, both behind the same soft password:
 
-Unlike the rest of the site, the translator needs a small server-side helper (`netlify/functions/translate.mts`) to keep the OpenAI key secret, so this page is served by **Netlify**, not GitHub Pages. The main trip site stays on GitHub Pages and links out to the translator.
+- **Quick** (`translate.html`, served as `/translate`) — pick a target language (English / French / Spanish), tap the mic, speak; it transcribes one clip and shows the translation. One-shot. Helper: `netlify/functions/translate.mts` (`/api/translate`).
+- **Live** (`live.html`) — a continuous interpreter. Hold an open connection to OpenAI's Realtime (GA) API over WebRTC and stream translated captions as people speak. The browser gets a short-lived ephemeral key from `netlify/functions/session.mts` (`/api/session`); the real key never reaches the browser. Output is text-only (`output_modalities: ["text"]`), translation accumulates line by line.
+
+Unlike the rest of the site, the translator needs server-side helpers to keep the OpenAI key secret, so these pages are served by **Netlify**, not GitHub Pages. The main trip site stays on GitHub Pages and links out to the translator (button on `private.html`).
 
 ### Required environment variable
 
 | Variable | Required | Purpose |
 |---|---|---|
 | `OPENAI_API_KEY` | **Yes** | Your OpenAI key, billing enabled. Set it in the Netlify site settings (Environment variables). **Never commit it.** |
-| `OPENAI_TRANSCRIBE_MODEL` | No | Speech-to-text model. Defaults to `gpt-4o-transcribe`. |
-| `OPENAI_TRANSLATE_MODEL` | No | Translation model. Defaults to `gpt-4o-mini`. |
+| `OPENAI_TRANSCRIBE_MODEL` | No | Quick-mode speech-to-text model. Defaults to `gpt-4o-transcribe`. |
+| `OPENAI_TRANSLATE_MODEL` | No | Quick-mode translation model. Defaults to `gpt-4o-mini`. |
+| `OPENAI_REALTIME_MODEL` | No | Live-mode realtime model. Defaults to `gpt-realtime`. |
 
 To run/test locally:
 
@@ -141,6 +145,8 @@ GitHub Pages picks it up within a minute or two.
 - `data.js` — **all content lives here**
 - `app.js` — homepage rendering (countdown, day cards)
 - `images/` — trip photos
-- `translate.html` — speak-to-read translator page (served by Netlify as `/translate`)
-- `netlify/functions/translate.mts` — server helper that holds the OpenAI key and does the translating
+- `translate.html` — quick speak-to-read translator page (served by Netlify as `/translate`)
+- `live.html` — live streaming translator (continuous captions via OpenAI Realtime over WebRTC)
+- `netlify/functions/translate.mts` — quick-mode helper (holds the OpenAI key, transcribes + translates one clip)
+- `netlify/functions/session.mts` — live-mode helper (mints a short-lived key so the browser can open a Realtime connection)
 - `netlify.toml` — Netlify config for the translator add-on

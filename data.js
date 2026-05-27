@@ -199,18 +199,19 @@ window.TRIP = {
         "images/seville-plaza-espana-bridge.jpg",
       ],
       audio: null,
-      journal: "Docked in Cádiz in the morning and took the excursion inland to Seville for a walking tour of the old town.\n\nStarted at Casa de Pilatos, the Andalusian palace — courtyard gardens with clipped topiary and orange trees, columned loggias, and carved Mudéjar ceilings. From there the route wound through the narrow streets past a Baroque church, a blue-tiled bell tower rising over the lanes, and the corner where the painter Velázquez was born in 1599. Passed the Setas de Sevilla, the large modern wooden canopy over the old market square.\n\nLater the route went by the cathedral and its Giralda bell tower — caught it framed through an archway — and a couple of women in flamenco dresses walking through one of the small plazas. Finished at the Plaza de España, the grand semicircular plaza with its canal, tiled bridges, and brick towers.\n\nBack aboard for the sail to Lisbon.",
+      journal: "Docked in Cádiz in the morning and took the excursion inland to Seville for a walking tour of the old town.\n\nStarted at Casa de Pilatos, the Andalusian palace — courtyard gardens with clipped topiary and orange trees, columned loggias, and carved Mudéjar ceilings. From there the route wound through the narrow streets past a Baroque church, a blue-tiled bell tower rising over the lanes, and the corner where the painter Velázquez was born in 1599. Passed the Setas de Sevilla, the large modern wooden canopy over the old market square, then wound through the old Jewish quarter — the Santa Cruz barrio — with its whitewashed walls and orange trees in every plaza.\n\nLunch on the tour. Then the route went by the cathedral and its Giralda bell tower — caught it framed through an archway — and a couple of women in flamenco dresses walking through one of the small plazas. Finished at the Plaza de España, the grand semicircular plaza with its canal, tiled bridges, and brick towers.\n\nBack aboard for the sail to Lisbon.",
       context: {
         about: "Cádiz claims to be the oldest continuously inhabited city in western Europe — Phoenicians founded it around 1100 BC. It's where Columbus set sail on his second and fourth voyages. The MSC excursion takes us inland to Seville, the Andalusian capital — flamenco, orange-blossom courtyards, the Real Alcázar palace, and Columbus's tomb.",
         timing: "Eid al-Adha — Morocco celebrates today. The boat will feel the shift as the cruise moves fully into Spanish waters.",
         tidbit: "Seville Cathedral holds the largest Gothic interior in the world. Its bell tower, the Giralda, was originally a 12th-century minaret — they kept the Moorish base and just stacked a Renaissance belfry on top."
       },
       plan: [
-        { time: "7:00 AM",  text: "Dock in Cádiz." },
-        { time: "Morning",  text: "MSC excursion CAD11 — bus to Seville for a walking tour: cathedral, orange-tree courtyards, the old Jewish quarter." },
-        { time: "Lunch",    text: "Lunch in Seville (part of the tour or on our own depending on the operator)." },
-        { time: "Afternoon", text: "Return drive to Cádiz." },
-        { time: "5:00 PM",  text: "Back aboard. Ship sails for Lisbon." },
+        { time: "7:00 AM",   text: "Dock in Cádiz." },
+        { time: "Morning",   text: "MSC excursion CAD11 — bus inland to Seville." },
+        { time: "Walking tour", text: "Casa de Pilatos · Baroque church · the blue-tiled bell tower · Velázquez's birthplace corner · the old Jewish quarter (Santa Cruz) · Setas de Sevilla · Seville Cathedral and the Giralda · Plaza de España." },
+        { time: "Lunch",     text: "Lunch on the tour in Seville." },
+        { time: "Afternoon", text: "Drive back to Cádiz." },
+        { time: "5:00 PM",   text: "Back aboard. Ship sails for Lisbon." },
       ],
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
@@ -515,10 +516,10 @@ window.TRIP = {
   ],
 
   whereNow: {
-    city: "Aboard the MSC Opera",
-    country: "Málaga — sail-away tonight",
-    note: "Cabin 8208. Briefly summoned off the ship by Port Authority over a souvenir dagger. All sorted.",
-    updated: "2026-05-26",
+    city: "Cádiz · Seville",
+    country: "Spain",
+    note: "Walked Seville — Casa de Pilatos, the Setas, the Giralda, Plaza de España. Back aboard tonight, sailing for Lisbon.",
+    updated: "2026-05-27",
   },
 
   // ============================================================

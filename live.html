@@ -27,15 +27,23 @@
     background: var(--accent); color: #fff; box-shadow: var(--shadow); transition: background 0.2s;
   }
   .liveBtn.listening { background: #6e1f1f; }
+  .liveClear {
+    margin-left: 10px; font-family: 'Cormorant Garamond', serif; font-size: 18px;
+    padding: 14px 24px; border-radius: 999px; cursor: pointer;
+    background: transparent; color: var(--ink-soft); border: 1.5px solid rgba(90, 79, 58, 0.35);
+  }
+  .liveClear:active { background: rgba(0,0,0,0.06); }
   .liveStatus { text-align: center; color: var(--ink-soft); font-style: italic; font-size: 15px; margin: 12px 0 0; min-height: 20px; }
   .liveDot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #b0a890; margin-right: 7px; vertical-align: middle; }
   .liveDot.on { background: #2e7d32; animation: livePulse 1.3s ease-in-out infinite; }
   @keyframes livePulse { 0%,100%{opacity:1;} 50%{opacity:0.35;} }
   .liveFeed {
     background: rgba(255,255,255,0.6); border: 1px solid rgba(90,79,58,0.18);
-    border-radius: 12px; padding: 20px 22px; margin: 20px 0; min-height: 200px;
+    border-radius: 12px; padding: 20px 22px; margin: 20px 0;
+    height: calc(var(--tr-font, 24px) * 1.45 * 5 + 44px); overflow-y: auto;
     box-shadow: var(--shadow-soft); font-family: 'Cormorant Garamond', serif;
     font-size: var(--tr-font, 24px); line-height: 1.45; color: var(--ink); white-space: pre-wrap;
+    -webkit-overflow-scrolling: touch;
   }
   .trSize { display:flex; align-items:center; justify-content:center; gap:10px; margin: 14px 0 0; color: var(--ink-soft); font-size:14px; font-style:italic; }
   .trSize button { width:40px; height:40px; border-radius:50%; border:1.5px solid rgba(90,79,58,0.35); background:transparent; color:var(--ink); cursor:pointer; font-family:'Cormorant Garamond',serif; line-height:1; }
@@ -73,6 +81,7 @@
 
       <div class="liveBtnRow">
         <button class="liveBtn" id="liveBtn">Start listening</button>
+        <button class="liveClear" id="liveClear">Clear</button>
       </div>
       <p class="liveStatus" id="liveStatus"><span class="liveDot" id="liveDot"></span>Not listening</p>
 
@@ -154,6 +163,9 @@
   function setStatus(text, on){ statusEl.innerHTML = `<span class="liveDot${on?' on':''}"></span>${text}`; }
 
   function renderFeed(){
+    // Only auto-follow to the bottom if the reader is already near the bottom,
+    // so they can scroll back through earlier lines without being yanked down.
+    const nearBottom = (feed.scrollHeight - feed.scrollTop - feed.clientHeight) < 48;
     if (!finalizedLines.length && !pending){
       feed.innerHTML = '<span class="placeholder">The translation will appear here, line by line, as people speak.</span>';
       return;
@@ -161,8 +173,12 @@
     const done = finalizedLines.map(escapeHtml).join('\n');
     const pend = pending ? `${done ? '\n' : ''}<span class="pending">${escapeHtml(pending)}</span>` : '';
     feed.innerHTML = done + pend;
-    feed.scrollTop = feed.scrollHeight;
+    if (nearBottom) feed.scrollTop = feed.scrollHeight;
   }
+
+  document.getElementById('liveClear').addEventListener('click', () => {
+    finalizedLines = []; pending = ''; renderFeed();
+  });
 
   liveBtn.addEventListener('click', () => { active ? stop() : start(); });
 

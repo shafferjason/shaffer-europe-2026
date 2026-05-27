@@ -6,21 +6,23 @@
 // ============================================================
 
 (function () {
-  const POLL_INTERVAL = 5 * 60 * 1000;  // 5 minutes
+  const POLL_INTERVAL = 90 * 1000;  // 90 seconds
   const VERSION_FILE  = 'data.js';
-  let initialMarker = null;
+  let baseline = null;
 
   async function probe() {
     try {
-      // Bust browser cache for the HEAD check itself
-      const r = await fetch(VERSION_FILE + '?cb=' + Date.now(), { method: 'HEAD' });
-      const marker = r.headers.get('ETag') || r.headers.get('Last-Modified');
-      if (!marker) return;
-      if (!initialMarker) {
-        initialMarker = marker;
+      // Always fetch the real content fresh (no cache), and compare the actual
+      // text to what we first saw — so we detect a new deploy reliably, instead
+      // of comparing the server to itself.
+      const r = await fetch(VERSION_FILE + '?cb=' + Date.now(), { cache: 'no-store' });
+      if (!r.ok) return;
+      const txt = await r.text();
+      if (baseline === null) {
+        baseline = txt;
         return;
       }
-      if (marker !== initialMarker) {
+      if (txt !== baseline) {
         showBanner();
       }
     } catch (e) {

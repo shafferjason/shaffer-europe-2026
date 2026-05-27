@@ -186,6 +186,7 @@ window.TRIP = {
       kicker: "Cruise · Port 1",
       title: "Savoury Seville on foot.",
       summary: "Dock in Cádiz 7 AM. MSC excursion takes us to Seville for a walking tour — cathedral, orange-tree courtyards, the old Jewish quarter. Back onboard by 5 PM.",
+      mural: "images/mural-day-4.jpg",
       photos: [
         { src: "images/seville-pilatos-garden.jpg",     cap: "Casa de Pilatos — courtyard with orange trees" },
         { src: "images/seville-pilatos-topiary.jpg",    cap: "Casa de Pilatos — clipped topiary" },

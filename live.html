@@ -33,6 +33,15 @@
     background: transparent; color: var(--ink-soft); border: 1.5px solid rgba(90, 79, 58, 0.35);
   }
   .liveClear:active { background: rgba(0,0,0,0.06); }
+  .liveModal { position: fixed; inset: 0; background: rgba(20,16,10,0.55); display: none; align-items: center; justify-content: center; z-index: 50; padding: 20px; }
+  .liveModal.show { display: flex; }
+  .liveModalCard { background: var(--paper); border-radius: 16px; padding: 28px 26px; max-width: 360px; width: 90%; text-align: center; box-shadow: var(--shadow); }
+  .liveModalCard h3 { font-family: 'Cormorant Garamond', serif; font-size: 28px; margin: 0 0 8px; color: var(--ink); }
+  .liveModalCard p { color: var(--ink-soft); font-size: 16px; line-height: 1.5; margin: 0 0 22px; }
+  .liveModalBtns { display: flex; gap: 10px; justify-content: center; }
+  .liveModalBtns button { font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 600; padding: 13px 24px; border-radius: 999px; cursor: pointer; border: none; }
+  .lmKeep { background: var(--accent); color: #fff; }
+  .lmStop { background: transparent; color: var(--ink-soft); border: 1.5px solid rgba(90,79,58,0.35); }
   .liveStatus { text-align: center; color: var(--ink-soft); font-style: italic; font-size: 15px; margin: 12px 0 0; min-height: 20px; }
   .liveDot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #b0a890; margin-right: 7px; vertical-align: middle; }
   .liveDot.on { background: #2e7d32; animation: livePulse 1.3s ease-in-out infinite; }
@@ -101,6 +110,17 @@
   </footer>
 </div>
 
+<div class="liveModal" id="liveModal">
+  <div class="liveModalCard">
+    <h3>Still listening?</h3>
+    <p>Live mode keeps the connection open (and billing). It will stop on its own in <span id="lmCount">30</span>s.</p>
+    <div class="liveModalBtns">
+      <button class="lmKeep" id="lmKeep">Keep listening</button>
+      <button class="lmStop" id="lmStop">Stop</button>
+    </div>
+  </div>
+</div>
+
 <script src="update-check.js"></script>
 <script>
 (function(){
@@ -150,6 +170,29 @@
   let pc = null, dc = null, micStream = null, active = false;
   let finalizedLines = [];
   let pending = '';
+
+  // ===== Idle / runaway-cost guard =====
+  const CHECK_INTERVAL = 3 * 60 * 1000; // ask "still listening?" after 3 min
+  const GRACE_MS = 30 * 1000;           // auto-stop if no answer within 30s
+  let checkTimer = null, graceTimer = null, countTimer = null;
+  const modal = document.getElementById('liveModal');
+  const lmCount = document.getElementById('lmCount');
+
+  function clearGuardTimers(){
+    clearTimeout(checkTimer); clearTimeout(graceTimer); clearInterval(countTimer);
+    checkTimer = graceTimer = countTimer = null;
+  }
+  function hideModal(){ modal.classList.remove('show'); clearTimeout(graceTimer); clearInterval(countTimer); graceTimer = countTimer = null; }
+  function armCheck(){ clearGuardTimers(); checkTimer = setTimeout(showCheck, CHECK_INTERVAL); }
+  function showCheck(){
+    if (!active) return;
+    modal.classList.add('show');
+    let remain = GRACE_MS / 1000; lmCount.textContent = remain;
+    countTimer = setInterval(() => { remain--; lmCount.textContent = Math.max(0, remain); }, 1000);
+    graceTimer = setTimeout(() => { hideModal(); stop(); }, GRACE_MS);
+  }
+  document.getElementById('lmKeep').addEventListener('click', () => { hideModal(); armCheck(); });
+  document.getElementById('lmStop').addEventListener('click', () => { hideModal(); stop(); });
 
   langRow.addEventListener('click', e => {
     if (active) return;
@@ -226,6 +269,7 @@
       liveBtn.textContent = 'Stop';
       liveBtn.classList.add('listening');
       setStatus('Listening — speak now', true);
+      armCheck();
     } catch (e){
       errOut.textContent = (e && e.message) ? e.message : 'Could not start live mode.';
       cleanup();
@@ -259,6 +303,7 @@
   }
 
   function stop(){
+    clearGuardTimers(); hideModal();
     cleanup();
     active = false;
     liveBtn.textContent = 'Start listening';

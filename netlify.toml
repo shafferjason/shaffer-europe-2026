@@ -1,0 +1,16 @@
+# Netlify config for the Shaffers Abroad translator add-on.
+# The main trip site is served by GitHub Pages; this config only powers the
+# /translate page and its behind-the-scenes /api/translate helper.
+
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Friendly URL: /translate serves the translator page.
+[[redirects]]
+  from = "/translate"
+  to = "/translate.html"
+  status = 200

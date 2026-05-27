@@ -194,7 +194,7 @@ window.TRIP = {
         "images/seville-setas.jpg",
       ],
       audio: null,
-      journal: "",
+      journal: "Docked in Cádiz in the morning and took the excursion inland to Seville for a walking tour of the old town.\n\nStarted at Casa de Pilatos, the Andalusian palace — courtyard gardens with clipped topiary and orange trees, columned loggias, and carved Mudéjar ceilings. From there the route wound through the narrow streets past a Baroque church, a blue-tiled bell tower rising over the lanes, and the corner where the painter Velázquez was born in 1599. Ended near the Setas de Sevilla, the large modern wooden canopy over the old market square.\n\nBack aboard in the afternoon for the sail to Lisbon. A straightforward walking day — pleasant enough, nothing that especially stood out.",
       context: {
         about: "Cádiz claims to be the oldest continuously inhabited city in western Europe — Phoenicians founded it around 1100 BC. It's where Columbus set sail on his second and fourth voyages. The MSC excursion takes us inland to Seville, the Andalusian capital — flamenco, orange-blossom courtyards, the Real Alcázar palace, and Columbus's tomb.",
         timing: "Eid al-Adha — Morocco celebrates today. The boat will feel the shift as the cruise moves fully into Spanish waters.",

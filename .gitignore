@@ -6,3 +6,7 @@ node_modules/
 
 # Local Netlify folder
 .netlify
+
+# Secrets — never commit the OpenAI key
+.env
+.env.*

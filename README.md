@@ -95,6 +95,31 @@ const PASSWORD = 'rachel2026';
 
 Change that to whatever password you and Rachel want. Anyone with the password sees the reservation details on `private.html`. **Note:** this is a soft lock for v1 — the data is in the public source, just hidden until the password matches. Fine for a personal family site; we can upgrade to real encryption if needed.
 
+## The translator (`/translate`)
+
+A speak-to-read translator lives at `translate.html` (served as `/translate`). Pick a target language (English / French / Spanish), tap the mic, speak — it transcribes the speech and shows the translation. It sits behind the same soft password as the logistics side.
+
+Unlike the rest of the site, the translator needs a small server-side helper (`netlify/functions/translate.mts`) to keep the OpenAI key secret, so this page is served by **Netlify**, not GitHub Pages. The main trip site stays on GitHub Pages and links out to the translator.
+
+### Required environment variable
+
+| Variable | Required | Purpose |
+|---|---|---|
+| `OPENAI_API_KEY` | **Yes** | Your OpenAI key, billing enabled. Set it in the Netlify site settings (Environment variables). **Never commit it.** |
+| `OPENAI_TRANSCRIBE_MODEL` | No | Speech-to-text model. Defaults to `gpt-4o-transcribe`. |
+| `OPENAI_TRANSLATE_MODEL` | No | Translation model. Defaults to `gpt-4o-mini`. |
+
+To run/test locally:
+
+```bash
+echo "OPENAI_API_KEY=sk-..." > .env   # .env is gitignored — never committed
+netlify dev                            # serves the site + the /api/translate helper
+```
+
+Then open the local URL netlify prints and go to `/translate`.
+
+**Cost control:** set a monthly usage limit in the OpenAI billing dashboard so the page (which is only behind a soft password) can't run up an unexpected bill.
+
 ## How updates go live
 
 After editing files:
@@ -116,3 +141,6 @@ GitHub Pages picks it up within a minute or two.
 - `data.js` — **all content lives here**
 - `app.js` — homepage rendering (countdown, day cards)
 - `images/` — trip photos
+- `translate.html` — speak-to-read translator page (served by Netlify as `/translate`)
+- `netlify/functions/translate.mts` — server helper that holds the OpenAI key and does the translating
+- `netlify.toml` — Netlify config for the translator add-on

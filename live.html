@@ -205,29 +205,38 @@
 
   function setStatus(text, on){ statusEl.innerHTML = `<span class="liveDot${on?' on':''}"></span>${text}`; }
 
+  // Auto-follow the newest line, but let the reader scroll back by hand.
+  // stickToBottom is only turned off by a *real* user scroll-up — redraw-induced
+  // scroll jumps are ignored via the programmaticScroll guard.
+  let stickToBottom = true;
+  let programmaticScroll = false;
+  feed.addEventListener('scroll', () => {
+    if (programmaticScroll) return;
+    stickToBottom = (feed.scrollHeight - feed.scrollTop - feed.clientHeight) < 60;
+  });
+
   function renderFeed(){
-    // Only auto-follow to the bottom if the reader is already near the bottom,
-    // so they can scroll back through earlier lines without being yanked down.
-    const nearBottom = (feed.scrollHeight - feed.scrollTop - feed.clientHeight) < 48;
     if (!finalizedLines.length && !pending){
       feed.innerHTML = '<span class="placeholder">The translation will appear here, line by line, as people speak.</span>';
       return;
     }
     const done = finalizedLines.map(escapeHtml).join('\n');
     const pend = pending ? `${done ? '\n' : ''}<span class="pending">${escapeHtml(pending)}</span>` : '';
+    programmaticScroll = true;
     feed.innerHTML = done + pend;
-    if (nearBottom) feed.scrollTop = feed.scrollHeight;
+    if (stickToBottom) feed.scrollTop = feed.scrollHeight;
+    requestAnimationFrame(() => { programmaticScroll = false; });
   }
 
   document.getElementById('liveClear').addEventListener('click', () => {
-    finalizedLines = []; pending = ''; renderFeed();
+    finalizedLines = []; pending = ''; stickToBottom = true; renderFeed();
   });
 
   liveBtn.addEventListener('click', () => { active ? stop() : start(); });
 
   async function start(){
     errOut.textContent = '';
-    finalizedLines = []; pending = ''; renderFeed();
+    finalizedLines = []; pending = ''; stickToBottom = true; renderFeed();
     setStatus('Connecting…', false);
     liveBtn.disabled = true;
     document.querySelectorAll('.trLang').forEach(x=>x.disabled = true);

@@ -201,7 +201,7 @@ window.TRIP = {
         { src: "images/seville-plaza-espana-bridge.jpg", cap: "Plaza de España — one of the tiled bridges" },
       ],
       audio: null,
-      journal: "Docked in Cádiz in the morning and took the excursion inland to Seville for a walking tour of the old town.\n\nStarted at Casa de Pilatos, the Andalusian palace — courtyard gardens with clipped topiary and orange trees, columned loggias, and carved Mudéjar ceilings. From there the route wound through the narrow streets past a Baroque church, a blue-tiled bell tower rising over the lanes, and the corner where the painter Velázquez was born in 1599. Passed the Setas de Sevilla, the large modern wooden canopy over the old market square, then wound through the old Jewish quarter — the Santa Cruz barrio — with its whitewashed walls and orange trees in every plaza.\n\nLunch on the tour. Then the route went by the cathedral and its Giralda bell tower — caught it framed through an archway — and a couple of women in flamenco dresses walking through one of the small plazas. Finished at the Plaza de España, the grand semicircular plaza with its canal, tiled bridges, and brick towers.\n\nBack aboard for the sail to Lisbon.",
+      journal: "Docked in Cádiz in the morning and took the excursion inland to Seville for a walking tour of the old town.\n\nStarted at Casa de Pilatos, the Andalusian palace — courtyard gardens with clipped topiary and orange trees, columned loggias, and carved Mudéjar ceilings. From there the route wound through the narrow streets past a Baroque church, a blue-tiled bell tower rising over the lanes, and the corner where the painter Velázquez was born in 1599. Passed the Setas de Sevilla, the large modern wooden canopy over the old market square, then wound through the old Jewish quarter — the Santa Cruz barrio — with its whitewashed walls and orange trees in every plaza.\n\nThe route went by the cathedral and its Giralda bell tower — caught it framed through an archway — and a couple of women in flamenco dresses walking through one of the small plazas. Lunch on the tour, then on to the finish at the Plaza de España — the grand semicircular plaza with its canal, tiled bridges, and brick towers.\n\nBack aboard for the sail to Lisbon.",
       context: {
         about: "Cádiz claims to be the oldest continuously inhabited city in western Europe — Phoenicians founded it around 1100 BC. It's where Columbus set sail on his second and fourth voyages. The MSC excursion takes us inland to Seville, the Andalusian capital — flamenco, orange-blossom courtyards, narrow whitewashed streets, and the towering Giralda over the cathedral.",
         timing: "Eid al-Adha — Morocco celebrates today. The boat will feel the shift as the cruise moves fully into Spanish waters.",
@@ -210,8 +210,9 @@ window.TRIP = {
       plan: [
         { time: "7:00 AM",   text: "Dock in Cádiz." },
         { time: "Morning",   text: "MSC excursion CAD11 — bus inland to Seville." },
-        { time: "Walking tour", text: "Casa de Pilatos · Baroque church · the blue-tiled bell tower · Velázquez's birthplace corner · the old Jewish quarter (Santa Cruz) · Setas de Sevilla · Seville Cathedral and the Giralda · Plaza de España." },
-        { time: "Lunch",     text: "Lunch on the tour in Seville." },
+        { time: "Walking tour", text: "Casa de Pilatos · Baroque church · the blue-tiled bell tower · Velázquez's birthplace corner · Setas de Sevilla · the old Jewish quarter (Santa Cruz) · Seville Cathedral and the Giralda." },
+        { time: "Lunch",     text: "Lunch on the tour, just before the last stop." },
+        { time: "Last stop", text: "Plaza de España — the grand semicircle with the canal and tiled bridges." },
         { time: "Afternoon", text: "Drive back to Cádiz." },
         { time: "5:00 PM",   text: "Back aboard. Ship sails for Lisbon." },
       ],

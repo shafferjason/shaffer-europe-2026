@@ -929,12 +929,16 @@ body {
 .polaroid img {
   width: 100%;
   display: block;
+  image-orientation: from-image;  /* respect iPhone EXIF rotation */
 }
 .polaroid .cap {
   font-family: 'Caveat', cursive;
-  font-size: 22px;
+  font-size: 19px;
+  line-height: 1.25;
   text-align: center;
-  margin-top: 8px;
+  margin-top: 10px;
+  color: var(--ink);
+  min-height: 1.6em;
 }
 
 .journal {

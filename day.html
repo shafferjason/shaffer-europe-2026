@@ -43,12 +43,17 @@
     return;
   }
 
-  const photoBlocks = (day.photos || []).map((p, i) => `
+  const photoBlocks = (day.photos || []).map((p, i) => {
+    // Support both "path/to.jpg" (string) and { src, cap } (object) forms
+    const src = typeof p === 'string' ? p : (p.src || '');
+    const cap = typeof p === 'string' ? day.city : (p.cap || day.city);
+    return `
     <figure class="polaroid">
-      <img src="${p}" alt="${day.city} photo ${i+1}" />
-      <figcaption class="cap">${day.city}</figcaption>
+      <img src="${src}" alt="${cap}" />
+      <figcaption class="cap">${cap}</figcaption>
     </figure>
-  `).join('');
+  `;
+  }).join('');
 
   // About this place — only if context exists
   const ctx = day.context;

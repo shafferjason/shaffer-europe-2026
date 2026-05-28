@@ -230,10 +230,23 @@ window.TRIP = {
       flag: "🇵🇹",
       kicker: "Cruise · Port 2",
       title: "Pastel de nata, then the city on foot.",
-      summary: "Morning pastel-de-nata masterclass at Nat'elier (10 AM). Afternoon walk down through Santa Justa Lift, the Carmo Convent, Time Out Market for lunch, the river at Praça do Comércio.",
-      photos: [],
+      summary: "Morning pastel-de-nata masterclass at Nat'elier — hairnets, aprons, the works. Then a long walk through the Baixa: the Carmo Convent, the Cathedral, the river at Cais das Colunas, and a miradouro over the rooftops.",
+      photos: [
+        { src: "images/lisbon-rachel-class.jpg",     cap: "Rachel at the pastel de nata masterclass" },
+        { src: "images/lisbon-rachel-mixing.jpg",     cap: "Mid-class, hands in the bowl" },
+        { src: "images/lisbon-pasteis-trays.jpg",     cap: "Trays of pastéis de nata" },
+        { src: "images/lisbon-carmo.jpg",             cap: "Carmo Convent — roofless since the 1755 earthquake" },
+        { src: "images/lisbon-baixa-tower.jpg",       cap: "A church tower over the Baixa" },
+        { src: "images/lisbon-street.jpg",            cap: "Looking up a Baixa street" },
+        { src: "images/lisbon-cathedral.jpg",         cap: "Lisbon Cathedral — the Sé" },
+        { src: "images/lisbon-cathedral-facade.jpg",  cap: "The Sé's facade and rose window" },
+        { src: "images/lisbon-cais-colunas.jpg",      cap: "Cais das Colunas — the columns at the river" },
+        { src: "images/lisbon-rooftops.jpg",          cap: "Rooftops from a miradouro" },
+        { src: "images/lisbon-miradouro-people.jpg",  cap: "At the overlook" },
+        { src: "images/lisbon-tuktuk.jpg",            cap: "A vintage tour car" },
+      ],
       audio: null,
-      journal: "",
+      journal: "Started the morning at the pastel de nata masterclass at Nat'elier — hairnets, aprons, hands in the bowl, and trays of tarts coming out of the oven.\n\nFrom there a long walk through the city. The Carmo Convent — the church left roofless by the 1755 earthquake, its arches open to the sky. Down through the Baixa's grid of streets, past the Lisbon Cathedral, the Sé, with its two stone bell towers and rose window. Out to the river at Cais das Colunas, the old ceremonial steps where two columns stand in the Tagus. A miradouro for the view — terracotta rooftops running down to the water, the white towers of São Vicente in the distance.\n\nVintage open-top tour cars everywhere.",
       context: {
         about: "Portugal's coastal capital, built on seven hills above the Tagus River. Lisbon launched the Age of Discovery in the 1400s — Vasco da Gama sailed from here to India. Pastel de nata (the custard tart) was invented by Hieronymite monks at the Belém Monastery before 1820, when the original recipe leaked to a local bakery that still makes them today.",
         tidbit: "The 1755 earthquake — one of the deadliest in human history — destroyed most of the city in minutes. The grid you'll walk in the Baixa downtown was rebuilt from scratch by the Marquês de Pombal in one of Europe's earliest urban-planning interventions."
@@ -520,10 +533,10 @@ window.TRIP = {
   ],
 
   whereNow: {
-    city: "Cádiz · Seville",
-    country: "Spain",
-    note: "Walked Seville — Casa de Pilatos, the Setas, the Giralda, Plaza de España. Back aboard tonight, sailing for Lisbon.",
-    updated: "2026-05-27",
+    city: "Lisbon",
+    country: "Portugal",
+    note: "Made pastéis de nata, then walked the Baixa down to the river.",
+    updated: "2026-05-28",
   },
 
   // ============================================================

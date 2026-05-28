@@ -262,7 +262,7 @@ window.TRIP = {
         { time: "Afternoon", text: "Hired a guide with a vintage open-top car — Carmo Convent, the Santa Justa Lift, Cais das Colunas, a miradouro over the rooftops." },
         { time: "Late lunch", text: "Dropped at a restaurant near the ship." },
         { time: "Walk back", text: "Gelato on the stroll back to the Opera." },
-        { time: "6:00 PM",  text: "Ship sails." },
+        { time: "5:00 PM",  text: "Ship sails for the next port." },
       ],
       smallFind: {
         number: "05",

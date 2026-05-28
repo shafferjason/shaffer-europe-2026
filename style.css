@@ -1178,6 +1178,47 @@ body {
   line-height: 1.6;
 }
 
+/* ===== From Rachel's journal ===== */
+
+.rachelJournal {
+  margin: 26px 0;
+  padding: 20px 22px 22px 30px;
+  position: relative;
+  background:
+    linear-gradient(transparent 0 27px, rgba(90, 120, 160, 0.13) 27px 28px) 0 6px / 100% 28px,
+    #fcfbf6;
+  border: 1px solid #d9d2bd;
+  box-shadow: var(--shadow-soft);
+}
+.rachelJournal::before {
+  /* red notebook margin line */
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0; left: 20px;
+  width: 1.5px;
+  background: rgba(170, 70, 70, 0.4);
+}
+.rachelJournalLabel {
+  font-family: 'Special Elite', monospace;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+.rachelJournalText {
+  font-family: 'Caveat', cursive;
+  font-size: 23px;
+  line-height: 28px;
+  color: #29405e;
+}
+.rachelJournalText p { margin: 0 0 6px; }
+
+@media (max-width: 600px) {
+  .rachelJournal { padding: 16px 16px 18px 26px; }
+  .rachelJournalText { font-size: 21px; line-height: 28px; }
+}
+
 /* ===== The plan (day-page itinerary timeline) ===== */
 
 .dayPlan {

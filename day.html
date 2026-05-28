@@ -66,6 +66,17 @@
     </section>
   ` : '';
 
+  // From Rachel's journal — only if it exists
+  const rj = day.rachelJournal;
+  const rachelBlock = rj ? `
+    <section class="rachelJournal">
+      <div class="rachelJournalLabel">From Rachel's journal</div>
+      <div class="rachelJournalText">
+        ${rj.split('\n\n').map(p => `<p>${p}</p>`).join('')}
+      </div>
+    </section>
+  ` : '';
+
   // The plan — only if plan exists
   const planBlock = (day.plan && day.plan.length) ? `
     <section class="dayPlan">
@@ -125,6 +136,7 @@
       ${day.journal ? day.journal.split('\n\n').map(p => `<p>${p}</p>`).join('') :
         `<p class="dim">No journal entry yet.</p>`}
     </div>
+    ${rachelBlock}
     ${smallFindBlock}
     ${postcardBlock}
   `;

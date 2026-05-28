@@ -233,6 +233,7 @@ window.TRIP = {
       flag: "🇵🇹",
       kicker: "Cruise · Port 2",
       title: "Pastel de nata, then the city on foot.",
+      mural: "images/mural-day-5.jpg",
       summary: "Morning pastel-de-nata masterclass at Nat'elier — hairnets, aprons, the works. Walked to the Cathedral, then hired a guide with a vintage car for the rest of the sights. Late lunch near the ship and gelato on the walk back.",
       photos: [
         { src: "images/lisbon-rachel-class.jpg",     cap: "Rachel at the pastel de nata masterclass" },

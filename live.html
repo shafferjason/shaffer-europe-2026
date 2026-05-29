@@ -310,9 +310,18 @@
       audioEl = document.createElement('audio');
       audioEl.autoplay = true;
       audioEl.setAttribute('playsinline', '');
+      audioEl.playsInline = true;          // Fix 3: JS property (not just HTML attr) for iOS
+      audioEl.muted = false;               // Fix 3: ensure not muted
+      audioEl.volume = 1;                  // Fix 3: full volume
       audioEl.style.display = 'none';
       // iOS will only reliably play a media element that's actually in the page.
       document.body.appendChild(audioEl);
+      // Fix 3: nudge iOS toward speaker routing by briefly touching AudioContext.
+      // Must happen inside the gesture; one-shot guard via _acNudged flag.
+      if (!window._acNudged) {
+        window._acNudged = true;
+        try { const _ac = new (window.AudioContext || window.webkitAudioContext)(); _ac.suspend(); } catch {}
+      }
       try { const p = audioEl.play(); if (p && p.catch) p.catch(()=>{}); } catch {}
     }
 
@@ -347,7 +356,8 @@
       // In text-only mode audioEl is null, so the audio is simply never played.
       pc.ontrack = (e) => {
         if (!audioEl) return;
-        audioEl.srcObject = e.streams[0];
+        // Fix 2: attach stream immediately; fall back to wrapping the track if streams is empty
+        audioEl.srcObject = (e.streams && e.streams[0]) ? e.streams[0] : new MediaStream([e.track]);
         const p = audioEl.play();
         if (p && p.catch) p.catch(() => {}); // already unlocked; ignore stray rejects
       };
@@ -363,6 +373,15 @@
       };
 
       micStream.getTracks().forEach(t => pc.addTrack(t, micStream));
+      // Fix 1: ensure iOS Safari negotiates a receive lane for the translated audio.
+      // addTrack() implicitly creates a 'sendonly' transceiver; update it to sendrecv
+      // so the SDP offer includes a recv lane (required for iOS to play back audio).
+      const _txcvrs = pc.getTransceivers();
+      if (_txcvrs.length > 0) {
+        _txcvrs[_txcvrs.length - 1].direction = 'sendrecv';
+      } else {
+        pc.addTransceiver('audio', { direction: 'sendrecv' });
+      }
 
       dc = pc.createDataChannel('oai-events');
       dc.addEventListener('message', onEvent);

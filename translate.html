@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Translator · Shaffers Abroad</title>
+<title>Quick Translate · Shaffers Abroad</title>
 <meta name="robots" content="noindex,nofollow" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -52,11 +52,11 @@
 <body>
 <div class="paper">
 
-  <a href="private.html" class="backLink">← back to logistics</a>
+  <a href="live.html" class="backLink">← live translator</a>
 
   <div id="gate" class="lockGate">
-    <h2>Translator</h2>
-    <p>Speak French, Spanish, or English — read it back translated. For Jason &amp; Rachel.</p>
+    <h2>Quick Translate</h2>
+    <p>Tap, speak a phrase, and show it to someone translated. For Jason &amp; Rachel.</p>
     <input type="password" id="pw" placeholder="Password" autocomplete="off" inputmode="numeric" />
     <button id="unlockBtn">Unlock</button>
     <div class="lockError" id="lockErr"></div>
@@ -64,14 +64,17 @@
 
   <div id="panel" class="privatePanel">
     <div class="trWrap">
-      <h1 style="font-family:'Cormorant Garamond',serif;font-size:42px;margin:0 0 4px;text-align:center;">Translator</h1>
-      <p style="font-style:italic;color:var(--ink-soft);margin:0 0 14px;text-align:center;">Pick the language you want to read, tap the mic, and speak.</p>
-      <p style="text-align:center;margin:0 0 22px;"><a href="live.html" style="color:var(--accent);font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;">Following a conversation or a guide? Try Live mode →</a></p>
+      <h1 style="font-family:'Cormorant Garamond',serif;font-size:42px;margin:0 0 4px;text-align:center;">Quick Translate</h1>
+      <p style="font-style:italic;color:var(--ink-soft);margin:0 0 14px;text-align:center;">Pick the language you want it in, tap the mic, and speak one phrase — then show the screen.</p>
+      <p style="text-align:center;margin:0 0 22px;"><a href="live.html" style="color:var(--accent);font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;">← Following a guide who keeps talking? Use Live</a></p>
 
       <div class="trLangRow" id="trLangRow">
         <button class="trLang active" data-lang="English">English</button>
         <button class="trLang" data-lang="French">Français</button>
         <button class="trLang" data-lang="Spanish">Español</button>
+        <button class="trLang" data-lang="Italian">Italiano</button>
+        <button class="trLang" data-lang="German">Deutsch</button>
+        <button class="trLang" data-lang="Portuguese">Português</button>
       </div>
 
       <div class="trMicWrap">

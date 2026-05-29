@@ -11,7 +11,7 @@ export const config = { path: "/api/translate" };
 
 const TRANSCRIBE_MODEL = process.env.OPENAI_TRANSCRIBE_MODEL || "gpt-4o-transcribe";
 const TRANSLATE_MODEL = process.env.OPENAI_TRANSLATE_MODEL || "gpt-4o-mini";
-const ALLOWED_TARGETS = ["English", "French", "Spanish"];
+const ALLOWED_TARGETS = ["English", "French", "Spanish", "Italian", "German", "Portuguese"];
 const MAX_AUDIO_BYTES = 8 * 1024 * 1024; // ~8 MB — guards against oversized/abusive calls
 
 export default async (req: Request): Promise<Response> => {

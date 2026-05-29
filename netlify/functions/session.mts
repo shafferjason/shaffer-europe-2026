@@ -21,14 +21,6 @@ const ALLOWED_OUTPUT = new Set([
   "en", "es", "fr", "de", "it", "pt", "ja", "ko", "zh", "hi", "ru", "id", "vi",
 ]);
 
-// Optional source-language hint. The model auto-detects, but locking the spoken
-// language sharply improves accuracy on faint/distant/accented speech. Curated
-// to the trip's likely languages plus common neighbors; "auto" means detect.
-const ALLOWED_SOURCE = new Set([
-  "en", "fr", "es", "it", "de", "pt", "nl", "ca", "el", "ar", "ja", "zh", "ko",
-  "ru", "pl", "tr", "sv", "da", "no", "fi", "cs", "hu", "ro", "uk", "he",
-]);
-
 export default async (req: Request): Promise<Response> => {
   const cors = corsHeaders(req.headers.get("origin"));
 
@@ -49,12 +41,6 @@ export default async (req: Request): Promise<Response> => {
   let body: any = {};
   try { body = await req.json(); } catch { /* default below */ }
   const language = ALLOWED_OUTPUT.has(body?.target) ? body.target : "en";
-  // Optional spoken-language hint; omitted entirely when "auto"/unknown.
-  const sourceLang = ALLOWED_SOURCE.has(body?.sourceLang) ? body.sourceLang : null;
-
-  // Build the input-transcription block, adding the language hint when given.
-  const transcription: Record<string, string> = { model: TRANSCRIBE_MODEL };
-  if (sourceLang) transcription.language = sourceLang;
 
   try {
     // Mint an ephemeral client secret for a translation session. This uses the
@@ -73,9 +59,10 @@ export default async (req: Request): Promise<Response> => {
           model: TRANSLATE_MODEL,
           audio: {
             input: {
-              transcription,
+              transcription: { model: TRANSCRIBE_MODEL },
               // far_field suits a speaker held at arm's length / across a room
-              // (a tour guide), cleaning up distance and room noise.
+              // (a tour guide), cleaning up distance and room noise. The model
+              // auto-detects the spoken language; it has no source-language hint.
               noise_reduction: { type: "far_field" },
             },
             output: {

@@ -182,10 +182,8 @@
 
   // ===== Live translator =====
   let target = 'en';
-  let sourceLang = 'auto';            // 'auto' = let the model detect the spoken language
   let speakAloud = (localStorage.getItem('sa-live-speak') !== '0'); // default: speak
   const langRow = document.getElementById('trLangRow');
-  const srcRow = document.getElementById('trSrcRow');
   const modeRow = document.getElementById('trModeRow');
   const liveHint = document.getElementById('liveHint');
   const liveBtn = document.getElementById('liveBtn');
@@ -194,8 +192,8 @@
   const feed = document.getElementById('liveFeed');
   const errOut = document.getElementById('trError');
 
-  const HINT_SPEAK = 'Point the phone at the person speaking — it listens through the phone’s own mic, so earbuds just carry the English to your ears. For best results, pick their language above instead of leaving it on Auto.';
-  const HINT_TEXT = 'Point the phone at the person speaking. For best results, pick their language above instead of leaving it on Auto.';
+  const HINT_SPEAK = 'Point the phone at the person speaking — it listens through the phone’s own mic, so earbuds just carry the English to your ears. The closer the phone is to them, the better.';
+  const HINT_TEXT = 'Point the phone at the person speaking. The closer the phone is to them, the better.';
 
   function applyMode(){
     modeRow.querySelectorAll('.trLang').forEach(b =>
@@ -264,16 +262,6 @@
     langRow.querySelectorAll('.trLang').forEach(x=>x.classList.remove('active'));
     b.classList.add('active');
     target = b.dataset.lang;
-  });
-
-  // "They're speaking" — optional spoken-language lock for better accuracy.
-  srcRow.addEventListener('click', e => {
-    if (active) return;
-    const b = e.target.closest('.trLang');
-    if (!b) return;
-    srcRow.querySelectorAll('.trLang').forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');
-    sourceLang = b.dataset.src;
   });
 
   function setStatus(text, on){ statusEl.innerHTML = `<span class="liveDot${on?' on':''}"></span>${text}`; }
@@ -386,7 +374,7 @@
       // 1) Get a short-lived pass from our server.
       const sres = await fetch(API_BASE + '/api/session', {
         method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ target, sourceLang })
+        body: JSON.stringify({ target })
       });
       const sdata = await sres.json();
       if (!sres.ok || sdata.error || !sdata.client_secret){

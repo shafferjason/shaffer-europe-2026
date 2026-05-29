@@ -36,10 +36,12 @@ export default async (req: Request): Promise<Response> => {
   const language = ALLOWED_OUTPUT.has(body?.target) ? body.target : "en";
 
   try {
-    // GA Realtime: mint an ephemeral client secret with the translation session
-    // config baked in. No turn_detection / no instructions — the translation
-    // model runs continuously on the incoming audio stream.
-    const r = await fetch("https://api.openai.com/v1/realtime/client_secrets", {
+    // Mint an ephemeral client secret for a translation session. This uses the
+    // dedicated /translations endpoint and a translation-shaped body (no
+    // turn_detection, no instructions, no output_modalities) — the model runs
+    // continuously on the incoming audio stream. The spoken translation comes
+    // back as audio; the matching text transcript streams over the data channel.
+    const r = await fetch("https://api.openai.com/v1/realtime/translations/client_secrets", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${apiKey}`,
@@ -47,14 +49,11 @@ export default async (req: Request): Promise<Response> => {
       },
       body: JSON.stringify({
         session: {
-          type: "realtime",
           model: TRANSLATE_MODEL,
-          // Audio out gives us the spoken translation; the model still streams
-          // the matching text transcript deltas over the data channel.
-          output_modalities: ["audio"],
           audio: {
             input: {
               transcription: { model: TRANSCRIBE_MODEL },
+              noise_reduction: null,
             },
             output: {
               language,

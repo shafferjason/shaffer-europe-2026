@@ -278,8 +278,9 @@
       const offer = await pc.createOffer();
       await pc.setLocalDescription(offer);
 
-      // GA Realtime WebRTC: the model is already baked into the ephemeral session.
-      const rtc = await fetch('https://api.openai.com/v1/realtime/calls', {
+      // Translation sessions use their own WebRTC call endpoint. Everything
+      // (model, languages) is already baked into the ephemeral session.
+      const rtc = await fetch('https://api.openai.com/v1/realtime/translations/calls', {
         method:'POST',
         body: offer.sdp,
         headers:{ Authorization:`Bearer ${sdata.client_secret}`, 'Content-Type':'application/sdp' }
@@ -309,11 +310,11 @@
     const type = msg.type || '';
 
     // Running translated text streaming out alongside the spoken audio.
-    if (type === 'response.output_audio_transcript.delta'){
+    if (type === 'session.output_transcript.delta'){
       if (typeof msg.delta === 'string'){ pending += msg.delta; renderFeed(); }
       return;
     }
-    if (type === 'response.output_audio_transcript.done'){
+    if (type === 'session.output_transcript.done'){
       const finalText = (typeof msg.transcript === 'string' && msg.transcript) ? msg.transcript : pending;
       if (finalText && finalText.trim()){ finalizedLines.push(finalText.trim()); }
       pending = '';

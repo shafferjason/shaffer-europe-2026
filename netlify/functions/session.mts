@@ -3,11 +3,23 @@
 // The browser can't hold the real OpenAI key, so this hands it a short-lived
 // "ephemeral" key (good for ~1 minute) that's only usable to open a live
 // Realtime connection. The long-lived OPENAI_API_KEY never leaves the server.
+//
+// This uses OpenAI's dedicated live-translation model (gpt-realtime-translate,
+// May 2026). Unlike the old conversational model, it does NOT wait for the
+// speaker to pause: it auto-detects the spoken language (70+ supported) and
+// streams a running translation — both spoken audio and text — into the chosen
+// output language while the person keeps talking. Perfect for a tour guide who
+// never stops to take a breath.
 
 export const config = { path: "/api/session" };
 
-const REALTIME_MODEL = process.env.OPENAI_REALTIME_MODEL || "gpt-realtime";
-const ALLOWED_TARGETS = ["English", "French", "Spanish"];
+const TRANSLATE_MODEL = process.env.OPENAI_TRANSLATE_MODEL || "gpt-realtime-translate";
+const TRANSCRIBE_MODEL = process.env.OPENAI_TRANSLATE_TRANSCRIBE_MODEL || "gpt-realtime-whisper";
+
+// The 13 output languages gpt-realtime-translate can produce.
+const ALLOWED_OUTPUT = new Set([
+  "en", "es", "fr", "de", "it", "pt", "ja", "ko", "zh", "hi", "ru", "id", "vi",
+]);
 
 export default async (req: Request): Promise<Response> => {
   if (req.method !== "POST") {
@@ -20,17 +32,13 @@ export default async (req: Request): Promise<Response> => {
   }
 
   let body: any = {};
-  try { body = await req.json(); } catch { /* default target below */ }
-  const target = ALLOWED_TARGETS.includes(body?.target) ? body.target : "English";
-
-  const instructions =
-    `You are a simultaneous interpreter for a traveler. Listen to speech in any ` +
-    `language and continuously output ONLY its translation into ${target}. ` +
-    `Output just the translated text — no commentary, no labels, no quotes, no ` +
-    `speaker names. If the speech is already in ${target}, repeat it unchanged.`;
+  try { body = await req.json(); } catch { /* default below */ }
+  const language = ALLOWED_OUTPUT.has(body?.target) ? body.target : "en";
 
   try {
-    // GA Realtime: mint an ephemeral client secret with the session config baked in.
+    // GA Realtime: mint an ephemeral client secret with the translation session
+    // config baked in. No turn_detection / no instructions — the translation
+    // model runs continuously on the incoming audio stream.
     const r = await fetch("https://api.openai.com/v1/realtime/client_secrets", {
       method: "POST",
       headers: {
@@ -40,13 +48,16 @@ export default async (req: Request): Promise<Response> => {
       body: JSON.stringify({
         session: {
           type: "realtime",
-          model: REALTIME_MODEL,
-          instructions,
-          output_modalities: ["text"],
+          model: TRANSLATE_MODEL,
+          // Audio out gives us the spoken translation; the model still streams
+          // the matching text transcript deltas over the data channel.
+          output_modalities: ["audio"],
           audio: {
             input: {
-              transcription: { model: "gpt-4o-mini-transcribe" },
-              turn_detection: { type: "server_vad", silence_duration_ms: 600 },
+              transcription: { model: TRANSCRIBE_MODEL },
+            },
+            output: {
+              language,
             },
           },
         },
@@ -55,7 +66,7 @@ export default async (req: Request): Promise<Response> => {
 
     if (!r.ok) {
       const detail = await r.text();
-      console.error("Realtime session failed:", r.status, detail);
+      console.error("Realtime translation session failed:", r.status, detail);
       return json({ error: "Could not start the live session." }, 502);
     }
 
@@ -69,10 +80,10 @@ export default async (req: Request): Promise<Response> => {
     return json({
       client_secret: value,
       expires_at: data?.expires_at ?? data?.client_secret?.expires_at ?? null,
-      model: REALTIME_MODEL,
+      model: TRANSLATE_MODEL,
     });
   } catch (e) {
-    console.error("Realtime session error:", e);
+    console.error("Realtime translation session error:", e);
     return json({ error: "Live translator had trouble starting." }, 502);
   }
 };

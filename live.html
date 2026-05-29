@@ -71,7 +71,7 @@
 
   <div id="gate" class="lockGate">
     <h2>Live Translator</h2>
-    <p>Point it at a conversation or a guide — the translation writes itself as people speak. For Jason &amp; Rachel.</p>
+    <p>Point it at your guide — you hear and read it in English as they talk, no waiting for them to pause. For Jason &amp; Rachel.</p>
     <input type="password" id="pw" placeholder="Password" autocomplete="off" inputmode="numeric" />
     <button id="unlockBtn">Unlock</button>
     <div class="lockError" id="lockErr"></div>
@@ -80,12 +80,15 @@
   <div id="panel" class="privatePanel">
     <div class="trWrap">
       <h1 style="font-family:'Cormorant Garamond',serif;font-size:42px;margin:0 0 4px;text-align:center;">Live Translator</h1>
-      <p style="font-style:italic;color:var(--ink-soft);margin:0 0 20px;text-align:center;">Pick the language you want to read, then start listening.</p>
+      <p style="font-style:italic;color:var(--ink-soft);margin:0 0 20px;text-align:center;">It listens to any language and translates it live. Pick the language you want it in, then start listening.</p>
 
       <div class="trLangRow" id="trLangRow">
-        <button class="trLang active" data-lang="English">English</button>
-        <button class="trLang" data-lang="French">Français</button>
-        <button class="trLang" data-lang="Spanish">Español</button>
+        <button class="trLang active" data-lang="en">English</button>
+        <button class="trLang" data-lang="fr">Français</button>
+        <button class="trLang" data-lang="es">Español</button>
+        <button class="trLang" data-lang="it">Italiano</button>
+        <button class="trLang" data-lang="de">Deutsch</button>
+        <button class="trLang" data-lang="pt">Português</button>
       </div>
 
       <div class="liveBtnRow">
@@ -100,7 +103,7 @@
         <button class="sm" data-step="-1" aria-label="Smaller text">A−</button>
         <button class="lg" data-step="1" aria-label="Bigger text">A+</button>
       </div>
-      <p class="liveHint">Live captions tidy themselves up as more words come in. Keep the phone near the speaker.</p>
+      <p class="liveHint">Use earbuds — it speaks the translation aloud while it listens, so earbuds keep it from hearing itself. Keep the phone near the speaker.</p>
       <div class="trError" id="trError"></div>
     </div>
   </div>
@@ -159,7 +162,7 @@
   });
 
   // ===== Live translator =====
-  let target = 'English';
+  let target = 'en';
   const langRow = document.getElementById('trLangRow');
   const liveBtn = document.getElementById('liveBtn');
   const statusEl = document.getElementById('liveStatus');
@@ -168,6 +171,7 @@
   const errOut = document.getElementById('trError');
 
   let pc = null, dc = null, micStream = null, active = false;
+  let audioEl = null;
   let finalizedLines = [];
   let pending = '';
 
@@ -255,6 +259,17 @@
       // 2) Open the live connection to OpenAI.
       micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
       pc = new RTCPeerConnection();
+
+      // Play the spoken translation aloud (into the traveler's earbuds).
+      audioEl = document.createElement('audio');
+      audioEl.autoplay = true;
+      audioEl.setAttribute('playsinline', '');
+      pc.ontrack = (e) => {
+        audioEl.srcObject = e.streams[0];
+        const p = audioEl.play();
+        if (p && p.catch) p.catch(() => {}); // ignore autoplay rejection; track still arrives
+      };
+
       micStream.getTracks().forEach(t => pc.addTrack(t, micStream));
 
       dc = pc.createDataChannel('oai-events');
@@ -293,13 +308,13 @@
     try { msg = JSON.parse(ev.data); } catch { return; }
     const type = msg.type || '';
 
-    // Translated text streaming out of the model.
-    if (type === 'response.text.delta' || type === 'response.output_text.delta'){
+    // Running translated text streaming out alongside the spoken audio.
+    if (type === 'response.output_audio_transcript.delta'){
       if (typeof msg.delta === 'string'){ pending += msg.delta; renderFeed(); }
       return;
     }
-    if (type === 'response.text.done' || type === 'response.output_text.done' || type === 'response.done'){
-      const finalText = (typeof msg.text === 'string' && msg.text) ? msg.text : pending;
+    if (type === 'response.output_audio_transcript.done'){
+      const finalText = (typeof msg.transcript === 'string' && msg.transcript) ? msg.transcript : pending;
       if (finalText && finalText.trim()){ finalizedLines.push(finalText.trim()); }
       pending = '';
       renderFeed();
@@ -326,7 +341,8 @@
     try { if (dc) dc.close(); } catch {}
     try { if (pc) pc.close(); } catch {}
     try { if (micStream) micStream.getTracks().forEach(t=>t.stop()); } catch {}
-    dc = null; pc = null; micStream = null;
+    try { if (audioEl){ audioEl.pause(); audioEl.srcObject = null; } } catch {}
+    dc = null; pc = null; micStream = null; audioEl = null;
   }
 
   window.addEventListener('beforeunload', cleanup);

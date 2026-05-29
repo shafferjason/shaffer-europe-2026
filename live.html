@@ -91,6 +91,11 @@
         <button class="trLang" data-lang="pt">Português</button>
       </div>
 
+      <div class="trLangRow" id="trModeRow">
+        <button class="trLang active" data-mode="speak">🔊 Speak aloud</button>
+        <button class="trLang" data-mode="text">📝 Text only</button>
+      </div>
+
       <div class="liveBtnRow">
         <button class="liveBtn" id="liveBtn">Start listening</button>
         <button class="liveClear" id="liveClear">Clear</button>
@@ -103,7 +108,7 @@
         <button class="sm" data-step="-1" aria-label="Smaller text">A−</button>
         <button class="lg" data-step="1" aria-label="Bigger text">A+</button>
       </div>
-      <p class="liveHint">Use earbuds — it speaks the translation aloud while it listens, so earbuds keep it from hearing itself. Keep the phone near the speaker.</p>
+      <p class="liveHint" id="liveHint">Use earbuds — it speaks the translation aloud while it listens, so earbuds keep it from hearing itself. Keep the phone near the speaker.</p>
       <div class="trError" id="trError"></div>
     </div>
   </div>
@@ -163,12 +168,33 @@
 
   // ===== Live translator =====
   let target = 'en';
+  let speakAloud = (localStorage.getItem('sa-live-speak') !== '0'); // default: speak
   const langRow = document.getElementById('trLangRow');
+  const modeRow = document.getElementById('trModeRow');
+  const liveHint = document.getElementById('liveHint');
   const liveBtn = document.getElementById('liveBtn');
   const statusEl = document.getElementById('liveStatus');
   const dot = document.getElementById('liveDot');
   const feed = document.getElementById('liveFeed');
   const errOut = document.getElementById('trError');
+
+  const HINT_SPEAK = 'Use earbuds — it speaks the translation aloud while it listens, so earbuds keep it from hearing itself. Keep the phone near the speaker.';
+  const HINT_TEXT = 'Text only — the translation appears on screen as people speak. Keep the phone near the speaker.';
+
+  function applyMode(){
+    modeRow.querySelectorAll('.trLang').forEach(b =>
+      b.classList.toggle('active', (b.dataset.mode === 'speak') === speakAloud));
+    liveHint.textContent = speakAloud ? HINT_SPEAK : HINT_TEXT;
+  }
+  modeRow.addEventListener('click', e => {
+    if (active) return; // locked while listening
+    const b = e.target.closest('.trLang');
+    if (!b) return;
+    speakAloud = (b.dataset.mode === 'speak');
+    localStorage.setItem('sa-live-speak', speakAloud ? '1' : '0');
+    applyMode();
+  });
+  applyMode();
 
   let pc = null, dc = null, micStream = null, active = false;
   let audioEl = null;
@@ -266,10 +292,13 @@
     // user gesture; if we wait until the audio track arrives (after several
     // awaits) the gesture is gone and playback is silently blocked. Playing the
     // empty element now "unlocks" it so the later srcObject assignment is heard.
-    audioEl = document.createElement('audio');
-    audioEl.autoplay = true;
-    audioEl.setAttribute('playsinline', '');
-    try { const p = audioEl.play(); if (p && p.catch) p.catch(()=>{}); } catch {}
+    // Skipped entirely in text-only mode.
+    if (speakAloud){
+      audioEl = document.createElement('audio');
+      audioEl.autoplay = true;
+      audioEl.setAttribute('playsinline', '');
+      try { const p = audioEl.play(); if (p && p.catch) p.catch(()=>{}); } catch {}
+    }
 
     // Bail out if connecting hangs (server slow, handshake stuck) so the button
     // doesn't sit grayed-out forever.
@@ -299,6 +328,7 @@
       pc = new RTCPeerConnection();
 
       // Spoken translation arrives here; route it into the unlocked player.
+      // In text-only mode audioEl is null, so the audio is simply never played.
       pc.ontrack = (e) => {
         if (!audioEl) return;
         audioEl.srcObject = e.streams[0];

@@ -144,6 +144,15 @@
     target = b.dataset.lang;
   });
 
+  // The translator engine lives on the Netlify deploy. Call it next-door with a
+  // relative path when served from there (or locally); reach across to Netlify
+  // when served from anywhere else (e.g. the bespokes.ai mirror, which has no
+  // engine) so this works on BOTH addresses.
+  const API_BASE = (/(^|\.)netlify\.app$/.test(location.hostname)
+                    || location.hostname === 'localhost'
+                    || location.hostname === '127.0.0.1')
+    ? '' : 'https://shaffers-abroad.netlify.app';
+
   const mic = document.getElementById('trMic');
   const hint = document.getElementById('trHint');
   const results = document.getElementById('trResults');
@@ -193,7 +202,7 @@
     reader.onloadend = async () => {
       const base64 = String(reader.result).split(',')[1] || '';
       try {
-        const r = await fetch('/api/translate', {
+        const r = await fetch(API_BASE + '/api/translate', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ audioBase64: base64, mimeType: blob.type, target }),

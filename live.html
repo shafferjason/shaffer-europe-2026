@@ -168,6 +168,17 @@
     applySize();
   });
 
+  // ===== Backend location =====
+  // The translator engine (the /api helpers) lives on the Netlify deploy. When
+  // this page is served from there (or run locally) we can call it next-door
+  // with a relative path. When it's served from anywhere else — e.g. the
+  // bespokes.ai mirror, which has no engine — we reach across to Netlify so the
+  // translator works on BOTH addresses.
+  const API_BASE = (/(^|\.)netlify\.app$/.test(location.hostname)
+                    || location.hostname === 'localhost'
+                    || location.hostname === '127.0.0.1')
+    ? '' : 'https://shaffers-abroad.netlify.app';
+
   // ===== Live translator =====
   let target = 'en';
   let speakAloud = (localStorage.getItem('sa-live-speak') !== '0'); // default: speak
@@ -319,7 +330,7 @@
 
     try {
       // 1) Get a short-lived pass from our server.
-      const sres = await fetch('/api/session', {
+      const sres = await fetch(API_BASE + '/api/session', {
         method:'POST', headers:{'Content-Type':'application/json'},
         body: JSON.stringify({ target })
       });

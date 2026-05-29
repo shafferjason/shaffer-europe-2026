@@ -22,13 +22,20 @@ const ALLOWED_OUTPUT = new Set([
 ]);
 
 export default async (req: Request): Promise<Response> => {
+  const cors = corsHeaders(req.headers.get("origin"));
+
+  // Browser permission check ("preflight") for cross-site calls (e.g. the
+  // bespokes.ai mirror calling this Netlify engine).
+  if (req.method === "OPTIONS") {
+    return new Response(null, { status: 204, headers: cors });
+  }
   if (req.method !== "POST") {
-    return json({ error: "Method not allowed" }, 405);
+    return json({ error: "Method not allowed" }, 405, cors);
   }
 
   const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
-    return json({ error: "Live translator is not configured (missing API key)." }, 500);
+    return json({ error: "Live translator is not configured (missing API key)." }, 500, cors);
   }
 
   let body: any = {};
@@ -66,30 +73,51 @@ export default async (req: Request): Promise<Response> => {
     if (!r.ok) {
       const detail = await r.text();
       console.error("Realtime translation session failed:", r.status, detail);
-      return json({ error: "Could not start the live session." }, 502);
+      return json({ error: "Could not start the live session." }, 502, cors);
     }
 
     const data = await r.json();
     const value = data?.value ?? data?.client_secret?.value;
     if (!value) {
       console.error("Realtime session: no ephemeral key in response", JSON.stringify(data).slice(0, 300));
-      return json({ error: "Live session response was incomplete." }, 502);
+      return json({ error: "Live session response was incomplete." }, 502, cors);
     }
 
     return json({
       client_secret: value,
       expires_at: data?.expires_at ?? data?.client_secret?.expires_at ?? null,
       model: TRANSLATE_MODEL,
-    });
+    }, 200, cors);
   } catch (e) {
     console.error("Realtime translation session error:", e);
-    return json({ error: "Live translator had trouble starting." }, 502);
+    return json({ error: "Live translator had trouble starting." }, 502, cors);
   }
 };
 
-function json(payload: unknown, status = 200): Response {
+// Allow the trip-site mirror (bespokes.ai) and the Netlify deploy to call this
+// engine from the browser. Reflect the request's origin when it's one we trust.
+function corsHeaders(origin: string | null): Record<string, string> {
+  const allowed = !!origin && (
+    /(^|\.)netlify\.app$/.test(hostOf(origin)) ||
+    /(^|\.)bespokes\.ai$/.test(hostOf(origin)) ||
+    hostOf(origin) === "localhost" ||
+    hostOf(origin) === "127.0.0.1"
+  );
+  return {
+    "Access-Control-Allow-Origin": allowed ? (origin as string) : "https://shaffers-abroad.netlify.app",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Allow-Headers": "Content-Type",
+    "Vary": "Origin",
+  };
+}
+
+function hostOf(origin: string): string {
+  try { return new URL(origin).hostname; } catch { return ""; }
+}
+
+function json(payload: unknown, status = 200, extra: Record<string, string> = {}): Response {
   return new Response(JSON.stringify(payload), {
     status,
-    headers: { "Content-Type": "application/json" },
+    headers: { "Content-Type": "application/json", ...extra },
   });
 }

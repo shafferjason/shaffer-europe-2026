@@ -172,8 +172,24 @@
 
   let pc = null, dc = null, micStream = null, active = false;
   let audioEl = null;
+  let connectTimer = null;
   let finalizedLines = [];
   let pending = '';
+
+  // Keep the on-screen feed bounded so a non-stop speaker can't grow it without
+  // limit (every keystroke redraws the whole feed). Roll a long pending line
+  // into the finished list at sentence breaks, and cap how many lines we keep.
+  const MAX_PENDING_CHARS = 220;   // flush an in-progress line once it gets long
+  const MAX_LINES = 200;           // keep the feed to a sane scrollback
+
+  function flushPending(){
+    const t = pending.trim();
+    if (t) finalizedLines.push(t);
+    pending = '';
+    if (finalizedLines.length > MAX_LINES){
+      finalizedLines = finalizedLines.slice(-MAX_LINES);
+    }
+  }
 
   // ===== Idle / runaway-cost guard =====
   const CHECK_INTERVAL = 3 * 60 * 1000; // ask "still listening?" after 3 min
@@ -245,6 +261,28 @@
     liveBtn.disabled = true;
     document.querySelectorAll('.trLang').forEach(x=>x.disabled = true);
 
+    // Create AND unlock the audio player here, while we're still inside the
+    // button-tap gesture. iOS Safari only allows playback that starts from a
+    // user gesture; if we wait until the audio track arrives (after several
+    // awaits) the gesture is gone and playback is silently blocked. Playing the
+    // empty element now "unlocks" it so the later srcObject assignment is heard.
+    audioEl = document.createElement('audio');
+    audioEl.autoplay = true;
+    audioEl.setAttribute('playsinline', '');
+    try { const p = audioEl.play(); if (p && p.catch) p.catch(()=>{}); } catch {}
+
+    // Bail out if connecting hangs (server slow, handshake stuck) so the button
+    // doesn't sit grayed-out forever.
+    let timedOut = false;
+    connectTimer = setTimeout(() => {
+      timedOut = true;
+      errOut.textContent = 'Connecting took too long. Check signal and try again.';
+      cleanup();
+      setStatus('Not listening', false);
+      liveBtn.disabled = false;
+      document.querySelectorAll('.trLang').forEach(x=>x.disabled = false);
+    }, 15000);
+
     try {
       // 1) Get a short-lived pass from our server.
       const sres = await fetch('/api/session', {
@@ -260,14 +298,22 @@
       micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
       pc = new RTCPeerConnection();
 
-      // Play the spoken translation aloud (into the traveler's earbuds).
-      audioEl = document.createElement('audio');
-      audioEl.autoplay = true;
-      audioEl.setAttribute('playsinline', '');
+      // Spoken translation arrives here; route it into the unlocked player.
       pc.ontrack = (e) => {
+        if (!audioEl) return;
         audioEl.srcObject = e.streams[0];
         const p = audioEl.play();
-        if (p && p.catch) p.catch(() => {}); // ignore autoplay rejection; track still arrives
+        if (p && p.catch) p.catch(() => {}); // already unlocked; ignore stray rejects
+      };
+
+      // Watch for the connection dropping mid-tour (guide walks off, WiFi blip).
+      pc.onconnectionstatechange = () => {
+        if (!active) return;
+        const st = pc && pc.connectionState;
+        if (st === 'failed' || st === 'disconnected' || st === 'closed'){
+          errOut.textContent = 'Connection dropped. Tap Start to reconnect.';
+          stop();
+        }
       };
 
       micStream.getTracks().forEach(t => pc.addTrack(t, micStream));
@@ -289,6 +335,9 @@
       const answer = { type:'answer', sdp: await rtc.text() };
       await pc.setRemoteDescription(answer);
 
+      if (timedOut) return; // timeout already cleaned up while we were connecting
+      clearTimeout(connectTimer); connectTimer = null;
+
       active = true;
       liveBtn.disabled = false;
       liveBtn.textContent = 'Stop';
@@ -296,6 +345,8 @@
       setStatus('Listening — speak now', true);
       armCheck();
     } catch (e){
+      if (timedOut) return; // the timeout handler already reported + cleaned up
+      clearTimeout(connectTimer); connectTimer = null;
       errOut.textContent = (e && e.message) ? e.message : 'Could not start live mode.';
       cleanup();
       setStatus('Not listening', false);
@@ -311,13 +362,28 @@
 
     // Running translated text streaming out alongside the spoken audio.
     if (type === 'session.output_transcript.delta'){
-      if (typeof msg.delta === 'string'){ pending += msg.delta; renderFeed(); }
+      if (typeof msg.delta === 'string'){
+        pending += msg.delta;
+        // A continuous speaker may never trigger a "done", so self-flush: roll
+        // completed sentences (or an over-long line) into the finished list to
+        // keep the live redraw cheap and the feed bounded.
+        let m;
+        while ((m = pending.match(/^[\s\S]*?[.!?…。！？]["')\]]?\s+/)) !== null){
+          const line = m[0].trim();
+          if (line) finalizedLines.push(line);
+          pending = pending.slice(m[0].length);
+        }
+        if (pending.length > MAX_PENDING_CHARS) flushPending();
+        if (finalizedLines.length > MAX_LINES) finalizedLines = finalizedLines.slice(-MAX_LINES);
+        renderFeed();
+      }
       return;
     }
     if (type === 'session.output_transcript.done'){
       const finalText = (typeof msg.transcript === 'string' && msg.transcript) ? msg.transcript : pending;
-      if (finalText && finalText.trim()){ finalizedLines.push(finalText.trim()); }
+      if (finalText && finalText.trim()) finalizedLines.push(finalText.trim());
       pending = '';
+      if (finalizedLines.length > MAX_LINES) finalizedLines = finalizedLines.slice(-MAX_LINES);
       renderFeed();
       return;
     }
@@ -335,10 +401,13 @@
     liveBtn.classList.remove('listening');
     setStatus('Stopped', false);
     document.querySelectorAll('.trLang').forEach(x=>x.disabled = false);
-    if (pending){ finalizedLines.push(pending.trim()); pending=''; renderFeed(); }
+    if (pending){ flushPending(); renderFeed(); }
   }
 
   function cleanup(){
+    try { clearTimeout(connectTimer); } catch {}
+    connectTimer = null;
+    try { if (pc) pc.onconnectionstatechange = null; } catch {}
     try { if (dc) dc.close(); } catch {}
     try { if (pc) pc.close(); } catch {}
     try { if (micStream) micStream.getTracks().forEach(t=>t.stop()); } catch {}

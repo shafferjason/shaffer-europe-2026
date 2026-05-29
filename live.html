@@ -11,7 +11,8 @@
 <link rel="stylesheet" href="style.css" />
 <style>
   .trWrap { max-width: 600px; margin: 0 auto; }
-  .trLangRow { display: flex; gap: 8px; justify-content: center; margin: 4px 0 22px; flex-wrap: wrap; }
+  .trLangRow { display: flex; gap: 8px; justify-content: center; margin: 4px 0 16px; flex-wrap: wrap; }
+  .trRowLabel { text-align: center; font-style: italic; color: var(--ink-soft); font-size: 15px; margin: 14px 0 4px; }
   .trLang {
     font-family: 'Cormorant Garamond', serif; font-size: 19px; font-weight: 600;
     padding: 8px 20px; border-radius: 999px; cursor: pointer;
@@ -181,8 +182,10 @@
 
   // ===== Live translator =====
   let target = 'en';
+  let sourceLang = 'auto';            // 'auto' = let the model detect the spoken language
   let speakAloud = (localStorage.getItem('sa-live-speak') !== '0'); // default: speak
   const langRow = document.getElementById('trLangRow');
+  const srcRow = document.getElementById('trSrcRow');
   const modeRow = document.getElementById('trModeRow');
   const liveHint = document.getElementById('liveHint');
   const liveBtn = document.getElementById('liveBtn');
@@ -191,8 +194,8 @@
   const feed = document.getElementById('liveFeed');
   const errOut = document.getElementById('trError');
 
-  const HINT_SPEAK = 'Use earbuds — it speaks the translation aloud while it listens, so earbuds keep it from hearing itself. Keep the phone near the speaker.';
-  const HINT_TEXT = 'Text only — the translation appears on screen as people speak. Keep the phone near the speaker.';
+  const HINT_SPEAK = 'Point the phone at the person speaking — it listens through the phone’s own mic, so earbuds just carry the English to your ears. For best results, pick their language above instead of leaving it on Auto.';
+  const HINT_TEXT = 'Point the phone at the person speaking. For best results, pick their language above instead of leaving it on Auto.';
 
   function applyMode(){
     modeRow.querySelectorAll('.trLang').forEach(b =>
@@ -257,12 +260,54 @@
     if (active) return;
     const b = e.target.closest('.trLang');
     if (!b) return;
-    document.querySelectorAll('.trLang').forEach(x=>x.classList.remove('active'));
+    // Scope the highlight to THIS row only (don't wipe the source/mode rows).
+    langRow.querySelectorAll('.trLang').forEach(x=>x.classList.remove('active'));
     b.classList.add('active');
     target = b.dataset.lang;
   });
 
+  // "They're speaking" — optional spoken-language lock for better accuracy.
+  srcRow.addEventListener('click', e => {
+    if (active) return;
+    const b = e.target.closest('.trLang');
+    if (!b) return;
+    srcRow.querySelectorAll('.trLang').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    sourceLang = b.dataset.src;
+  });
+
   function setStatus(text, on){ statusEl.innerHTML = `<span class="liveDot${on?' on':''}"></span>${text}`; }
+
+  // Acquire the microphone, preferring the PHONE'S OWN mic over a Bluetooth
+  // earbud mic. Earbud mics sit by your ear and aggressively cancel everything
+  // that isn't the wearer's voice — useless for capturing a guide across a room.
+  // Forcing the built-in mic also lets the earbuds stay output-only (better
+  // sound). Falls back to the default mic if the device can't be switched.
+  async function getMic(){
+    const base = {
+      echoCancellation: true,   // we play the translation aloud; keep the mic from re-hearing it
+      autoGainControl: true,    // lift a quiet / distant speaker
+      noiseSuppression: true,
+    };
+    let stream = await navigator.mediaDevices.getUserMedia({ audio: base });
+    try {
+      const devices = await navigator.mediaDevices.enumerateDevices();
+      const inputs = devices.filter(d => d.kind === 'audioinput');
+      const isEarbud  = l => /airpod|bluetooth|headset|headphone|wireless|buds/i.test(l || '');
+      const isBuiltIn = l => /built|iphone|bottom|internal|phone mic/i.test(l || '');
+      const current = stream.getAudioTracks()[0];
+      if (isEarbud(current && current.label)){
+        const builtIn = inputs.find(d => isBuiltIn(d.label)) || inputs.find(d => !isEarbud(d.label));
+        if (builtIn && builtIn.deviceId){
+          stream.getTracks().forEach(t => t.stop());
+          stream = await navigator.mediaDevices.getUserMedia({
+            audio: { ...base, deviceId: { exact: builtIn.deviceId } }
+          });
+        }
+      }
+    } catch { /* keep the default mic if switching isn't allowed */ }
+    return stream;
+  }
 
   // Auto-follow the newest line, but let the reader scroll back by hand.
   // stickToBottom is only turned off by a *real* user scroll-up — redraw-induced
@@ -341,7 +386,7 @@
       // 1) Get a short-lived pass from our server.
       const sres = await fetch(API_BASE + '/api/session', {
         method:'POST', headers:{'Content-Type':'application/json'},
-        body: JSON.stringify({ target })
+        body: JSON.stringify({ target, sourceLang })
       });
       const sdata = await sres.json();
       if (!sres.ok || sdata.error || !sdata.client_secret){
@@ -349,7 +394,7 @@
       }
 
       // 2) Open the live connection to OpenAI.
-      micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      micStream = await getMic();
       pc = new RTCPeerConnection();
 
       // Spoken translation arrives here; route it into the unlocked player.

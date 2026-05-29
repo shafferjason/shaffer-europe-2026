@@ -297,6 +297,9 @@
       audioEl = document.createElement('audio');
       audioEl.autoplay = true;
       audioEl.setAttribute('playsinline', '');
+      audioEl.style.display = 'none';
+      // iOS will only reliably play a media element that's actually in the page.
+      document.body.appendChild(audioEl);
       try { const p = audioEl.play(); if (p && p.catch) p.catch(()=>{}); } catch {}
     }
 
@@ -441,7 +444,7 @@
     try { if (dc) dc.close(); } catch {}
     try { if (pc) pc.close(); } catch {}
     try { if (micStream) micStream.getTracks().forEach(t=>t.stop()); } catch {}
-    try { if (audioEl){ audioEl.pause(); audioEl.srcObject = null; } } catch {}
+    try { if (audioEl){ audioEl.pause(); audioEl.srcObject = null; audioEl.remove(); } } catch {}
     dc = null; pc = null; micStream = null; audioEl = null;
   }
 

@@ -28,7 +28,7 @@ Status: Marriott Bonvoy Platinum (Jason). American Airlines frequent flyer. DFW-
 | Wed May 27 | Day 4 | Cadiz, Spain (cruise port) | Excursion: Savour Sultry Seville on Foot |
 | Thu May 28 | Day 5 | Lisbon, Portugal (cruise port) | Pastel de Nata masterclass + self-guided walking day |
 | Fri May 29 | Day 6 | At Sea | Cruise day |
-| Sat May 30 | Day 7 | Alicante, Spain (cruise port) | Excursion: Spanish Castle Magic in Guadalest |
+| Sat May 30 | Day 7 | Alicante, Spain (cruise port) | Excursion: Guadalest Castle & Chocolate Factory (Explora Alicante Tours, private) |
 | Sun May 31 | Day 8 | Mahón, Menorca (cruise port) | Free day |
 | Mon Jun 1 | Day 9 | Olbia, Sardinia (cruise port) | Excursion: Exploring the La Maddalena Archipelago |
 | Tue Jun 2 | Day 10 | Genoa, Italy (cruise port) | Free day |
@@ -216,10 +216,18 @@ Check-in deadline at MRS: **14:35**. Cost: €282.26 prepaid Mastercard, non-ref
   - Walking guide saved at: `lisbon-walking-day.html` (in Europe Trip folder)
   - Back onboard by 4:30 PM; ship sails 6:00 PM
 
-### Sat May 30 — Alicante: Spanish Castle Magic in Guadalest Mountain Town
-- **Code:** ALI11 — BOOKED via MSC
-- **Duration:** 4.5 hours
-- **Type:** Bus tour to Guadalest mountain village
+### Sat May 30 — Alicante: Guadalest Castle & Chocolate Factory
+- **MSC tour ALI11 (Spanish Castle Magic in Guadalest) — CANCELLED.** Replaced with a private tour:
+- **Tour:** Guadalest Castle & Chocolate Factory (Valor Chocolate Museum + Guadalest Castle)
+- **Operator:** Explora Alicante Tours — small group / private
+- **Pickup:** 9:20 AM (booking message said 9:10 — confirm exact with operator) at Port of Alicante cruise terminal (Muelle de Levante)
+- **Vehicle:** Grey Lexus NX300, plate 1763 JZY
+- **Duration:** ~4.5–5 hours
+- **Price:** €138 total for 2 (paid by card) · Order #2244
+- **Operator contact:** +34 607 652 509 · exploraalicantetours@gmail.com · exploraalicantetours.com
+- **Ship timing:** docks 9:00 AM, all-aboard ~4:30 PM (tour returns with buffer)
+- **Includes:** pickup, transport, water in car, guided chocolate factory tour (~50 min) with tasting, Guadalest Castle visit (~1.5 hrs), skip-the-line entry, return to port. Guide in Spanish/English.
+- **Cancellation:** free, up to 48 hrs in advance.
 
 ### Mon Jun 1 — Olbia: Exploring the La Maddalena Archipelago
 - **Code:** OLB01 — BOOKED via MSC

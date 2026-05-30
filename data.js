@@ -281,21 +281,27 @@ window.TRIP = {
       country: "Mediterranean",
       flag: "🌊",
       kicker: "Cruise · Sea day",
-      title: "A day for the deck chairs.",
-      summary: "Heading east into the Med. Books, coffee, sun, an espresso, a long lunch. Repeat.",
+      title: "A craft session and a long lunch.",
+      summary: "A quiet day at sea. A morning craft session — we made photo frames — then most of the day in the cabin.",
       photos: [],
       audio: null,
-      journal: "",
+      journal: "Not much of a day, and that was fine. We went to a craft session earlier and made photo frames. The rest of it we spent in the cabin. Lunch was the high point, and a big one — the turkey and gravy was the best thing we've eaten on the ship so far, and the pretzel buns were delicious. We went back up around 4:30 and they were putting out snacks. We went straight for the sweet ones: cake and apple crumble. In the evening we caught a show — music from the great European cities, London, Paris, and Rome. The music was good, but a trio of acrobats stole the show.",
       context: {
         about: "A full day at sea, crossing east from the Atlantic side of Iberia into the Mediterranean proper.",
         tidbit: "The Mediterranean is about 2.5 million square kilometers — roughly 1% of the world's ocean area, but the largest inland sea on the planet. Average depth: about a mile."
       },
       plan: [
-        { time: "All day",  text: "Nothing scheduled. Deck chairs, books, espresso, a long lunch, the pool, the ship." },
+        { time: "Morning",  text: "Craft session — made photo frames." },
+        { time: "Daytime",  text: "Most of the day in the cabin." },
+        { time: "~4:30 PM", text: "Up for snacks — cake and apple crumble." },
+        { time: "Evening",  text: "A show — music from London, Paris, and Rome. The acrobats stole it." },
       ],
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
-      meals: [],
+      meals: [
+        { place: "", dish: "Turkey and gravy with pretzel buns — best thing on the ship so far", when: "Lunch", cost: "" },
+        { place: "", dish: "Cake and apple crumble", when: "Afternoon snack", cost: "" },
+      ],
     },
     {
       id: "day-7",
@@ -305,20 +311,22 @@ window.TRIP = {
       country: "Spain",
       flag: "🇪🇸",
       kicker: "Cruise · Port 3",
-      title: "Spanish castle magic in the mountains.",
-      summary: "Dock 9 AM. Bus up into the Costa Blanca hills to Guadalest, a tiny clifftop village in a Moorish castle. Back by mid-afternoon.",
+      title: "Chocolate and a clifftop castle.",
+      summary: "Dock 9 AM. A private car up into the Costa Blanca hills — a chocolate factory with a tasting, then Guadalest, a tiny clifftop village built into a Moorish castle. Back by mid-afternoon.",
       photos: [],
       audio: null,
       journal: "",
       context: {
-        about: "Alicante is a Costa Blanca port city below the Castillo de Santa Bárbara, a Moorish hilltop fortress. The MSC excursion goes inland to Guadalest — a fortified clifftop village built into a 595-meter mountain pass. Population about 210. Held by the Moors, then taken by the Crown of Aragon in 1308 and held by the same noble family for the next five centuries.",
+        about: "Alicante is a Costa Blanca port city below the Castillo de Santa Bárbara, a Moorish hilltop fortress. Our private tour goes inland — first to the Valor chocolate museum and factory, then up to Guadalest, a fortified clifftop village built into a 595-meter mountain pass. Population about 210. Held by the Moors, then taken by the Crown of Aragon in 1308 and held by the same noble family for the next five centuries.",
         tidbit: "Guadalest's church and bell tower had to be carved straight out of the solid rock of the cliff — the only way to fit a town up there."
       },
       plan: [
         { time: "9:00 AM",  text: "Dock in Alicante." },
-        { time: "Morning",  text: "MSC excursion ALI11 — bus up into the Costa Blanca hills to Guadalest. Castle, village, the views." },
-        { time: "~2:00 PM", text: "Return drive to Alicante. Optional time on the esplanade if there's any left." },
-        { time: "5:00 PM",  text: "Back aboard. Ship sails." },
+        { time: "9:20 AM",  text: "Private pickup at the cruise terminal — grey Lexus NX300, plate 1763 JZY (Explora Alicante Tours)." },
+        { time: "Morning",  text: "Valor chocolate factory — guided tour and a tasting." },
+        { time: "Midday",   text: "Up into the hills to Guadalest. Castle, village, the views." },
+        { time: "~2:00 PM", text: "Return drive to Alicante." },
+        { time: "4:30 PM",  text: "All-aboard. Ship sails." },
       ],
       smallFind: { number: "", label: "", text: "", photo: "" },
       postcardTo: { to: "", text: "", signoff: "" },
@@ -542,10 +550,10 @@ window.TRIP = {
   ],
 
   whereNow: {
-    city: "Lisbon",
-    country: "Portugal",
-    note: "Made pastéis de nata, then walked the Baixa down to the river.",
-    updated: "2026-05-28",
+    city: "At Sea",
+    country: "Mediterranean",
+    note: "A quiet sea day — made photo frames, a long lunch, sailing east toward Alicante.",
+    updated: "2026-05-29",
   },
 
   // ============================================================
@@ -651,7 +659,7 @@ window.TRIP = {
     tours: [
       { date: "Wed May 27", name: "Savour Sultry Seville on Foot", operator: "MSC excursion · code CAD11", confirmation: "Booked on cruise card" },
       { date: "Thu May 28", name: "Pastel de Nata Masterclass", operator: "Nat'elier · Rua de Santa Justa 87, Lisbon · 10 AM, 2 hrs · arrive 9:50", confirmation: "NATA-T128887747 · €140 prepaid" },
-      { date: "Sat May 30", name: "Spanish Castle Magic in Guadalest", operator: "MSC excursion · code ALI11 · 4.5 hrs", confirmation: "Booked on cruise card" },
+      { date: "Sat May 30", name: "Guadalest Castle & Chocolate Factory", operator: "Explora Alicante Tours (private) · pickup 9:20 AM at terminal · grey Lexus NX300, plate 1763 JZY · +34 607 652 509", confirmation: "Order #2244 · €138 for 2, paid by card" },
       { date: "Mon Jun 1", name: "Exploring the La Maddalena Archipelago", operator: "MSC excursion · code OLB01", confirmation: "Booked on cruise card" },
       { date: "Thu Jun 4", name: "Normandy / D-Day + Mont Saint-Michel", operator: "Amigo Tours · meet 7 AM at 11 Bd Pershing (Hyatt Regency Etoile)", confirmation: "GYGBLHQALLK3 · Mont St-Michel abbey tix included" },
     ],

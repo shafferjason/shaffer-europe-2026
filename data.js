@@ -312,6 +312,7 @@ window.TRIP = {
       flag: "🇪🇸",
       kicker: "Cruise · Port 3",
       title: "Chocolate and two castles.",
+      mural: "images/mural-day-7.jpg",
       summary: "A private car up into the Costa Blanca hills — the Valor chocolate factory, then Guadalest, a clifftop village built into a Moorish castle. Back in Alicante, the elevator up to Santa Bárbara castle for the view.",
       photos: [
         { src: "images/ali-valor-truck.jpg",            cap: "The old Valor delivery truck parked outside the chocolate factory" },

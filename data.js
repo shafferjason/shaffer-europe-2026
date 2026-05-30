@@ -311,11 +311,26 @@ window.TRIP = {
       country: "Spain",
       flag: "🇪🇸",
       kicker: "Cruise · Port 3",
-      title: "Chocolate and a clifftop castle.",
-      summary: "Dock 9 AM. A private car up into the Costa Blanca hills — a chocolate factory with a tasting, then Guadalest, a tiny clifftop village built into a Moorish castle. Back by mid-afternoon.",
-      photos: [],
+      title: "Chocolate and two castles.",
+      summary: "A private car up into the Costa Blanca hills — the Valor chocolate factory, then Guadalest, a clifftop village built into a Moorish castle. Back in Alicante, the elevator up to Santa Bárbara castle for the view.",
+      photos: [
+        { src: "images/ali-valor-truck.jpg",            cap: "The old Valor delivery truck parked outside the chocolate factory" },
+        { src: "images/ali-cacao-tree.jpg",             cap: "Cacao tree display inside the Valor museum" },
+        { src: "images/ali-cocoa-sacks.jpg",            cap: "Sacks of cocoa beans on the museum floor" },
+        { src: "images/ali-old-workshop.jpg",           cap: "An old workshop, set up the way chocolate used to be made" },
+        { src: "images/ali-guadalest-tower.jpg",        cap: "Guadalest — the bell tower out on its rock" },
+        { src: "images/ali-guadalest-cliff.jpg",        cap: "The bell tower and castle perched on the cliff" },
+        { src: "images/ali-guadalest-village.jpg",      cap: "The castle and village against the mountains" },
+        { src: "images/ali-guadalest-rock-rachel.jpg",  cap: "Rachel below the great rock the castle is built into" },
+        { src: "images/ali-guadalest-reservoir.jpg",    cap: "The reservoir down in the valley — that turquoise caught us off guard" },
+        { src: "images/ali-guadalest-valley.jpg",       cap: "Looking out over the orange groves toward the sea" },
+        { src: "images/ali-rachel-jason.jpg",           cap: "The two of us at the Guadalest overlook" },
+        { src: "images/ali-beach-port.jpg",             cap: "Postiguet beach and the port from Santa Bárbara castle — our ship down there" },
+        { src: "images/ali-selfie-castle.jpg",          cap: "Up at the top of Santa Bárbara castle" },
+        { src: "images/ali-castle-city.jpg",            cap: "The castle grounds, Alicante spread out behind" },
+      ],
       audio: null,
-      journal: "",
+      journal: "Alicante was really three stops. First the Valor chocolate factory. We've done a lot of chocolate tours by now, so it wasn't much new, but we enjoyed it, and the tasting was good — good enough that we walked out with a bag of chocolate-covered almonds. Walking along the outside of the building you could smell the chocolate, really strong. Inside, we were surprised the factory floor wasn't running — it was Saturday, so they were shut down for the weekend.\n\nThe drive up into the hills was nice. Small group, just us and a couple from North Carolina, in a Lexus with a driver who spoke good English — a relief, since not all our guides this trip have been easy to understand.\n\nThen Guadalest. We walked up into the castle village — souvenir shops, a couple of places to eat, fairly quiet. Just a nice place with a great view. The reservoir down in the valley caught us off guard; we weren't expecting the water to be that intense a color.\n\nBack in Alicante we took the elevator up to Santa Bárbara castle, and we were glad we did — there was still plenty of climbing once you were up there. It was beautiful to see all of it: the tops of the buildings and houses, the mountains, the beach, the ships.",
       context: {
         about: "Alicante is a Costa Blanca port city below the Castillo de Santa Bárbara, a Moorish hilltop fortress. Our private tour goes inland — first to the Valor chocolate museum and factory, then up to Guadalest, a fortified clifftop village built into a 595-meter mountain pass. Population about 210. Held by the Moors, then taken by the Crown of Aragon in 1308 and held by the same noble family for the next five centuries.",
         tidbit: "Guadalest's church and bell tower had to be carved straight out of the solid rock of the cliff — the only way to fit a town up there."
@@ -326,9 +341,15 @@ window.TRIP = {
         { time: "Morning",  text: "Valor chocolate factory — guided tour and a tasting." },
         { time: "Midday",   text: "Up into the hills to Guadalest. Castle, village, the views." },
         { time: "~2:00 PM", text: "Return drive to Alicante." },
+        { time: "Afternoon", text: "Elevator up to Santa Bárbara castle for the views over the city, beach, and port." },
         { time: "4:30 PM",  text: "All-aboard. Ship sails." },
       ],
-      smallFind: { number: "", label: "", text: "", photo: "" },
+      smallFind: {
+        number: "06",
+        label: "A chocolate factory making no chocolate",
+        text: "We could smell the chocolate from the sidewalk before we even went in — strong, unmistakable. But the factory floor itself was still. It was Saturday, and Valor shuts the line down for the weekend, so we ended up touring a chocolate factory on its day of rest.",
+        photo: "images/ali-cocoa-sacks.jpg"
+      },
       postcardTo: { to: "", text: "", signoff: "" },
       meals: [],
     },
@@ -550,10 +571,10 @@ window.TRIP = {
   ],
 
   whereNow: {
-    city: "At Sea",
-    country: "Mediterranean",
-    note: "A quiet sea day — made photo frames, a long lunch, sailing east toward Alicante.",
-    updated: "2026-05-29",
+    city: "Alicante",
+    country: "Spain",
+    note: "Chocolate in the hills, the clifftop village of Guadalest, and the castle elevator for the view. Sailing on toward Menorca.",
+    updated: "2026-05-30",
   },
 
   // ============================================================

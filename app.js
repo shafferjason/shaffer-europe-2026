@@ -103,8 +103,8 @@
       const photoBlock = cover
         ? `<div class="dayPhoto dayPhoto--cover"><img src="${cover}" alt="" /></div>`
         : `<div class="dayPhoto"><div class="placeholder">
-             <div class="icon">${day.flag || '✦'}</div>
-             <div>photo soon</div>
+             <div class="icon">${day.coverIcon || day.flag || '✦'}</div>
+             <div>${day.coverLabel || 'photo soon'}</div>
            </div></div>`;
       const stampCode = countryStampCode(day.country);
       const stampBlock = stampCode

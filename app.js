@@ -97,7 +97,9 @@
     if (!grid || !T.days) return;
     grid.innerHTML = T.days.map((day, i) => {
       const hasPhoto = day.photos && day.photos.length > 0;
-      const cover = hasPhoto ? day.photos[0] : null;
+      const cover = hasPhoto
+        ? (typeof day.photos[0] === 'string' ? day.photos[0] : day.photos[0].src)
+        : null;
       const photoBlock = cover
         ? `<div class="dayPhoto dayPhoto--cover"><img src="${cover}" alt="" /></div>`
         : `<div class="dayPhoto"><div class="placeholder">

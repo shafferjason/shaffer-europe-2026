@@ -365,22 +365,48 @@ window.TRIP = {
       flag: "🇪🇸",
       kicker: "Cruise · Port 4 · Free day",
       title: "The quiet Balearic.",
-      summary: "Quieter sister to Mallorca and Ibiza. Mahón has one of the deepest natural harbors in the world. A wander, a long lunch, gin and lemonade on a terrace.",
-      photos: [],
+      mural: "images/mural-day-8.jpg",
+      summary: "Off the ship into an almost empty Sunday-morning town. Breakfast, the old streets and the big church, the local cheese, and a harbor cruise on a little yellow catamaran to finish.",
+      photos: [
+        { src: "images/men-plaza.jpg",         cap: "A near-empty plaza — Sunday morning, the town almost a ghost town" },
+        { src: "images/men-pastries.jpg",      cap: "Second breakfast — the local pastries we'd looked forward to" },
+        { src: "images/men-street-soba.jpg",   cap: "A quiet old-town lane" },
+        { src: "images/men-shoes.jpg",         cap: "Shoes strung up over the street" },
+        { src: "images/men-balconies.jpg",     cap: "Balconies and flowers in the old town" },
+        { src: "images/men-church-altar.jpg",  cap: "Inside the church — the gilded altar" },
+        { src: "images/men-organ.jpg",         cap: "The old organ up in the gallery" },
+        { src: "images/men-harbor-ship.jpg",   cap: "Our ship in Mahón's long harbor" },
+        { src: "images/men-harbor-inlet.jpg",  cap: "Looking down the harbor — one of the deepest in the world" },
+        { src: "images/men-ruins.jpg",         cap: "Old stone ruins built into the hillside along the water" },
+      ],
       audio: null,
-      journal: "",
+      journal: "We got off the ship into what felt like a ghost town. Sunday morning, and the streets were almost empty — no one walking, just a couple of cars. Very quiet and peaceful.\n\nWe'd figured this would be a food day. Menorca is known for its pastries and its cheese, and we'd really looked forward to trying both — wanted to like them. Breakfast in town, where we'd hoped for something better than the ship, turned out about the same. The pastries we ducked into a café for, our second breakfast, were just ok. The cheese, Rachel liked; I liked the flavor but wasn't sold on the texture. Even the gelato was nothing special, and we still haven't found really good gelato anywhere this trip. We'd heard mayonnaise was invented here, but didn't see anything about it around town.\n\nSo we walked instead. A lot of the old-town shops were closed for Sunday, but we did our share of poking around, and the church was beautiful inside — the old organ up in the gallery especially.\n\nThe last thing we did was a harbor cruise on a little yellow catamaran. The weather on the water was perfect. Across the harbor from the city we could see big, nice houses set on the hillsides — clearly where the wealthier people live. We passed the old fortress and got a different view of the city from the water. Our guide said we were looking at the easternmost point of Spain. The boat had windows down in the hull, but we didn't see anything noteworthy through them — still, a nice, easy way to end the day. Before heading back we stopped at the tents by the port, where Rachel bought a pair of avarcas, the local Menorcan sandals.\n\nEven dinner back on the ship was a bust. I tried several things from the buffet — it's pretty bad when the green beans are the standout of the plate. I ended up getting a few fries from the grill with a bit of mayo, which, on the one day we'd heard mayonnaise was invented, was about as close as we got to it.\n\nFunny how it flipped on us. We'd expected a food day and figured we might struggle to fill the time. Instead the food was the letdown start to finish, and the day still filled up just fine — sightseeing, shopping, and the cruise.",
       context: {
         about: "The capital of Menorca, the quietest of the Balearic Islands. Mahón has the second-deepest natural harbor in the world — only Pearl Harbor is deeper. Britain held Menorca for most of the 18th century, and you can still see the influence in the architecture and the local fondness for gin.",
         tidbit: "The word 'mayonnaise' comes from Mahón. It was invented here by a French chef during the British siege of 1756 — originally 'Mahonnaise.'"
       },
       plan: [
-        { time: "9:00 AM",  text: "Dock in Mahón." },
-        { time: "Day",      text: "Free day — no excursion booked. A wander into town, a long lunch on a terrace, gin and lemonade (the local specialty: pomada)." },
-        { time: "4:00 PM",  text: "Back aboard. Ship sails for Sardinia." },
+        { time: "9:00 AM",   text: "Dock in Mahón — Sunday-morning quiet, almost a ghost town." },
+        { time: "Morning",   text: "Breakfast in town, then local pastries for a second breakfast." },
+        { time: "Midday",    text: "The old town — the church and its organ, the local cheese, shops (many closed for Sunday)." },
+        { time: "Afternoon", text: "Harbor cruise on a little yellow catamaran. Sandals from the tents by the port." },
+        { time: "4:00 PM",   text: "Back aboard. Ship sails for Sardinia." },
       ],
-      smallFind: { number: "", label: "", text: "", photo: "" },
+      smallFind: {
+        number: "07",
+        label: "A town still half-asleep",
+        text: "We stepped off the ship into a Sunday-morning hush — empty streets, shuttered shops, only a couple of cars and almost no one out walking. Quiet and peaceful, the whole old town to ourselves for the first hour.",
+        photo: "images/men-plaza.jpg"
+      },
       postcardTo: { to: "", text: "", signoff: "" },
-      meals: [],
+      meals: [
+        { place: "", dish: "Breakfast in town — we'd hoped for better than the ship; it was about the same", when: "Morning", cost: "" },
+        { place: "", dish: "Local pastries — our 'second breakfast'", when: "Morning", cost: "" },
+        { place: "", dish: "Mahón cheese — Rachel liked it; I liked the flavor, not the texture", when: "Tasting", cost: "" },
+        { place: "", dish: "Gelato — just ok; still hunting for a great one this trip", when: "Afternoon", cost: "" },
+        { place: "", dish: "Ship buffet dinner — the green beans were the standout, which says it all", when: "Dinner", cost: "" },
+        { place: "", dish: "A few grill fries with a bit of mayo — closest we got to the local invention", when: "Dinner", cost: "" },
+      ],
     },
     {
       id: "day-9",
@@ -574,10 +600,10 @@ window.TRIP = {
   ],
 
   whereNow: {
-    city: "Alicante",
+    city: "Mahón, Menorca",
     country: "Spain",
-    note: "Chocolate in the hills, the clifftop village of Guadalest, and the castle elevator for the view. Sailing on toward Menorca.",
-    updated: "2026-05-30",
+    note: "A quiet Sunday in Mahón — the old town, the big church, and a harbor cruise on a little yellow catamaran. Sailing on toward Sardinia.",
+    updated: "2026-05-31",
   },
 
   // ============================================================

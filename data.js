@@ -416,24 +416,45 @@ window.TRIP = {
       country: "Italy",
       flag: "🇮🇹",
       kicker: "Cruise · Port 5",
-      title: "Boating the La Maddalena Archipelago.",
-      summary: "Dock 10 AM. Out on the water through the granite islands of La Maddalena — pale-turquoise coves, beach stops, the kind of color that doesn't photograph right.",
-      photos: [],
+      title: "Around the island, and finally good gelato.",
+      mural: "images/mural-day-9.jpg",
+      summary: "Not the boat trip we'd planned — a bus tour. A drive up the coast, a ferry over to La Maddalena, a loop around the island, time in the town, and the ferry back.",
+      photos: [
+        { src: "images/mad-cove-boat.jpg",      cap: "A wooden boat in a clear cove on La Maddalena" },
+        { src: "images/mad-turquoise-cove.jpg", cap: "The kind of turquoise that doesn't look real" },
+        { src: "images/mad-sandy-cove.jpg",     cap: "A little sandy cove, wildflowers along the path" },
+        { src: "images/mad-coastline.jpg",      cap: "Rugged coastline and deep blue water" },
+        { src: "images/mad-granite-coast.jpg",  cap: "Granite and sea, islands strung out in the distance" },
+        { src: "images/mad-granite-rocks.jpg",  cap: "The island's weathered granite up close" },
+        { src: "images/mad-pine-beach.jpg",     cap: "A pine wood running right down to the sand" },
+        { src: "images/mad-coves-height.jpg",   cap: "Coves and inlets seen from up high" },
+        { src: "images/mad-town-view.jpg",      cap: "Looking down over the town and the strait" },
+        { src: "images/mad-town-square.jpg",    cap: "The pastel main square in the island town" },
+      ],
       audio: null,
-      journal: "",
+      journal: "Not the boat trip we'd expected — this one turned out to be a bus tour. We drove up the coast, took a ferry across to La Maddalena, and the bus looped us around the island. We made one stop at a viewpoint, maybe ten minutes, looking out over the water and the other islands. We never got down to the water itself; most of the scenery slid by through the bus windows. The granite, the coves, that clear turquoise — it's the kind of color that's hard to catch from a moving bus, but we tried.\n\nIn the island town we finally had a good food stop. Really good pasta, a little shopping, and — at last — some quality gelato. After days of 'just ok,' we'd about given up finding a great one, so that was a nice surprise.\n\nThen the ferry back, and the drive back to the ship.",
       context: {
         about: "Olbia is the gateway to Sardinia's Costa Smeralda — the emerald-water coast. The La Maddalena Archipelago is a national park of seven granite islands off the northeast tip, famous for water in shades of blue you don't quite believe.",
         tidbit: "Giuseppe Garibaldi, the soldier-statesman who unified Italy, spent his final years on Caprera, one of the La Maddalena islands. His house is now a museum — he chose it specifically because it was about as far as one could get from politics."
       },
       plan: [
         { time: "10:00 AM", text: "Dock in Olbia." },
-        { time: "Morning",  text: "MSC excursion OLB01 — boat tour through the La Maddalena Archipelago. Beach stops, swim breaks, the granite-and-turquoise coastline." },
-        { time: "Afternoon", text: "Continued boat tour and return to port." },
+        { time: "Morning",  text: "Bus tour — up the coast, then a ferry across to La Maddalena island." },
+        { time: "Midday",   text: "A loop around the island by bus, one viewpoint stop, then time in the island town — pasta, shopping, gelato." },
+        { time: "Afternoon", text: "Ferry back and the drive back to the port." },
         { time: "7:00 PM",  text: "Back aboard. Ship sails for Genoa." },
       ],
-      smallFind: { number: "", label: "", text: "", photo: "" },
+      smallFind: {
+        number: "08",
+        label: "Finally, the gelato",
+        text: "After a string of just-ok scoops up the coast, the gelato in the island town was the first one that actually stopped us in our tracks. Worth the wait.",
+        photo: "images/mad-town-square.jpg"
+      },
       postcardTo: { to: "", text: "", signoff: "" },
-      meals: [],
+      meals: [
+        { place: "", dish: "Really good pasta in the island town", when: "Lunch", cost: "" },
+        { place: "", dish: "Gelato — finally a great one, the best of the trip so far", when: "Afternoon", cost: "" },
+      ],
     },
     {
       id: "day-10",
@@ -600,10 +621,10 @@ window.TRIP = {
   ],
 
   whereNow: {
-    city: "Mahón, Menorca",
-    country: "Spain",
-    note: "A quiet Sunday in Mahón — the old town, the big church, and a harbor cruise on a little yellow catamaran. Sailing on toward Sardinia.",
-    updated: "2026-05-31",
+    city: "La Maddalena, Sardinia",
+    country: "Italy",
+    note: "A bus and a ferry out to the granite island of La Maddalena — coves, clear water, and finally some great gelato. Sailing on toward Genoa.",
+    updated: "2026-06-01",
   },
 
   // ============================================================

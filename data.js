@@ -464,23 +464,44 @@ window.TRIP = {
       country: "Italy",
       flag: "🇮🇹",
       kicker: "Cruise · Port 6 · Free day",
-      title: "The old maritime republic.",
-      summary: "Narrow medieval lanes, painted palazzos, the smell of focaccia. The birthplace of Columbus and pesto. The Italian Riviera at our backs.",
-      photos: [],
+      title: "The rainy port that stayed dry.",
+      mural: "images/mural-day-10.jpg",
+      summary: "The one port forecast to rain all day — and it quit right as we stepped off, even a little sun. A walk through the medieval old town on our own: the striped cathedral, the old gate, the narrow alleys.",
+      photos: [
+        { src: "images/gen-rainy-waterfront.jpg",   cap: "The rainy waterfront — flags out, cloud sitting on the hills" },
+        { src: "images/gen-rainy-promenade.jpg",    cap: "Grey morning on the port promenade, before it cleared" },
+        { src: "images/gen-alley.jpg",              cap: "Down one of the old-town alleys, the caruggi" },
+        { src: "images/gen-san-lorenzo.jpg",        cap: "The Cathedral of San Lorenzo — black-and-white striped stone" },
+        { src: "images/gen-cathedral-interior.jpg", cap: "Inside San Lorenzo — frescoes and stained glass" },
+        { src: "images/gen-porta-soprana.jpg",      cap: "Porta Soprana — the medieval gate and its twin towers" },
+        { src: "images/gen-piazza.jpg",             cap: "Grand squares and arcades in the newer town" },
+        { src: "images/gen-fiat500.jpg",            cap: "A vintage blue Fiat 500 on a wet street" },
+        { src: "images/gen-amaretti.jpg",           cap: "An old café showing off its house amaretti, made since 1880" },
+      ],
       audio: null,
-      journal: "",
+      journal: "Genoa was the one port that was supposed to rain all day. It had been coming down, but it stopped right as we were getting off the ship, and at one point the sun even peeked through. Every other port so far had given us full sun start to finish, so we counted ourselves lucky to dodge it here.\n\nWe skipped a tour and just walked — and walked. This was our most on-foot day of the whole trip: over seven miles, and not on flat ground. We wound through the narrow alleys, past the big striped cathedral (black and white stone, inside and out) and the old medieval gate with its two stone towers, and hiked up to a lookout over the whole city. Our watches logged more than thirty flights of stairs, and honestly it felt like more. A vintage blue Fiat on a wet street, the grand squares and arcades along the way.\n\nAnd we ate well. We stopped at an old shop known for its house amaretti and had one along with a cannoli and a couple more bite-size pastries. The city was full of focaccia shops; we found one down a small alley with a line out the door, so of course we tried it — hot from the oven, brushed with olive oil, and it did not disappoint. We picked up some pesto, too. We'd planned on a late lunch and didn't realize most restaurants close around 2:30 until dinner, so we grabbed a snack in a little café, then found a cheap fresh-pasta place that turned out to be pretty good. We topped it off with gelato — Italy didn't disappoint there either.\n\nAs we got back to the ship we felt the first couple of drops. Later I went up to the deck for some water, and by then it was pouring. The rain had waited the whole day for us to finish.",
       context: {
         about: "One of Europe's great old maritime republics — Genoa rivaled Venice for centuries. Christopher Columbus was born here. The Banca di San Giorgio, founded here in 1407, was one of the first chartered banks in the world. The 16th-century Strada Nuova — a street of palaces built by the city's noble families — is a UNESCO site.",
         tidbit: "Both focaccia and pesto were invented in Genoa. The classical pesto recipe insists on Genoese basil only — DOP-protected and grown in greenhouses on the city's western slopes."
       },
       plan: [
-        { time: "9:00 AM",  text: "Dock in Genoa." },
-        { time: "Day",      text: "Free day — no excursion booked. The medieval old town, the Strada Nuova palaces, focaccia and pesto, a walk by the old port." },
+        { time: "9:00 AM",  text: "Dock in Genoa — grey skies, rain just stopping as we step off." },
+        { time: "Day",      text: "A self-guided walk through the medieval old town — the caruggi alleys, San Lorenzo cathedral inside and out, the Porta Soprana gate, the grand squares." },
         { time: "6:00 PM",  text: "Back aboard. Ship sails for Marseille — the final leg." },
       ],
-      smallFind: { number: "", label: "", text: "", photo: "" },
+      smallFind: {
+        number: "09",
+        label: "The one rainy port",
+        text: "Genoa was the only stop forecast to rain all day, and the only one where the clouds delivered. It quit the moment we stepped off the ship, even let a little sun through, and held off the whole day. We felt the first drops as we got back aboard; by the time I went up to the deck that evening, it was pouring.",
+        photo: "images/gen-rainy-waterfront.jpg"
+      },
       postcardTo: { to: "", text: "", signoff: "" },
-      meals: [],
+      meals: [
+        { place: "", dish: "Amaretti, a cannoli, and a few bite-size pastries at an 1880 café", when: "Morning", cost: "" },
+        { place: "", dish: "Focaccia hot from the oven, brushed with olive oil — from a shop down an alley with a line", when: "Midday", cost: "" },
+        { place: "", dish: "Fresh pasta at a cheap little place — better than expected", when: "Late lunch", cost: "" },
+        { place: "", dish: "Gelato — Italy didn't disappoint again", when: "Afternoon", cost: "" },
+      ],
     },
     {
       id: "day-11",
@@ -621,10 +642,10 @@ window.TRIP = {
   ],
 
   whereNow: {
-    city: "La Maddalena, Sardinia",
+    city: "Genoa",
     country: "Italy",
-    note: "A bus and a ferry out to the granite island of La Maddalena — coves, clear water, and finally some great gelato. Sailing on toward Genoa.",
-    updated: "2026-06-01",
+    note: "The one port forecast to rain all day — and it quit right as we stepped off. A walk through the old town: the striped cathedral, the medieval gate, the narrow alleys. Sailing on toward Marseille.",
+    updated: "2026-06-02",
   },
 
   // ============================================================

@@ -500,9 +500,9 @@ window.TRIP = {
       ],
       smallFind: {
         number: "09",
-        label: "The one rainy port",
-        text: "Genoa was the only stop forecast to rain all day, and the only one where the clouds delivered. It quit the moment we stepped off the ship, even let a little sun through, and held off the whole day. We felt the first drops as we got back aboard; by the time I went up to the deck that evening, it was pouring.",
-        photo: "images/gen-rainy-waterfront.jpg"
+        label: "The focaccia worth the line",
+        text: "Genoa runs on focaccia, and the shops are everywhere — but the one that mattered was down a narrow alley with a line out the door under a blue neon sign. Of course we got in it. Hot from the oven, brushed with olive oil. It did not disappoint.",
+        photo: "images/gen-focaccia-shop.jpg"
       },
       postcardTo: { to: "", text: "", signoff: "" },
       meals: [

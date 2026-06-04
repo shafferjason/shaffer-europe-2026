@@ -96,6 +96,8 @@ window.TRIP = {
       title: "Mint tea in the Habous Quarter.",
       summary: "Landed Casablanca around 10 AM. Marriott upgrade to a junior suite, a long nap, then a Careem to the Habous Quarter for the afternoon. Dinner on the Corniche at sunset.",
       mural: "images/mural-day-2.jpg",
+      recap: "audio/recap-day-2.mp3",
+      recapLen: "1 min",
       photos: [
         { src: "images/casa-mosque-palms.jpg",       cap: "Hassan II Mosque from the Corniche" },
         { src: "images/casa-mosque-close.jpg",       cap: "Hassan II Mosque — minaret close up" },

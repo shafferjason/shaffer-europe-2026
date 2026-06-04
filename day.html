@@ -121,14 +121,26 @@
     </figure>
   ` : '';
 
+  const recapBlock = day.recap ? `
+    <div class="dayRecap" style="max-width:560px;margin:0 auto 18px;background:rgba(255,255,255,0.55);border:1px solid #e3d8c0;border-radius:12px;padding:11px 16px 13px;box-shadow:var(--shadow-soft);">
+      <div style="font-family:'Caveat',cursive;font-size:21px;color:var(--ink,#3a342a);display:flex;align-items:center;gap:8px;margin:0 0 7px;">
+        <span style="font-size:17px;">🎧</span> Listen to the day
+        <span style="font-family:'Cormorant Garamond',serif;font-size:13px;font-style:italic;color:var(--ink-soft);margin-left:auto;">${day.recapLen || ''}</span>
+      </div>
+      <audio controls preload="none" style="width:100%;height:36px;display:block;" src="${day.recap}"></audio>
+    </div>
+  ` : '';
+
   mount.innerHTML = `
     ${muralBlock}
+    ${day.mural ? recapBlock : ''}
     <div class="dayHero">
       <div class="day-kicker">${day.label} · ${day.kicker || ''}</div>
       <h1>${day.title || day.city}</h1>
       <div class="day-city">${day.flag || ''} ${day.city} · ${day.country || ''}</div>
       <div class="dayLedger" id="dayLedger"></div>
     </div>
+    ${!day.mural ? recapBlock : ''}
     ${contextBlock}
     ${planBlock}
     ${photoBlocks ? `<div class="photoStack">${photoBlocks}</div>` : ''}

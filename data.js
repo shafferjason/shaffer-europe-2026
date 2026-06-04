@@ -21,6 +21,8 @@ window.TRIP = {
     {
       id: "day-0",
       date: "2026-05-23",
+      recap: "audio/recap-day-0.mp3",
+      recapLen: "1 min",
       label: "Sat May 23 · Night before",
       city: "Dallas, TX",
       country: "USA",
@@ -53,6 +55,8 @@ window.TRIP = {
     {
       id: "day-1",
       date: "2026-05-24",
+      recap: "audio/recap-day-1.mp3",
+      recapLen: "1 min",
       label: "Day 1 · Sun May 24",
       city: "DFW → JFK → Casablanca",
       country: "🇺🇸 → 🇲🇦",
@@ -143,6 +147,8 @@ window.TRIP = {
     {
       id: "day-3",
       date: "2026-05-26",
+      recap: "audio/recap-day-3.mp3",
+      recapLen: "1 min",
       label: "Day 3 · Tue May 26",
       city: "Casablanca → Málaga · Embark",
       country: "Morocco → Spain",
@@ -185,6 +191,8 @@ window.TRIP = {
     {
       id: "day-4",
       date: "2026-05-27",
+      recap: "audio/recap-day-4.mp3",
+      recapLen: "1 min",
       label: "Day 4 · Wed May 27",
       city: "Cádiz · Seville",
       country: "Spain",
@@ -231,6 +239,8 @@ window.TRIP = {
     {
       id: "day-5",
       date: "2026-05-28",
+      recap: "audio/recap-day-5.mp3",
+      recapLen: "1 min",
       label: "Day 5 · Thu May 28",
       city: "Lisbon",
       country: "Portugal",
@@ -280,6 +290,8 @@ window.TRIP = {
     {
       id: "day-6",
       date: "2026-05-29",
+      recap: "audio/recap-day-6.mp3",
+      recapLen: "1 min",
       label: "Day 6 · Fri May 29",
       city: "At Sea",
       country: "Mediterranean",
@@ -312,6 +324,8 @@ window.TRIP = {
     {
       id: "day-7",
       date: "2026-05-30",
+      recap: "audio/recap-day-7.mp3",
+      recapLen: "1 min",
       label: "Day 7 · Sat May 30",
       city: "Alicante · Guadalest",
       country: "Spain",
@@ -361,6 +375,8 @@ window.TRIP = {
     {
       id: "day-8",
       date: "2026-05-31",
+      recap: "audio/recap-day-8.mp3",
+      recapLen: "1 min",
       label: "Day 8 · Sun May 31",
       city: "Mahón, Menorca",
       country: "Spain · Balearics",
@@ -413,6 +429,8 @@ window.TRIP = {
     {
       id: "day-9",
       date: "2026-06-01",
+      recap: "audio/recap-day-9.mp3",
+      recapLen: "1 min",
       label: "Day 9 · Mon Jun 1",
       city: "Olbia, Sardinia · La Maddalena",
       country: "Italy",
@@ -461,6 +479,8 @@ window.TRIP = {
     {
       id: "day-10",
       date: "2026-06-02",
+      recap: "audio/recap-day-10.mp3",
+      recapLen: "1 min",
       label: "Day 10 · Tue Jun 2",
       city: "Genoa",
       country: "Italy",
@@ -517,6 +537,8 @@ window.TRIP = {
     {
       id: "day-11",
       date: "2026-06-03",
+      recap: "audio/recap-day-11.mp3",
+      recapLen: "1 min",
       label: "Day 11 · Wed Jun 3",
       city: "Marseille → Paris",
       country: "France",

@@ -627,7 +627,7 @@ window.TRIP = {
       },
       plan: [
         { time: "7:00 AM",  text: "Meet the Amigo Tours van at 11 Bd Pershing — in front of the Hyatt Regency Étoile. About a 5-minute walk from Le Méridien." },
-        { time: "Morning",  text: "Drive to Normandy. Omaha Beach. The American Cemetery at Colleville-sur-Mer." },
+        { time: "Morning",  text: "Drive to Normandy. Omaha Beach. Pointe du Hoc." },
         { time: "Midday",   text: "Drive west to Mont Saint-Michel." },
         { time: "Afternoon", text: "Visit Mont Saint-Michel — the abbey, the village built up the rock, the bay." },
         { time: "Evening",  text: "Drive back to Paris. Late dinner." },
@@ -725,7 +725,7 @@ window.TRIP = {
   whereNow: {
     city: "Normandy",
     country: "France",
-    note: "A long day on the D-Day coast — Omaha Beach, the American Cemetery, Pointe du Hoc — then west to Mont Saint-Michel rising from the tide. Seven in the morning to half past ten at night.",
+    note: "A long day on the D-Day coast — Omaha Beach, Pointe du Hoc — then west to Mont Saint-Michel rising from the tide. Seven in the morning to half past ten at night.",
     updated: "2026-06-04",
   },
 

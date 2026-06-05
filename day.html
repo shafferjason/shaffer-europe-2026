@@ -115,6 +115,53 @@
     </section>
   ` : '';
 
+  // ----- Day-to-day navigation (prev / next) -----
+  const dayIndex = T.days.findIndex(d => d.id === day.id);
+  const prevDay = dayIndex > 0 ? T.days[dayIndex - 1] : null;
+  const nextDay = (dayIndex >= 0 && dayIndex < T.days.length - 1) ? T.days[dayIndex + 1] : null;
+
+  function navCard(d, dir) {
+    // dir: 'prev' or 'next'
+    const arrow = dir === 'prev' ? '←' : '→';
+    const dirWord = dir === 'prev' ? 'Previous' : 'Next';
+    if (!d) {
+      if (dir === 'next') {
+        // At the last day, "next" returns to the trip index.
+        return `
+        <a class="dayNavCard dayNavNext" href="index.html">
+          <span class="dayNavDir">${dirWord}</span>
+          <span class="dayNavLabel">Back to the trip</span>
+          <span class="dayNavCity">all the days <span class="dayNavArrow">${arrow}</span></span>
+        </a>`;
+      }
+      // At the first day, the "prev" slot is an empty spacer (keeps next aligned right).
+      return `<span class="dayNavCard dayNavEmpty" aria-hidden="true"></span>`;
+    }
+    return `
+      <a class="dayNavCard dayNav${dir === 'prev' ? 'Prev' : 'Next'}" href="day.html?id=${d.id}">
+        <span class="dayNavDir">${dir === 'prev' ? `<span class="dayNavArrow">${arrow}</span> ${dirWord}` : `${dirWord} <span class="dayNavArrow">${arrow}</span>`}</span>
+        <span class="dayNavLabel">${d.label}</span>
+        <span class="dayNavCity">${d.flag || ''} ${d.city}</span>
+      </a>`;
+  }
+
+  const dayNavBottom = `
+    <nav class="dayNav" aria-label="Day navigation">
+      ${navCard(prevDay, 'prev')}
+      ${navCard(nextDay, 'next')}
+    </nav>`;
+
+  // Compact top control — slim prev/next chips beneath the back link.
+  const dayNavTop = `
+    <nav class="dayNavTop" aria-label="Day navigation">
+      ${prevDay
+        ? `<a class="dayNavChip dayNavChipPrev" href="day.html?id=${prevDay.id}" title="${prevDay.label} · ${prevDay.city}"><span class="dayNavArrow">←</span> ${prevDay.label}</a>`
+        : `<span class="dayNavChip dayNavEmpty" aria-hidden="true"></span>`}
+      ${nextDay
+        ? `<a class="dayNavChip dayNavChipNext" href="day.html?id=${nextDay.id}" title="${nextDay.label} · ${nextDay.city}">${nextDay.label} <span class="dayNavArrow">→</span></a>`
+        : `<a class="dayNavChip dayNavChipNext" href="index.html">All days <span class="dayNavArrow">→</span></a>`}
+    </nav>`;
+
   const muralBlock = day.mural ? `
     <figure class="dayMural">
       <img src="${day.mural}" alt="${day.city} — day mural" />
@@ -133,6 +180,7 @@
   ` : '';
 
   mount.innerHTML = `
+    ${dayNavTop}
     ${muralBlock}
     ${day.mural ? recapBlock : ''}
     <div class="dayHero">
@@ -152,6 +200,7 @@
     ${rachelBlock}
     ${smallFindBlock}
     ${postcardBlock}
+    ${dayNavBottom}
   `;
 
   // ----- Weather ledger (Open-Meteo, free, no key) -----

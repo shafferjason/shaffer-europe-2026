@@ -597,6 +597,7 @@ window.TRIP = {
       flag: "🇫🇷",
       kicker: "Day trip · 7 AM start",
       title: "D-Day beaches and a fortress on the bay.",
+      mural: "images/mural-day-12.jpg",
       recap: "audio/recap-day-12.mp3",
       recapLen: "2 min",
       summary: "A 7 AM-to-10:30 PM bus tour of the D-Day coast — Omaha Beach and its memorial, Pointe du Hoc — then west across Normandy to Mont Saint-Michel rising from the tide.",
